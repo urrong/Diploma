@@ -1,90 +1,108 @@
-load('matlab_diag.mat');
-I1 = imread('1.jpg');
-I2 = imread('2.jpg');
-
-figure;
-subplot(1, 2, 1);
-imshow(I1)
-% [x, y] = getpts()
-% imPoints1 = [x y]
-subplot(1, 2, 2);
-imshow(I2)
-% [x, y] = getpts()
-% imPoints2 = [x y]
-% return
-
-A = cameraParams.IntrinsicMatrix';
-invA = inv(A);
-
-% worldPoints = [0 0; 1 0; 2 0; 3 0; 4 0; 5 0; 6 0; 7 0;
-%                0 1; 1 1; 2 1; 3 1; 4 1; 5 1; 6 1; 7 1;
-%                0 2; 1 2; 2 2; 3 2; 4 2; 5 2; 6 2; 7 2;
-% ];
-
-%worldPoints = [0 0; 1 1; 2 2; 3 3; 4 4; 5 5; 6 6; 7 7; 0 7; 1 6; 2 5; 3 4; 4 3; 5 2; 6 1; 7 0];
-
-P1 = [];
-P2 = [];
-
-for i = 1:size(worldPoints, 1)
-    X = [worldPoints(i, :)'; 0; 1]; 
-    
-    x1 = invA * [imPoints1(i, :)'; 1];
-    x1 = x1 / x1(3);
-    P1 = [P1; zeros(1, 4), -X', X' * x1(2); X', zeros(1, 4), -X' * x1(1)];
-    
-    x2 = invA * [imPoints2(i, :)'; 1];
-    x2 = x2 / x2(3);
-    P2 = [P2; zeros(1, 4), -X', X' * x2(2); X', zeros(1, 4), -X' * x2(1)];
-end
-
-
-[U, S, V] = svd(P1);
-P1 = reshape(V(:, 9), 4, 3)';
-P1 = fixRTMatrix(P1);
-P1(:, 3) = -P1(:, 3);
-C1pos = -inv(P1(:, 1:3)) * P1(:, 4)
-P1
-
-[U, S, V] = svd(P2);
-P2 = reshape(V(:, 9), 4, 3)';
-P2 = fixRTMatrix(P2);
-C2pos = -inv(P2(:, 1:3)) * P2(:, 4)
-P2
-
-subplot(1, 2, 1);
-hold on;
-for i = 0:10
-    for j = 0:10
-        x = A * P1 * [i j 0 1]';
-        x = x / x(3);
-        y = A * P1 * [i j 5 1]';
-        y = y / y(3);
-        plot([x(1) y(1)], [x(2) y(2)], 'r');
-    end
-end
-hold off;
-
-subplot(1, 2, 2);
-hold on;
-for i = 0:10
-    for j = 0:10
-        x = A * P2 * [i j 0 1]';
-        x = x / x(3);
-        y = A * P2 * [i j 5 1]';
-        y = y / y(3);
-        plot([x(1) y(1)], [x(2) y(2)], 'r');
-    end
-end
-hold off;
+clear
 
 crossMatrix = @(x) [0 -x(3) x(2); x(3) 0 -x(1); -x(2) x(1) 0];
+subplot = @(m,n,p) subtightplot (m, n, p, [0.01 0.01], [0 0], [0 0]);
 
-x1 = [1718 1068 1]';
-x2 = [1670 1080 1]';
+worldImageNames = dir('world');
+worldImages = {};
+for i = 1:numel(worldImageNames)
+    if ~worldImageNames(i).isdir
+        I = imread(['world/' worldImageNames(i).name]);
+        worldImages = [worldImages, {I}];
+    end
+end
 
-C = [crossMatrix(x1) * A * P1;
-     crossMatrix(x2) * A * P2];
+worldPoints = [0 0 0; 
+               1 1 0; 
+               2 2 0;
+               3 3 0;
+               4 4 0;
+               5 5 0;
+               6 6 0;
+               7 7 0;
+               0 7 0;
+               1 6 0;
+               2 5 0;
+               3 4 0;
+               4 3 0;
+               5 2 0;
+               6 1 0;
+               7 0 0];
+
+DEFINE_IMAGE_POINTS = false;
+
+if DEFINE_IMAGE_POINTS
+    %define world points on image
+    imagePoints = {};
+    for i = 1:4
+        imshow(worldImages{i});
+        [x, y] = getpts();
+        imagePoints = [imagePoints, {[x y]}];
+    end
+    save('imagePoints.mat', 'imagePoints');
+else
+    load('imagePoints.mat');
+end
+
+load('cameraParams.mat');
+
+%display images
+for i = 1:4
+    subplot(2, 2, i);
+    imshow(worldImages{i});
+end
+
+%compute extrinsic matrix
+A = cameraParams.IntrinsicMatrix';
+externalMatrices = {};
+
+for i = 1:numel(imagePoints)
+    P = externalEquationMatrix(worldPoints, imagePoints{i}, A);
+    [U, S, V] = svd(P);
+    P = reshape(V(:, 9), 4, 3)';
+    P = fixExternalMatrix(P);
+    externalMatrices = [externalMatrices, {P}];
+    %-inv(P(:, 1:3)) * P(:, 4) % camera position in world coordinates
+end
+
+%project world coordinates on image
+for i = 1:4
+    subplot(2, 2, i);
+    hold on;
+    
+    for j = 0:7
+        for k = 0:7
+            x = A * externalMatrices{i} * [j k 0 1]';
+            x = x / x(3);
+            y = A * externalMatrices{i} * [j k 3 1]';
+            y = y / y(3);
+            plot([x(1) y(1)], [x(2) y(2)], 'r');
+        end
+    end
+    
+    hold off;
+end
+
+DEFINE_TRIANGULATION_POINTS = false;
+
+if DEFINE_TRIANGULATION_POINTS
+    triangulationPoints = {};
+    figure
+    for i = 1:4
+        imshow(worldImages{i});
+        [x, y] = getpts();
+        triangulationPoints = [triangulationPoints, {[x y 1]'}];
+    end
+    save('triangulationPoints.mat', 'triangulationPoints');
+else
+    load('triangulationPoints.mat');
+end
+
+C = [];
+for i = 1:4
+    C = [C; crossMatrix(triangulationPoints{i}) * A * externalMatrices{i}];
+end
+
 [U, S, V] = svd(C);
 p = V(:, 4);
 p / p(4)

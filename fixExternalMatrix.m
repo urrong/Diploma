@@ -1,4 +1,4 @@
-function [P] = fixRTMatrix(P)
+function [P] = fixExternalMatrix(P)
     P = P / norm(P(:,1));
 %     a = P(:, 1);
 %     b = P(:, 2);
