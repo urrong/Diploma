@@ -3,11 +3,11 @@ clear
 crossMatrix = @(x) [0 -x(3) x(2); x(3) 0 -x(1); -x(2) x(1) 0];
 subplot = @(m,n,p) subtightplot (m, n, p, [0.01 0.01], [0 0], [0 0]);
 
-worldImageNames = dir('world');
+worldImageNames = dir('world images');
 worldImages = {};
 for i = 1:numel(worldImageNames)
     if ~worldImageNames(i).isdir
-        I = imread(['world/' worldImageNames(i).name]);
+        I = imread(['world images/' worldImageNames(i).name]);
         worldImages = [worldImages, {I}];
     end
 end
