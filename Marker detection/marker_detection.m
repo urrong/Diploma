@@ -10,7 +10,7 @@ end
 % minimum = inf(1, 3);
 % maximum = zeros(1, 3);
 % 
-% for i = 1:numel(markerImages)
+% for i = 1:numel(markerImages)-5
 %     RGB = impixel(markerImages{i});
 %     HSV = rgb2hsv(RGB / 255);
 %     maximum = max(maximum, max(HSV));
@@ -21,7 +21,7 @@ minimum
 maximum
 
 
-I = markerImages{9};
+I = markerImages{2};
 I_hsv = rgb2hsv(I);
 I1 = I_hsv(:,:,1) >= minimum(1) & I_hsv(:,:,1) <= maximum(1);
 I2 = I_hsv(:,:,2) >= minimum(2) & I_hsv(:,:,2) <= maximum(2);

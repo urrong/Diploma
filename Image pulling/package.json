@@ -1,0 +1,14 @@
+{
+  "name": "diploma",
+  "version": "1.0.0",
+  "description": "nodejs service za pobiranje slik iz kamer",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ernest Belicic",
+  "license": "ISC",
+  "dependencies": {
+    "beepbeep": "^1.2.0"
+  }
+}
