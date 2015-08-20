@@ -3,25 +3,38 @@ clear
 crossMatrix = @(x) [0 -x(3) x(2); x(3) 0 -x(1); -x(2) x(1) 0];
 subplot = @(m,n,p) subtightplot (m, n, p, [0.01 0.01], [0 0], [0 0]);
 
-worldImageNames = dir('camera images');
+worldImageNames = dir('world images');
 worldImages = {};
 for i = 1:numel(worldImageNames)
     if ~worldImageNames(i).isdir
-        I = imread(['camera images/' worldImageNames(i).name]);
+        I = imread(['world images/' worldImageNames(i).name]);
         worldImages = [worldImages, {I}];
     end
 end
 
-worldPoints = [(12:-2:-2)' ones(8, 1)*0 zeros(8, 1);
-               (12:-2:-2)' ones(8, 1)*3 zeros(8, 1)];
-worldPoints = worldPoints * 20;
+worldPoints = [0 0 0; 
+               1 1 0; 
+               2 2 0;
+               3 3 0;
+               4 4 0;
+               5 5 0;
+               6 6 0;
+               7 7 0;
+               0 7 0;
+               1 6 0;
+               2 5 0;
+               3 4 0;
+               4 3 0;
+               5 2 0;
+               6 1 0;
+               7 0 0];
 
 DEFINE_IMAGE_POINTS = false;
 
 if DEFINE_IMAGE_POINTS
     %define world points on image
     imagePoints = {};
-    for i = 1:numel(worldImages)
+    for i = 1:4
         imshow(worldImages{i});
         [x, y] = getpts();
         imagePoints = [imagePoints, {[x y]}];
@@ -31,19 +44,20 @@ else
     load('variables/imagePoints.mat');
 end
 
-load('variables/intrinsicParams.mat');
+load('variables/cameraParams.mat');
 
 %display images
-for i = 1:numel(worldImages)
+for i = 1:4
     subplot(2, 2, i);
     imshow(worldImages{i});
 end
 
 %compute extrinsic matrix
+A = cameraParams.IntrinsicMatrix';
 externalMatrices = {};
 
 for i = 1:numel(imagePoints)
-    P = externalEquationMatrix(worldPoints, imagePoints{i}, intrinsicParams{i}.IntrinsicMatrix');
+    P = externalEquationMatrix(worldPoints, imagePoints{i}, A);
     [U, S, V] = svd(P);
     P = reshape(V(:, 9), 4, 3)';
     P = fixExternalMatrix(P);
@@ -52,15 +66,15 @@ for i = 1:numel(imagePoints)
 end
 
 %project world coordinates on image
-for i = 1:numel(worldImages)
+for i = 1:4
     subplot(2, 2, i);
     hold on;
     
-    for j = 20 * (0:10)
-        for k = 20 * (0:3)
-            x = intrinsicParams{i}.IntrinsicMatrix' * externalMatrices{i} * [j k 0 1]';
+    for j = 0:7
+        for k = 0:7
+            x = A * externalMatrices{i} * [j k 0 1]';
             x = x / x(3);
-            y = intrinsicParams{i}.IntrinsicMatrix' * externalMatrices{i} * [5*20 5*1.5 100 1]';
+            y = A * externalMatrices{i} * [j k 3 1]';
             y = y / y(3);
             plot([x(1) y(1)], [x(2) y(2)], 'r');
         end
@@ -86,10 +100,9 @@ end
 
 C = [];
 for i = 1:4
-    C = [C; crossMatrix(triangulationPoints{i}) * intrinsicParams{i}.IntrinsicMatrix' * externalMatrices{i}];
+    C = [C; crossMatrix(triangulationPoints{i}) * A * externalMatrices{i}];
 end
 
 [U, S, V] = svd(C);
 p = V(:, 4);
-p = p / p(4)
-norm([-60 0 0 1]' - p)
+norm([3 3 0 1]' - p / p(4))

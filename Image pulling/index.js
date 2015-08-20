@@ -15,7 +15,7 @@ function Camera(ip, pan, tilt, name){
 	this.ip = ip;
 	this.pan = pan;
 	this.tilt = tilt;
-	this.name = "camera1";
+	this.name = name;
 }
 
 Camera.prototype.tiltURLcmd = function(){
@@ -23,17 +23,17 @@ Camera.prototype.tiltURLcmd = function(){
 }
 
 Camera.prototype.panURLcmd = function(){
-	return "http://" + this.ip + "/axis-cgi/com/ptz.cgi?camera=1&tilt=" + this.tilt;
+	return "http://" + this.ip + "/axis-cgi/com/ptz.cgi?camera=1&pan=" + this.pan;
 }
 
 Camera.prototype.imageURL = function(){
 	return "http://" + this.ip + "/jpg/image.jpg";
 }
 
-var camera = new Camera("192.168.1.131", 130, 30, "camera1");
 //var camera = new Camera("192.168.1.131", 130, 30, "camera1");
-//var camera = new Camera("192.168.1.131", 130, 30, "camera1");
-//var camera = new Camera("192.168.1.131", 130, 30, "camera1");
+//var camera = new Camera("192.168.1.127", 110, 40, "camera2");
+//var camera = new Camera("192.168.1.121", 150, 30, "camera3");
+var camera = new Camera("192.168.1.114", 30, 30, "camera4");
 
 mkdirSync("./" + camera.name);
 http.get(camera.tiltURLcmd(), function(res){
