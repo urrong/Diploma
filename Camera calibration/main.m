@@ -81,7 +81,7 @@ for i = 1:numel(worldImages)
     hold off;
 end
 
-DEFINE_TRIANGULATION_POINTS = true;
+DEFINE_TRIANGULATION_POINTS = false;
 
 if DEFINE_TRIANGULATION_POINTS
     triangulationPoints = {};
