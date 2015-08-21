@@ -12,6 +12,11 @@ for i = 1:numel(worldImageNames)
     end
 end
 
+load('variables/intrinsicParams.mat');
+for i = 1:numel(worldImages)
+    worldImages{i} = undistortImage(worldImages{i}, intrinsicParams{i});
+end
+
 worldPoints = [(12:-2:-2)' ones(8, 1)*0 zeros(8, 1);
                (12:-2:-2)' ones(8, 1)*3 zeros(8, 1)];
 worldPoints = worldPoints * 20;
@@ -31,8 +36,6 @@ else
     load('variables/imagePoints.mat');
 end
 
-load('variables/intrinsicParams.mat');
-
 %display images
 for i = 1:numel(worldImages)
     subplot(2, 2, i);
@@ -48,19 +51,28 @@ for i = 1:numel(imagePoints)
     P = reshape(V(:, 9), 4, 3)';
     P = fixExternalMatrix(P);
     externalMatrices = [externalMatrices, {P}];
+    
+%     [rotationMatrix,translationVector] = extrinsics(imagePoints{i}, worldPoints(:, 1:2), intrinsicParams{i});
+%     externalMatrices{i} = [rotationMatrix' translationVector'];
+    
     %-inv(P(:, 1:3)) * P(:, 4) % camera position in world coordinates
 end
 
+for i = 2:4
+    externalMatrices{i}(:, 3) = -externalMatrices{i}(:, 3);
+end
+
+figure(1)
 %project world coordinates on image
 for i = 1:numel(worldImages)
     subplot(2, 2, i);
     hold on;
     
-    for j = 20 * (0:10)
+    for j = 20 * (-3:12)
         for k = 20 * (0:3)
             x = intrinsicParams{i}.IntrinsicMatrix' * externalMatrices{i} * [j k 0 1]';
             x = x / x(3);
-            y = intrinsicParams{i}.IntrinsicMatrix' * externalMatrices{i} * [5*20 5*1.5 100 1]';
+            y = intrinsicParams{i}.IntrinsicMatrix' * externalMatrices{i} * [5*20 1.5*20 100 1]';
             y = y / y(3);
             plot([x(1) y(1)], [x(2) y(2)], 'r');
         end
@@ -69,7 +81,7 @@ for i = 1:numel(worldImages)
     hold off;
 end
 
-DEFINE_TRIANGULATION_POINTS = false;
+DEFINE_TRIANGULATION_POINTS = true;
 
 if DEFINE_TRIANGULATION_POINTS
     triangulationPoints = {};
@@ -92,4 +104,4 @@ end
 [U, S, V] = svd(C);
 p = V(:, 4);
 p = p / p(4)
-norm([-60 0 0 1]' - p)
+norm([80 0 0 1]' - p)
