@@ -34,11 +34,11 @@ Camera.prototype.imageURL = function(){
 //var camera = new Camera("192.168.1.127", 110, 40, "camera2");
 //var camera = new Camera("192.168.1.121", 150, 30, "camera3");
 //var camera = new Camera("192.168.1.114", 30, 30, "camera4");
-var camera = new Camera("192.168.1.131", 130, 30, "marker");
+var camera = new Camera("192.168.1.110", 130, 30, "marker");
 
 mkdirSync("./" + camera.name);
-http.get(camera.tiltURLcmd(), function(res){
-	http.get(camera.panURLcmd(), function(res){
+/*http.get(camera.tiltURLcmd(), function(res){
+	http.get(camera.panURLcmd(), function(res){*/
 		var i = 0;
 		console.log("Capturing in 3 seconds");
 		setTimeout(function pull(){
@@ -47,7 +47,7 @@ http.get(camera.tiltURLcmd(), function(res){
 					res.on("end", function(){
 						console.log("Got image " + i);
 						beep();
-						setTimeout(pull, 3000);
+						setTimeout(pull, 1000);
 					});
 					i++;
 					var ws = fs.createWriteStream("./" + camera.name + "/image" + i + ".jpg");
@@ -55,6 +55,6 @@ http.get(camera.tiltURLcmd(), function(res){
 				});
 			}
 		}, 3000);
-	});
-});
+/*	});
+});*/
 

@@ -58,7 +58,7 @@ for i = 1:numel(imagePoints)
     %-inv(P(:, 1:3)) * P(:, 4) % camera position in world coordinates
 end
 
-for i = 2:4
+for i = 2:3
     externalMatrices{i}(:, 3) = -externalMatrices{i}(:, 3);
 end
 
@@ -81,7 +81,7 @@ for i = 1:numel(worldImages)
     hold off;
 end
 
-DEFINE_TRIANGULATION_POINTS = false;
+DEFINE_TRIANGULATION_POINTS = true;
 
 if DEFINE_TRIANGULATION_POINTS
     triangulationPoints = {};
@@ -104,4 +104,4 @@ end
 [U, S, V] = svd(C);
 p = V(:, 4);
 p = p / p(4)
-norm([80 0 0 1]' - p)
+norm([240 60 0 1]' - p)
