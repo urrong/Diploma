@@ -52,15 +52,23 @@ for i = 1:numel(imagePoints)
     P = fixExternalMatrix(P);
     externalMatrices = [externalMatrices, {P}];
     
-%     [rotationMatrix,translationVector] = extrinsics(imagePoints{i}, worldPoints(:, 1:2), intrinsicParams{i});
-%     externalMatrices{i} = [rotationMatrix' translationVector'];
-    
-    %-inv(P(:, 1:3)) * P(:, 4) % camera position in world coordinates
+%    [rotationMatrix,translationVector] = extrinsics(imagePoints{i}, worldPoints(:, 1:2), intrinsicParams{i});
+%    externalMatrices{i} = [rotationMatrix' translationVector'];
+%     
+%    -inv(P(:, 1:3)) * P(:, 4) % camera position in world coordinates
 end
 
 for i = 2:3
     externalMatrices{i}(:, 3) = -externalMatrices{i}(:, 3);
 end
+
+for i = 1:numel(intrinsicParams)
+    params(i) = struct('intrinsic', intrinsicParams{i}.IntrinsicMatrix', ...
+                       'extrinsic', externalMatrices{i}, ...
+                       'radial', intrinsicParams{i}.RadialDistortion);
+end
+
+save('variables/cameraParams_py.mat', 'params')
 
 figure(1)
 %project world coordinates on image
@@ -81,7 +89,7 @@ for i = 1:numel(worldImages)
     hold off;
 end
 
-DEFINE_TRIANGULATION_POINTS = true;
+DEFINE_TRIANGULATION_POINTS = false;
 
 if DEFINE_TRIANGULATION_POINTS
     triangulationPoints = {};

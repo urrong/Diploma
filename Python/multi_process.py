@@ -5,16 +5,17 @@ from cStringIO import StringIO
 from multiprocessing import Process, Queue, Lock
 from scipy import misc
 from scipy.ndimage import measurements
+import scipy.io as sio
 
 minRGB = np.array([227, 243, 0])
 maxRGB = np.array([255, 255, 188])
 
 class ImagePull(Process):
-	def __init__(self, queue, ioLock, ip):
+	def __init__(self, queue, ioLock, params):
 		super(ImagePull, self).__init__()
 		self.queue = queue
 		self.ioLock = ioLock
-		self.ip = ip
+		self.ip = params["ip"]
 		self.daemon = True
 	
 	def run(self):
@@ -43,16 +44,33 @@ class ImagePull(Process):
 				self.ioLock.release()
 
 if __name__ == "__main__":
-	cameras = ["192.168.1.131", 
-			   "192.168.1.128",
-			   "192.168.1.121",
-			   "192.168.1.114"];
+	camParams = []
+	
+	#ip, pan, tilt
+	camAttributes = [("192.168.1.131", 123, 123),
+					 ("192.168.1.128", 123, 123),
+					 ("192.168.1.121", 123, 123),
+					 ("192.168.1.114", 123, 123)];
+		   
+	#intrinsics, extrinsics, radial
+	matParams = sio.loadmat("cameraParams_py")
+	for i in range(4):
+		camParams.append({"intrinsics": matParams["params"][0][i][0],
+						  "extrinsics": matParams["params"][0][i][1],
+						  "radial": matParams["params"][0][i][2],
+						  "brightness": 2345,
+						  "ip": camAttributes[i][0],
+						  "pan": camAttributes[i][1],
+						  "tilt": camAttributes[i][2]
+						 });
+		
+								
 	queues = []
 	processes = []
 	ioLock = Lock()
-	for ip in cameras:
+	for param in camParams:
 		q = Queue()
-		p = ImagePull(q, ioLock, ip)
+		p = ImagePull(q, ioLock, param)
 		queues.append(q)
 		processes.append(p)
 		p.start()
