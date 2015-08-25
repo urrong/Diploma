@@ -1,20 +1,17 @@
 import urllib
-from PIL import Image
 import numpy as np
 from scipy import misc
-from scipy.ndimage.measurements import *
-from scipy.ndimage.filters import *
+from scipy.ndimage import measurements
+#import matplotlib
 import matplotlib.pyplot as plt
-import matplotlib
 from cStringIO import StringIO
-
 import time
 
-IP = "192.168.1.110"
+IP = "192.168.1.131"
 #minHSV = np.array([0.1520, 0.3840, 0.8627])
 #maxHSV = np.array([0.1801, 1.0, 1.0])
-minHSV = np.array([200, 200, 0])
-maxHSV = np.array([255, 255, 50])
+minHSV = np.array([227, 243, 0])
+maxHSV = np.array([255, 255, 188])
 
 stream = urllib.urlopen("http://" + IP + "/mjpg/video.mjpg")
 data = ""
@@ -31,19 +28,22 @@ while True:
 	s = data.find('\xff\xd8')
 	e = data.find('\xff\xd9')
 	if e != -1 and e != -1:
+		start = time.time()
 		im = misc.imread(StringIO(data[s:e+2]))
-		im = np.fliplr(im)
-		
+		img = misc.imresize(im, 0.5)
+		im = img.copy()
+		print time.time() - start 
 		#im = matplotlib.colors.rgb_to_hsv(im / 255.0)
 		im = np.logical_and(minHSV <= im[:, :], maxHSV >= im[:, :])
 		im = np.all(im, axis = 2)
 		im = im.astype("int64")
-		center = center_of_mass(im)
+		
+		center = measurements.center_of_mass(im)
 		print center
 		
-		#axes.plot(center[1], center[0], "ro")
-		#figImg.set_data(im)
-		#figure.canvas.draw()
+		axes.plot(center[1] * 2, center[0] * 2, "ro")
+		figImg.set_data(img)
+		figure.canvas.draw()
 		
 		data = data[e + 2:]
 		
