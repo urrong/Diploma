@@ -58,7 +58,7 @@ for i = 1:numel(imagePoints)
 %    -inv(P(:, 1:3)) * P(:, 4) % camera position in world coordinates
 end
 
-for i = 2:3
+for i = 1:3
     externalMatrices{i}(:, 3) = -externalMatrices{i}(:, 3);
 end
 
@@ -80,7 +80,8 @@ for i = 1:numel(worldImages)
         for k = 20 * (0:3)
             x = intrinsicParams{i}.IntrinsicMatrix' * externalMatrices{i} * [j k 0 1]';
             x = x / x(3);
-            y = intrinsicParams{i}.IntrinsicMatrix' * externalMatrices{i} * [5*20 1.5*20 100 1]';
+            %y = intrinsicParams{i}.IntrinsicMatrix' * externalMatrices{i} * [5*20 1.5*20 100 1]';
+            y = intrinsicParams{i}.IntrinsicMatrix' * externalMatrices{i} * [j k 100 1]';
             y = y / y(3);
             plot([x(1) y(1)], [x(2) y(2)], 'r');
         end
@@ -94,7 +95,7 @@ DEFINE_TRIANGULATION_POINTS = false;
 if DEFINE_TRIANGULATION_POINTS
     triangulationPoints = {};
     figure
-    for i = 1:4
+    for i = 1:2
         imshow(worldImages{i});
         [x, y] = getpts();
         triangulationPoints = [triangulationPoints, {[x y 1]'}];
@@ -105,11 +106,11 @@ else
 end
 
 C = [];
-for i = 1:4
+for i = 1:2
     C = [C; crossMatrix(triangulationPoints{i}) * intrinsicParams{i}.IntrinsicMatrix' * externalMatrices{i}];
 end
 
 [U, S, V] = svd(C);
 p = V(:, 4);
 p = p / p(4)
-norm([20 0 0 1]' - p)
+norm([-60 60 61 1]' - p)

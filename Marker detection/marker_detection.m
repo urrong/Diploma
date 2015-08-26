@@ -14,7 +14,7 @@ if READ
     minimum = inf(1, 3);
     maximum = zeros(1, 3);
     
-    for i = 1:3
+    for i = 1:numel(markerImages)
         RGB = impixel(markerImages{i});
         %HSV = rgb2hsv(RGB / 255);
         HSV = RGB;

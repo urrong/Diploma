@@ -8,8 +8,10 @@ from scipy import misc
 from scipy.ndimage import measurements
 import scipy.io as sio
 
-minRGB = np.array([227, 243, 0])
-maxRGB = np.array([255, 255, 188])
+#minRGB = np.array([227, 243, 0])
+#maxRGB = np.array([255, 255, 188])
+minRGB = np.array([244, 255, 0])
+maxRGB = np.array([255, 255, 182])
 
 class ImagePull(Process):
 	def __init__(self, queue, ioLock, params):
@@ -60,18 +62,19 @@ class ImagePull(Process):
 				
 				data = data[e + 2:]
 				
-				self.ioLock.acquire()
-				print "process", self.name, "-", center
-				self.ioLock.release()
+				if not np.isnan(center[0]):
+					self.ioLock.acquire()
+					print "process", self.name, "-", center
+					self.ioLock.release()
 
 if __name__ == "__main__":
 	camParams = []
 	
 	#ip, pan, tilt
 	camAttributes = [("192.168.1.131", 120, 30),
-					 ("192.168.1.128", 111, 30),
-					 ("192.168.1.121", 159, 30),
-					 ("192.168.1.114", 42, 24)];
+					 ("192.168.1.129", 111, 30),
+					 ("192.168.1.126", 159, 30),
+					 ("192.168.1.116", 42, 24)];
 		   
 	#intrinsics, extrinsics, radial
 	matParams = sio.loadmat("cameraParams_py")
@@ -79,15 +82,14 @@ if __name__ == "__main__":
 		camParams.append({"intrinsics": matParams["params"][0][i][0],
 						  "extrinsics": matParams["params"][0][i][1],
 						  "radial": matParams["params"][0][i][2],
-						  "brightness": 2345,
+						  "brightness": 4766,
 						  "speed": 100,
 						  "ip": camAttributes[i][0],
 						  "pan": camAttributes[i][1],
 						  "tilt": camAttributes[i][2],
 						  "name": "camera" + str(i + 1)
 						 });
-		
-								
+	
 	queues = []
 	processes = []
 	ioLock = Lock()
@@ -100,4 +102,4 @@ if __name__ == "__main__":
 	for p in processes:
 		p.start()
 	
-	time.sleep(20)
+	time.sleep(60)
