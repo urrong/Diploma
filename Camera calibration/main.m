@@ -13,9 +13,9 @@ for i = 1:numel(worldImageNames)
 end
 
 load('variables/intrinsicParams.mat');
-for i = 1:numel(worldImages)
-    worldImages{i} = undistortImage(worldImages{i}, intrinsicParams{i});
-end
+% for i = 1:numel(worldImages)
+%     worldImages{i} = undistortImage(worldImages{i}, intrinsicParams{i});
+% end
 
 worldPoints = [(12:-2:-2)' ones(8, 1)*0 zeros(8, 1);
                (12:-2:-2)' ones(8, 1)*3 zeros(8, 1)];
@@ -90,12 +90,12 @@ for i = 1:numel(worldImages)
     hold off;
 end
 
-DEFINE_TRIANGULATION_POINTS = false;
+DEFINE_TRIANGULATION_POINTS = true;
 
 if DEFINE_TRIANGULATION_POINTS
     triangulationPoints = {};
     figure
-    for i = 1:2
+    for i = 1:4
         imshow(worldImages{i});
         [x, y] = getpts();
         triangulationPoints = [triangulationPoints, {[x y 1]'}];
@@ -106,7 +106,7 @@ else
 end
 
 C = [];
-for i = 1:2
+for i = 1:4
     C = [C; crossMatrix(triangulationPoints{i}) * intrinsicParams{i}.IntrinsicMatrix' * externalMatrices{i}];
 end
 
