@@ -7,6 +7,8 @@ from multiprocessing import Process, Array, Lock
 from scipy import misc
 from scipy.ndimage import measurements
 import scipy.io as sio
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
 
 #minRGB = np.array([227, 243, 0])
 #maxRGB = np.array([255, 255, 188])
@@ -109,7 +111,12 @@ if __name__ == "__main__":
 	for p in processes:
 		p.start()
 	
-	while True:
+	components = []
+	line = []
+	prevPoint = np.array([0.0, 0.0, 0.0])
+	
+	start = time.time()
+	while time.time() - start < 40:
 		C = np.zeros((12, 4))
 		numFound = 0
 		
@@ -133,5 +140,26 @@ if __name__ == "__main__":
 		if numFound > 1:
 			u, s, v = np.linalg.svd(C)
 			p = v.T[:, 3]
-			p /= p[3]
-			print p[:3]
+			p = (p / p[3])[:3]
+			d = np.linalg.norm(prevPoint - p)
+			if d > 3.0 and d < 15.0:
+				line.append(p)
+			elif d > 15.0:
+				if len(line) > 1:
+					components.append(line)
+					line = []
+			if d > 3.0:
+				prevPoint = p
+				print p
+	
+	figure = plt.figure()
+	axes = figure.add_subplot(111, projection = "3d")
+	
+	#bounding box for equal axis
+	for point in np.diag(200 * np.ones(3)):
+		axes.plot([point[0]], [point[1]], [point[2]], 'w')
+	
+	for line in components:
+		line = np.array(line)
+		axes.plot(line[:, 0], line[:, 1], line[:, 2], "g-", linewidth=5)
+	plt.show()
