@@ -90,7 +90,7 @@ for i = 1:numel(worldImages)
     hold off;
 end
 
-DEFINE_TRIANGULATION_POINTS = true;
+DEFINE_TRIANGULATION_POINTS = false;
 
 if DEFINE_TRIANGULATION_POINTS
     triangulationPoints = {};
@@ -105,12 +105,24 @@ else
     load('variables/triangulationPoints.mat');
 end
 
+triangulationPoints{1} = [442 208 1];
+triangulationPoints{2} = [437 143 1];
+
+subplot(2, 2, 1)
+hold on
+plot(triangulationPoints{1}(1), triangulationPoints{1}(2), 'gx')
+hold off
+subplot(2, 2, 2)
+hold on
+plot(triangulationPoints{2}(1), triangulationPoints{2}(2), 'gx')
+hold off
+
 C = [];
-for i = 1:4
+for i = 1:2
     C = [C; crossMatrix(triangulationPoints{i}) * intrinsicParams{i}.IntrinsicMatrix' * externalMatrices{i}];
 end
 
 [U, S, V] = svd(C);
 p = V(:, 4);
 p = p / p(4)
-norm([-60 60 61 1]' - p)
+norm([-60 60 60.7 1]' - p)

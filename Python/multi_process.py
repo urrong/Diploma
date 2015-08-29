@@ -24,6 +24,9 @@ class ImagePull(Process):
 		self.name = params["name"]
 		self.httpConn = httplib.HTTPConnection(self.ip)
 		self.resize = params["resize"]
+		self.intrinsics = params["intrinsics"]
+		self.extrinsics = params["extrinsics"]
+		self.radial = params["radial"][0]
 		self.daemon = True
 		
 		#set camera attributes
@@ -47,18 +50,24 @@ class ImagePull(Process):
 		stream = urllib.urlopen("http://" + self.ip + "/mjpg/video.mjpg")
 		data = ""
 		
+		#start = time.time()
+		#numPics = 0
 		while True:
 			data += stream.read(4096)
 			s = data.find('\xff\xd8')
 			e = data.find('\xff\xd9')
 			if e != -1 and e != -1:
+				#numPics += 1
+				#print self.name, numPics / (time.time() - start)
+				timestamp = time.time()
 				im = misc.imread(StringIO(data[s:e+2]))
+				
 				if self.resize != 1.0:
 					im = misc.imresize(im, self.resize)
 				
 				im = np.logical_and(minRGB <= im[:, :], maxRGB >= im[:, :])
 				im = np.all(im, axis = 2)
-				im = im.astype("int64")
+				im = im.astype(np.int64)
 				center = measurements.center_of_mass(im)
 				if np.isnan(center[0]):
 					center = (0.0, 0.0)
@@ -69,6 +78,7 @@ class ImagePull(Process):
 					#interchange coordinates
 					self.cArray[0] = center[1] / self.resize
 					self.cArray[1] = center[0] / self.resize
+					self.cArray[2] = timestamp
 				
 				time.sleep(0.0001)
 
@@ -81,8 +91,9 @@ if __name__ == "__main__":
 					 ("192.168.1.126", 159, 30),
 					 ("192.168.1.116", 42, 24)];
 	
-	nCams = len(camAttributes)
-		   
+	#nCams = len(camAttributes)
+	nCams = 2
+	
 	#intrinsics, extrinsics, radial
 	matParams = sio.loadmat("cameraParams_py")
 	for i in range(nCams):
@@ -95,14 +106,14 @@ if __name__ == "__main__":
 						  "pan": camAttributes[i][1],
 						  "tilt": camAttributes[i][2],
 						  "name": "camera" + str(i + 1),
-						  "resize": 0.5
+						  "resize": 1
 						 });
 	
 	cArrays = []
 	processes = []
 	ioLock = Lock()
 	for param in camParams:
-		arr = Array('d', [0.0, 0.0])
+		arr = Array('d', [0.0, 0.0, 0.0])
 		p = ImagePull(arr, ioLock, param)
 		cArrays.append(arr)
 		processes.append(p)
@@ -116,21 +127,22 @@ if __name__ == "__main__":
 	prevPoint = np.array([0.0, 0.0, 0.0])
 	
 	start = time.time()
-	while time.time() - start < 40:
-		C = np.zeros((12, 4))
+	while time.time() - start < 30:
+		C = np.zeros((nCams * 3, 4))
 		numFound = 0
-		
+		timestamps = [0] * nCams;
 		for i in range(nCams):
 			foundMarker = False
 			x = [0.0, 0.0, 1.0] #image 
 			with cArrays[i].get_lock():
 				if cArrays[i][0]:
+					#add interpolation
 					x[0] = cArrays[i][0]
 					x[1] = cArrays[i][1]
+					timestamps[i] = cArrays[i][2]
 					foundMarker = True
 			
 			if foundMarker:
-				#print "camera" + str(i+1), "- %.2f %.2f" % (x[0], x[1])
 				numFound += 1
 				cross = np.mat([[0, -x[2], x[1]],
 								[x[2], 0, -x[0]],
@@ -142,24 +154,29 @@ if __name__ == "__main__":
 			p = v.T[:, 3]
 			p = (p / p[3])[:3]
 			d = np.linalg.norm(prevPoint - p)
-			if d > 3.0 and d < 15.0:
+			if d > 0.0 and d < 15.0:
 				line.append(p)
 			elif d > 15.0:
-				if len(line) > 1:
-					components.append(line)
-					line = []
-			if d > 3.0:
+				components.append(line)
+				line = []
+			if d > 0.0:
 				prevPoint = p
-				print p
+				print p, numFound
+		
+		time.sleep(0.001)
 	
+	components.append(line)
+	
+	#draw paths
 	figure = plt.figure()
 	axes = figure.add_subplot(111, projection = "3d")
 	
 	#bounding box for equal axis
-	for point in np.diag(200 * np.ones(3)):
+	for point in np.diag(100 * np.ones(3)):
 		axes.plot([point[0]], [point[1]], [point[2]], 'w')
 	
 	for line in components:
-		line = np.array(line)
-		axes.plot(line[:, 0], line[:, 1], line[:, 2], "g-", linewidth=5)
+		if len(line) > 1:
+			line = np.array(line)
+			axes.plot(line[:, 0], line[:, 1], line[:, 2], "g-", linewidth=4)
 	plt.show()
