@@ -13,9 +13,9 @@ for i = 1:numel(worldImageNames)
 end
 
 load('variables/intrinsicParams.mat');
-% for i = 1:numel(worldImages)
-%     worldImages{i} = undistortImage(worldImages{i}, intrinsicParams{i});
-% end
+for i = 1:numel(worldImages)
+    worldImages{i} = undistortImage(worldImages{i}, intrinsicParams{i});
+end
 
 worldPoints = [(12:-2:-2)' ones(8, 1)*0 zeros(8, 1);
                (12:-2:-2)' ones(8, 1)*3 zeros(8, 1)];
@@ -51,11 +51,6 @@ for i = 1:numel(imagePoints)
     P = reshape(V(:, 9), 4, 3)';
     P = fixExternalMatrix(P);
     externalMatrices = [externalMatrices, {P}];
-    
-%    [rotationMatrix,translationVector] = extrinsics(imagePoints{i}, worldPoints(:, 1:2), intrinsicParams{i});
-%    externalMatrices{i} = [rotationMatrix' translationVector'];
-%     
-%    -inv(P(:, 1:3)) * P(:, 4) % camera position in world coordinates
 end
 
 for i = 1:3
@@ -105,8 +100,9 @@ else
     load('variables/triangulationPoints.mat');
 end
 
-triangulationPoints{1} = [442 208 1];
-triangulationPoints{2} = [437 143 1];
+%triangulationPoints{1} = triangulationPoints{1} + [2 -2 0]';
+triangulationPoints{1} = [442 208 1]';
+triangulationPoints{2} = [437 143 1]';
 
 subplot(2, 2, 1)
 hold on
@@ -117,12 +113,22 @@ hold on
 plot(triangulationPoints{2}(1), triangulationPoints{2}(2), 'gx')
 hold off
 
-C = [];
-for i = 1:2
-    C = [C; crossMatrix(triangulationPoints{i}) * intrinsicParams{i}.IntrinsicMatrix' * externalMatrices{i}];
-end
+orig = triangulationPoints{1};
+n = 0;
+R = zeros(2*n+1, 2*n+1);
 
-[U, S, V] = svd(C);
-p = V(:, 4);
-p = p / p(4)
-norm([-60 60 60.7 1]' - p)
+for xx = -n:n
+    for yy = -n:n
+        triangulationPoints{1} = orig + [xx; yy; 0];
+        C = [];
+        for i = 1:2
+            C = [C; crossMatrix(triangulationPoints{i}) * intrinsicParams{i}.IntrinsicMatrix' * externalMatrices{i}];
+        end
+        [U, S, V] = svd(C);
+        p = V(:, 4);
+        p = p / p(4)
+        norm(p)
+        R(xx+n+1, yy+n+1) = norm([20 0 0 1]' - p)
+    end
+end
+sum(R(:)) / numel(R)
