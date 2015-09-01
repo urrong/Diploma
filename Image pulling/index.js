@@ -11,49 +11,42 @@ var mkdirSync = function(path){
 	}
 }
 
-function Camera(ip, pan, tilt, name){
+function Camera(ip, name){
 	this.ip = ip;
-	this.pan = pan;
-	this.tilt = tilt;
 	this.name = name;
-}
-
-Camera.prototype.tiltURLcmd = function(){
-	return "http://" + this.ip + "/axis-cgi/com/ptz.cgi?camera=1&tilt=" + this.tilt;
-}
-
-Camera.prototype.panURLcmd = function(){
-	return "http://" + this.ip + "/axis-cgi/com/ptz.cgi?camera=1&pan=" + this.pan;
 }
 
 Camera.prototype.imageURL = function(){
 	return "http://" + this.ip + "/jpg/image.jpg";
 }
 
-var camera = new Camera("192.168.1.131", 130, 30, "marker");
-//var camera = new Camera("192.168.1.128", 110, 40, "camera2");
-//var camera = new Camera("192.168.1.121", 150, 30, "camera3");
-//var camera = new Camera("192.168.1.114", 30, 30, "camera4");
-
-mkdirSync("./" + camera.name);
-/*http.get(camera.tiltURLcmd(), function(res){
-	http.get(camera.panURLcmd(), function(res){*/
-		var i = 0;
-		console.log("Capturing in 3 seconds");
-		setTimeout(function pull(){
-			if(i < 20){
-				http.get(camera.imageURL(), function(res){
-					res.on("end", function(){
-						console.log("Got image " + i);
-						beep();
-						setTimeout(pull, 1000);
-					});
-					i++;
-					var ws = fs.createWriteStream("./" + camera.name + "/image" + i + ".jpg");
-					res.pipe(ws);
+Camera.prototype.capture = function(){
+	var i = 0;
+	var obj = this;
+	mkdirSync("./" + this.name);
+	console.log("Capturing in 3 seconds");
+	setTimeout(function pull(){
+		if(i < 25){
+			http.get(obj.imageURL(), function(res){
+				res.on("end", function(){
+					console.log("Got image " + i);
+					beep();
+					setTimeout(pull, 1000);
 				});
-			}
-		}, 3000);
-/*	});
-});*/
+				i++;
+				var ws = fs.createWriteStream("./" + obj.name + "/" + obj.name + "_" + i + ".jpg");
+				res.pipe(ws);
+			});
+		}
+	}, 3000);
+}
 
+var camera1 = new Camera("192.168.1.131", "camera1");
+var camera2 = new Camera("192.168.1.129", "camera2");
+var camera3 = new Camera("192.168.1.126", "camera3");
+var camera4 = new Camera("192.168.1.116", "camera4");
+
+camera1.capture();
+camera2.capture();
+camera3.capture();
+camera4.capture();

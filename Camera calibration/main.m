@@ -15,8 +15,9 @@ end
 load('variables/intrinsicParams.mat');
 for i = 1:numel(worldImages)
     worldImages{i} = undistortImage(worldImages{i}, intrinsicParams{i});
+    imwrite(worldImages{i}, ['camera', int2str(i), '0.jpg'])
 end
-
+return
 worldPoints = [(12:-2:-2)' ones(8, 1)*0 zeros(8, 1);
                (12:-2:-2)' ones(8, 1)*3 zeros(8, 1)];
 worldPoints = worldPoints * 20;
