@@ -34,6 +34,7 @@
 \usepackage{url}
 \usepackage{cite}
 \usepackage{float}
+\usepackage{listings}
 \graphicspath{ {slike/} }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %	DIPLOMA INFO
@@ -271,7 +272,7 @@ Hvala vsem.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % posvetilo
 \thispagestyle{empty}\mbox{}{\vskip0.20\textheight}\mbox{}\hfill\begin{minipage}{0.55\textwidth}%
-Svoji hčerki Leneji.
+Hčerki Leneji.
 \normalfont\end{minipage}
 
 % prazna stran
@@ -370,7 +371,7 @@ Glavni cilj diplomskega dela je ustvariti večkamerni sistem za določanje polo�
 %napiši ko bodo znana poglavja
 
 \chapter{Teorija}
-\section{Parametri kamere}
+\section{Parametri kamere}\label{parametri}
 Ugotoviti moramo kakšen matematični model najbolj ustreza današnjim kameram. Večina kamer je v osnovi preprosta kamera z luknjico (\emph{ang. pinhole camera}). Model mora opisovati kako se neka točka v svetu preslika na točko v sliki. Model lahko opišemo s t.i. notranjimi in zunanjimi parametri kamere. V grobem, notranji opisujejo interne lastnosti kamere kot je goriščna razdalja, principalna točka, popačenost itd., zunanji pa položaj kamere v prostoru.
 
 \subsection{Notranji parametri}
@@ -486,7 +487,8 @@ Obstaja še kombinacija obeh, ki pa se imenuje brkato popačenje (ker spominja n
 
 Moč radialne popačenosti slikovne točke je odvisna od razdalje do principalne točke. Modeliramo jo lahko z vsotami polinomov sodih stopenj. Za večino radialnih popačenj zadoščata že dva koeficienta. 
 \begin{align}
-r &= \sqrt{x^2 + y^2} \\
+\label{radialdisteq}
+r &= \sqrt{x^2 + y^2} \\ 
 x_{popaceno} &= x * (1 + k_1*r^2 + k_2*r^4 + k_3*r^6 + \dots) \\
 y_{popaceno} &= y * (1 + k_1*r^2 + k_2*r^4 + k_3*r^6 + \dots)
 \end{align}
@@ -501,7 +503,8 @@ Druga popačenost, ki jo poznamo pa je tangencialna in nastane zaradi slabe pora
 
 Modeliramo jo lahko kot,
 \begin{align}
-r &= \sqrt{x^2 + y^2} \\
+\label{tangentialdisteq}
+r &= \sqrt{x^2 + y^2} \\ 
 x_{popaceno} &= x + (2 * p_1 * x * y + p_2 * (r^2 + 2 * x^2)) \\
 y_{popaceno} &= y + (p_1 * (r^2 + 2*y^2) + 2 * p_2 * x * y)
 \end{align}
@@ -523,7 +526,7 @@ Do sedaj smo predpostavljali, da je koordinatno izhodišče sveta sama kamera. U
 
 Rotacijo v treh dimenzijah lahko predstavimo z množenjem matrike $R$ velikosti $3 \times 3$. Translacija pa je vsota točke v svetu $\vec{X}$ in translacijskega vektorja $\vec{T}$.
 \begin{equation}
-X_{premaknjen} = R * \vec{X} + \vec{T} = 
+\vec{X}_{premaknjen} = R * \vec{X} + \vec{T} = 
 \begin{bmatrix}
 r_{11} & r_{12} & r_{13} \\
 r_{21} & r_{22} & r_{23} \\
@@ -546,7 +549,7 @@ z_t
 
 Izkaže se, da če točko v svetu predstavimo s homogenimi koordinatami, lahko enačbo \eqref{coordeq} zapišemo kot množenje matrike $[R | \vec{T}]$ z vektorjem $\vec{X}$.
 \begin{equation}
-X_{premaknjen} = [R|\vec{T}] * \vec{X} = 
+\vec{X}_{premaknjen} = [R|\vec{T}] * \vec{X} = 
 \begin{bmatrix}
 r_{11} & r_{12} & r_{13} & x_t\\
 r_{21} & r_{22} & r_{23} & y_t\\
@@ -567,7 +570,8 @@ Zavedati se moramo, da rotacijska matrika $R$ in translacijski vektor $\vec{T}$ 
 
 Model \eqref{internaleq} lahko dopolnimo z zunanjimi parametri ter tako dobimo popolen model kamere.
 \begin{align}
-X' &\sim A * [R | \vec{T}] * \vec{X} \\
+\label{totalmodel}
+\vec{X}' &\sim A * [R | \vec{T}] * \vec{X} \\
 \begin{bmatrix}
 x' \\
 y' \\
@@ -594,89 +598,157 @@ z \\
 \end{bmatrix} \\
 \vec{r} &= [k_1 \ k_2 \ k_3 \dots] \\
 \vec{t} &= [p_1 \ p_2]
-\label{internaleq}
 \end{align}
 
 \section{Ocenjevanje parametrov}
+V poglavju \ref{parametri} je opisan model kamere. Kamero določajo razni parametri, ki pa so za vsako kamero različni. V tem poglavju bom opisal kako oceniti posamezne parametre kamere, da bo model postal uporaben.
 
-\chapter{Sklicevanje na besedilne konstrukte}
-\label{ch1}
-Matematična ali popolna indukcija je eno prvih orodij, ki jih spoznamo za dokazovanje trditev pri matematičnih predmetih.
-\begin{izrek}
-\label{iz:1}
-Za vsako naravno število $n$ velja
+\subsection{Ocenjevanje notranjih parametrov}
+Za ocenjevanje notranjih parametrov kamere obstaja veliko algoritmov, ki pa se razlikujejo po hitrosti, težavnosti in natančnosti. Dve popularni metodi sta Tsaijev kalibracijski algoritem \cite{horn2000tsai} in Zhangova fleksibilna tehnika za kalibracijo kamer \cite{zhang2000flexible}. Sam sem za ocenjevanje notranjih parametrov uporabil MATLAB-ovo kalibracijsko orodje, ki uporablja variacijo Zhangove tehnike. Več o samem postopku kalibracije je opisano v poglavju %insert here. 
+
+\subsection{Ocenjevanje zunanjih parametrov}
+Zunanji parametri kamere določajo kje v prostoru se kamera nahaja. Zgoraj omenjena Zhangova metoda poleg notranjih vrne tudi zunanje parametre, ki pa za namen diplomskega dela niso uporabni, saj bi morali kamere kalibrirati z vsaj eno sliko ploskve, ki jo v celoti vidijo vse kamere. Sistem mora delovati tudi, če imajo kamere minimalno ali celo ničelno prekrivanje vidnega polja. V nadaljevanju bom opisal teoretično podlago metode, ki sem jo uporabil za ocenjevanje zunanjih parametrov. Doseči želimo, da kameram določimo skupen koordinatni sistem sveta.
+
+Metoda predpostavlja, da imamo za neko kamero že izračunane notranje parametre. Za oceno zunanjih parametrov je dovolj le ena slika iz kamere, ki pa ne sme biti popačena. Najprej je torej potrebno popačeno sliko popraviti. Enačbe \eqref{radialdisteq} in \eqref{tangentialdisteq} določajo neposredno preslikavo med popačenimi in nepopačenimi točkami. 
 \begin{equation}
-n < 2^n.
-\label{eq:1}
+\vec{X}' \sim A * [R | \vec{T}] * \vec{X}
 \end{equation}
-\end{izrek}
-\begin{dokaz}
-Dokazovanje z indukcijo zahteva, da neenakost~\eqref{eq:1} najprej preverimo za najmanjše naravno število --- $0$. Res, ker je $0 < 1 = 2^0$, je neenačba~\eqref{eq:1} za $n=0$ izpolnjena.
 
-Sledi indukcijski korak. S predpostavko, da je neenakost~\eqref{eq:1} veljavna pri nekem naravnem številu $n$, je potrebno pokazati, da je ista neenakost v veljavi tudi pri njegovem nasledniku --- naravnem številu $n+1$. Računajmo.
+Zunanje parametre določa rotacijska matrika $R$ in translacijski vektor $\vec{T}$, kar je v zornji enačbi kompaktno predstavljeno z matriko $[R | \vec{T}]$. Za oceno teh parametrov moramo poznati notranje parametre $A$, točko v svetu $X$ in njeno projekcijo na sliko $X'$. Matriko $[R | \vec{T}]$ lahko ocenimo z metodo DLT (\emph{ang. Direct Linear Transformation}). Ker računamo s homogenimi koordinatami, sta si leva in desna stran enačbe enaka do poljubnega neničelnega faktorja $\lambda$. Zgornjo enačbo lahko zapišemo kot,
+\begin{equation}
+\lambda * \vec{X}' = A * [R | \vec{T}] * \vec{X}
+\label{lambdaeq}
+\end{equation}
+
+Z eno znano točko (na sliki in v svetu) dobimo 3 enačbe, vendar pa je ena linearna kombinacija drugih dveh, zato nam pri ocenjevanju zunanjih parametrov ne pomaga. Oceniti moramo torej 12 neznank (ker je $[R | \vec{T}]$ matrika velika $3 \times 4$), z eno točko pa dobimo 2 neodvisni enačbi, kar pomeni, da potrebujemo najmanj 6 točk za katere poznamo svetovne koordinate in njihove projekcije na sliko. Dobimo torej sistem enačb,
+
+\begin{align*}
+\lambda_1 * \vec{X}_1' &= A * [R | \vec{T}] * \vec{X_1} \\
+\lambda_2 * \vec{X}_2' &= A * [R | \vec{T}] * \vec{X_2} \\
+\lambda_3 * \vec{X}_3' &= A * [R | \vec{T}] * \vec{X_3} \\
+&\vdots
+\end{align*}
+
+Problem predstavljajo neničelni faktorji na levi strani enačb, saj jih ne poznamo in so odvisni od zunanjih parametrov kamere. Metoda DLT reši ravno tak sistem enačb. Leva stran je pravzaprav 3-dimenzionalni vektor za katerega vemo, da je vedno enak nič, če ga vektorsko pomnožimo s samim seboj. Vektorsko množenje pa lahko predstavimo z matričnim množenjem.
 \begin{align}
-n+1 &< 2^n + 1  \label{eq:2}\\
-    &\le 2^n + 2^n \label{eq:3}\\
-    &= 2^{n+1} \nonumber
+\vec{a} &= 
+\begin{bmatrix}
+a_1 \\
+a_2 \\
+a_3
+\end{bmatrix} \\
+\vec{a} \times \vec{a} = [\vec{a}]_{\times} * \vec{a} &= 
+\begin{bmatrix}
+0 & -a_3 & a_2 \\
+a_3 & 0 & -a_1 \\
+-a_2 & a_1 & 0
+\end{bmatrix}
+* \begin{bmatrix}
+a_1 \\
+a_2 \\
+a_3
+\end{bmatrix} = 0
 \end{align}
-Neenakost~\eqref{eq:2} je posledica indukcijske predpostavke, neenakost~\eqref{eq:3} pa enostavno dejstvo, da je za vsako naravno število $n$ izraz $2^n$ vsaj tako velik kot 1. S tem je dokaz Izreka~\ref{iz:1} zaključen.
-\end{dokaz}
 
-Opazimo, da je \LaTeX\ številko izreka podredil številki poglavja.
+Obe strani enačbe \eqref{lambdaeq} lahko pomnožimo z leve z $[\vec{X}']_{\times}$.
+\begin{align}
+\lambda * [\vec{X}']_{\times} * \vec{X}' &= [\vec{X}']_{\times} * A * [R | \vec{T}] * \vec{X} \\
+0 &= [\vec{X}']_{\times} * A * [R | \vec{T}] * \vec{X}
+\end{align}
 
+S tem korakom smo se znebili neznanega parametra $\lambda$, vendar iz take oblike enačbe težko najdemo rešitev sistema. Za lažjo izpeljavo bomo enačbo \eqref{lambdaeq} z leve pomnožili z inverzom matrike $A$.
 
-\chapter{Plovke: slike in tabele}
-\label{ch2}
-Slike in daljše tabele praviloma vključujemo v dokument kot plovke. Pozicija plovke v končnem izdelku ni pogojena s tekom besedila, temveč z izgledom strani. \LaTeX\ bo skušal plovko postaviti samostojno, praviloma na vrh strani, na kateri se na takšno plovko prvič sklicujemo. Pri tem pa bo na vsako stran končnega izdelka želel postaviti tudi sorazmerno velik del besedila. V skrajnem primeru, če imamo res preveč plovk, se bo odločil za stran popolnoma zapolnjeno s plovkami.
+\begin{align}
+A^{-1} * \vec{X}' &=
+\begin{bmatrix}
+u \\
+v \\
+w
+\end{bmatrix} \\
+[A^{-1} * \vec{X}']_{\times} &=
+\begin{bmatrix}
+0 & -w & v \\
+w & 0 & -u \\
+-v & u & 0
+\end{bmatrix} \\[5ex]
+\lambda * A^{-1} * \vec{X}' &= [R | \vec{T}] * \vec{X} \\
+0 &= [A^{-1} * \vec{X}']_{\times} * [R | \vec{T}] * \vec{X}\\
+0 &= 
+\begin{bmatrix}
+0 & -w & v \\
+w & 0 & -u \\
+-v & u & 0
+\end{bmatrix}
+*
+\begin{bmatrix}
+p_1 & p_2 & p_3 & p_4 \\
+p_5 & p_6 & p_7 & p_8 \\
+p_9 & p_{10} & p_{11} & p_{12}
+\end{bmatrix}
+*
+\begin{bmatrix}
+x \\
+y \\
+z \\
+1
+\end{bmatrix} \\
+0 &= 
+\begin{bmatrix}
+x(-wp_5 + vp_9) + y(-wp_6 + vp_{10}) + z(-wp_7 + vp_{11}) + (-wp_8 + vp_{12}) \\
+x(wp_1 - up_9) + y(wp_2 - up_{10}) + z(wp_3 - up_{11}) + (wp_4 - up_{12}) \\
+x(-vp_1 + up_5) + y(-vp_2 + up_6) + z(-vp_3 + up_7) + (-vp_4 + up_8)
+\end{bmatrix}
+\label{longeq}
+\end{align}
 
-\section{Formati slik}
-Bitne slike, vektorske slike, kakršnekoli slike, z \LaTeX{}om lahko vključimo vse.
-Slika~\ref{pic1} je v {\tt .pdf} formatu.
-\begin{figure}
-\begin{center}
-\includegraphics[width=10cm]{pic1.pdf}
-\end{center}
-\caption{Herschelov graf, vektorska grafika.}
-\label{pic1}
-\end{figure}
-Pa res lahko vključimo slike katerihkoli formatov? Žal ne. Programski paket \LaTeX\ lahko uporabljamo v več dialektih. Ukaz {\tt latex} ne mara vključenih slik v formatu Portable Document Format {\tt .pdf}, ukaz {\tt pdflatex} pa ne prebavi slik v Encapsulated Postscript Formatu {\tt .eps}.
-Strnjeno v Tabeli~\ref{tbl:1}.
+\setcounter{MaxMatrixCols}{20}
+Sistem enačb \eqref{longeq} lahko zapišemo v obliki $B * \vec{p} = 0$, kjer
+\begin{align}
+\vec{p} &= [p_1 \ p_2 \ p_3 \ p_4 \ p_5 \ p_6 \ p_7 \ p_8 \ p_9 \ p_{10} \ p_{11} \ p_{12}]^T \\
+B &=
+\begin{bmatrix}
+0 & 0 & 0 & 0 & -xw & -yw & -zw & -w & xv & yv & zv & v \\
+xw & yw & zw & w & 0 & 0 & 0 & 0 & -xu & -yu & -zu & -u \\
+-xv & -yv & -zv & -v & xu & yu & zu & u & 0 & 0 & 0 & 0
+\end{bmatrix}
+\end{align}
 
-\begin{table}
-\begin{center}
-\begin{tabular}{l|ccc}
-ukaz/format & {\tt .pdf} & {\tt .eps} & ostali formati \\ \hline
-{\tt pdflatex} & da & ne & da \\
-{\tt latex}   & ne & da  & da
-\end{tabular}
-\end{center}
-\caption{}
-\label{tbl:1}
-\end{table}
+Zadnja vrstica v matriki $B$ je linearna kombinacija prvih dveh. Za vsak par točk (v svetu in na sliki) generiramo prvi dve vrstici matrike $B$ in vse vrstice združimo v skupno matriko $B$ velikosti $2n \times 12$, kjer je $n$ število parov točk. Sistem enačb lahko sedaj rešimo z razcepom na singularne vrednosti (\emph{ang. SVD - Singular Value Decomposition}). SVD razcepi matriko $B$ na $U \Sigma V^T$, kjer je $U$ matrika levih lastnih vektorjev, $\Sigma$ matrika singularnih vrednosti in $V$ matrika desnih lastnih vektorjev. Po definiciji za leve lastne vektorje matrike $B$ velja $B * \vec{v} = \lambda * \vec{v}$, kjer je $\lambda$ lastna vrednost. Če iz matrike $V$ vzamemo vektor, ki ustrza najmanjši lastni vrednosti v matriki $\Sigma$, smo tako dobili netrivialno rešitev, ki najbolje zadošča pogoju $B * \vec{p} = 0$. Rešitev je potrebno le še preoblikovati v $3 \times 4$ matriko zunanjih parametrov. V poglavju \textbf{vstavi poglavje} naslovim problem, ki nastane, če matrika $B$ nima ranga $12$, kar se zgodi, če ocenjujemo parametre s koplanarnimi točkami v prostoru.
 
-Nasvet? Odločite se za uporabo ukaza {\tt pdflatex}. Vaš izdelek bo brez vmesnih stopenj na voljo v {.pdf} formatu in ga lahko odnesete v vsako tiskarno. Če morate na vsak način vključiti sliko, ki jo imate v {\tt .eps} formatu, jo vnaprej pretvorite v alternativni format, denimo {\tt .pdf}.
+\subsection{Triangulacija}
 
-Včasih se da v okolju za uporabo programskega paketa \LaTeX\ nastaviti na kakšen način bomo prebavljali vhodne dokumente. Spustni meni na Sliki~\ref{pic2} odkriva uporabo \LaTeX{}a v njegovi pdf inkarnaciji --- {\tt pdflatex}.
-\begin{figure}
-\begin{center}
-\includegraphics[width=10cm]{pic2.png}
-\end{center}
-\caption{Kateri dialekt uporabljati?}
-\label{pic2}
-\end{figure}
+Iz modela \eqref{totalmodel} želimo oceniti $\vec{X}$. Uporabimo lahko podoben postopek kot pri ocenjevanju zunanjih parametrov.
 
-Vključena Slika~\ref{pic2} je seveda bitna.
-%
+\begin{align}
+\lambda * \vec{X}' &= A * [R | \vec{T}] * \vec{X} \\
+0 &= [\vec{X}']_{\times} * A * [R | \vec{T}] * \vec{X} \\
+B &= [\vec{X}']_{\times} * A * [R | \vec{T}] \\
+B * \vec{X} &= 0
+\end{align}
 
-\chapter{PDF/A}
-Elektronsko verzijo diplome morate oddati v PDF/A formatu. Natančneje PDF/A-1b formatu. 
+Rang matrike B mora biti 4, saj ocenjujemo štiri parametre, ki določajo X. Ena točka na sliki nam poda 2 linearno neodvisni enačbi. Potrebujemo torej vsaj 2 različni točki iz dveh različnih slik, ki predstavljata projekcijo iste točke v prostoru na sliko. Sistem zopet rešimo z razcepom na singularne vrednosti kot smo to naredili v prejšnjem poglavju.
 
-\LaTeX\ in omenjeni format imata še nekaj težav s sobivanjem. Paket \texttt{pdfx.sty}, ki naj bi v \LaTeX u omogočal podporo PDF/A formatu ne deluje v skladu s pričakovanji. Ta predloga delno ustreza formatu, vsekakor dovolj, da jo študentski informacijski sistem sprejme. Znaten del rešitve je prispeval Damjan Cvetan.
+\subsection{Zaznavanje označevalnika}
 
-V predlogi, poleg izvornega \texttt{.tex} dokumenta in vloženih slik \texttt{pic1.pdf} in \texttt{pic2.png}, potrebujemo še predlogo datoteke z metapodatki \texttt{pdfa-1b.xmp} in datoteko z barvnim profilom \texttt{sRGBIEC1966-2.1.icm}.
+Pri zaznavanju označevalnika je potrebno sliko iz kamere segmentirati. Segmentacija je postopek ločevanja ozadja od objekta zanimanja. Označevalnik ima običajno izrazito drugačno barvo od okolice, zato da pri zaznavanju ne prihaja do dvoumnosti. Segmentacija ponavadi vrne binarno sliko, kjer je ozadje predstavljeno z vrednostjo 0, segmenti pa z vrednostjo 1. 
 
-\chapter{Sklepne ugotovitve}
-Izbira \LaTeX\ ali ne \LaTeX\ je seveda prepuščena vam samim. Res je, da so prvi koraki v \LaTeX{}u težavni. Ta dokument naj vam služi kot začetna opora pri hoji.
+Segmentiramo lahko tako sivinsko kot barvno sliko. Za vsako točko v sliki se moramo odločiti ali pripada ozadju (0) ali segmentu (1). Če so vrednosti pik predstavljene z monotono naraščujočimi vrednostmi, lahko določimo prag, ki ločuje ozadje od segmenta.
+\begin{lstlisting}
+I //sivinska slika
+w // sirina slike
+h // visina slika
+T //prag
+for i = 1...h
+    for j = 1...w
+        if I[i][j] > T
+            I[i][j] = 1
+        else
+            I[i][j] = 0
+\end{lstlisting}
+
+Pri segmentiranju barvnih slik se je potrebno odločiti za primeren barvni model. Primarno so slike zapisane v rdečem, zelenem in modrem kanalu (model RGB). Običajno je bolj primeren model HSV ali HSL, saj H (ton) komponenta določa barvo neodvisno od njene intenzitete in nasičenosti. Slednja modela sta pri segmentaciji bolj robustna, ker sprememba svetlobe ne vpliva toliko na spremembo tonskega kanala.
+
+Izbira barvnega modela in praga je za vsak primer specifična. Včasih je bolje uporabiti model RGB npr. v primeru, če ima označevalnik izrazito barvo ne glede na osvetljitev.
 
 \bibliography{bibliography}{}
 \bibliographystyle{plain}

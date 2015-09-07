@@ -18,6 +18,12 @@ Raffaello D'Andrea.
 \newblock \url{http://raffaello.name/projects/flying-machine-arena/}, 2015.
 \newblock [Online; Dostopano 6. 9. 2015].
 
+\bibitem{horn2000tsai}
+Berthold~KP Horn.
+\newblock Tsai’s camera calibration method revisited.
+\newblock {\em Online: http://people. csail. mit.
+  edu/bkph/articles/Tsai\_Revisited. pdf}, 2000.
+
 \bibitem{lee2013real}
 YJ~Lee and A~Yilmaz.
 \newblock Real-time object detection, tracking, and 3d positioning in a
@@ -85,5 +91,11 @@ Wikipedia.
   \url{https://en.wikipedia.org/w/index.php?title=Trilateration&oldid=677686385},
   2015.
 \newblock [Online; Dostopano 6. 9. 2015].
+
+\bibitem{zhang2000flexible}
+Zhengyou Zhang.
+\newblock A flexible new technique for camera calibration.
+\newblock {\em Pattern Analysis and Machine Intelligence, IEEE Transactions
+  on}, 22(11):1330--1334, 2000.
 
 \end{thebibliography}
