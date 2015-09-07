@@ -1,0 +1,684 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% datoteka diploma-vzorec.tex
+%
+% vzorčna datoteka za pisanje diplomskega dela v formatu LaTeX
+% na UL Fakulteti za računalništvo in informatiko
+%
+% vkup spravil Gašper Fijavž, december 2010
+% 
+%
+%
+% verzija 12. februar 2014 (besedilo teme, seznam kratic, popravki Gašper Fijavž)
+% verzija 10. marec 2014 (redakcijski popravki Zoran Bosnić)
+% verzija 11. marec 2014 (redakcijski popravki Gašper Fijavž)
+% verzija 15. april 2014 (pdf/a 1b compliance, not really - just claiming, Damjan Cvetan, Gašper Fijavž)
+% verzija 23. april 2014 (privzeto cc licenca)
+% verzija 16. september 2014 (odmiki strain od roba)
+% verzija 28. oktober 2014 (odstranil vpisno številko)
+% verija 5. februar 2015 (Literatura v kazalu, online literatura)
+
+\documentclass[a4paper, 12pt]{book}
+
+\usepackage[utf8x]{inputenc}   % omogoča uporabo slovenskih črk kodiranih v formatu UTF-8
+\usepackage[slovene,english]{babel}    % naloži, med drugim, slovenske delilne vzorce
+\usepackage[pdftex]{graphicx}  % omogoča vlaganje slik različnih formatov
+\usepackage{fancyhdr}          % poskrbi, na primer, za glave strani
+\usepackage{amssymb}           % dodatni simboli
+\usepackage{amsmath}           % eqref, npr.
+%\usepackage{hyperxmp}
+\usepackage[pdftex, colorlinks=true,
+						citecolor=black, filecolor=black, 
+						linkcolor=black, urlcolor=black,
+						pagebackref=false, 
+						pdfproducer={LaTeX}, pdfcreator={LaTeX}, hidelinks]{hyperref}
+\usepackage{url}
+\usepackage{cite}
+\usepackage{float}
+\graphicspath{ {slike/} }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	DIPLOMA INFO
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\ttitle}{Večkamerni sistem za lokalizacijo objekta v prostoru}
+\newcommand{\ttitleEn}{Multicamera system for object localization in space}
+\newcommand{\tsubject}{\ttitle}
+\newcommand{\tsubjectEn}{\ttitleEn}
+\newcommand{\tauthor}{Ernest Beličič}
+\newcommand{\tkeywords}{lokalizacija, triangulacija, računalniški vid, kalibracija kamer}
+\newcommand{\tkeywordsEn}{localization, triangulation, computer vision, camera calibration}
+
+
+
+\usepackage{hyperref}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	HYPERREF SETUP
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hypersetup{pdftitle={\ttitle}}
+\hypersetup{pdfsubject=\ttitleEn}
+\hypersetup{pdfauthor={\tauthor, ernest.belicic@gmail.com}}
+\hypersetup{pdfkeywords=\tkeywordsEn}
+
+
+ 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% postavitev strani
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+
+\addtolength{\marginparwidth}{-20pt} % robovi za tisk
+\addtolength{\oddsidemargin}{40pt}
+\addtolength{\evensidemargin}{-40pt}
+
+\renewcommand{\baselinestretch}{1.3} % ustrezen razmik med vrsticami
+\setlength{\headheight}{15pt}        % potreben prostor na vrhu
+\renewcommand{\chaptermark}[1]%
+{\markboth{\MakeUppercase{\thechapter.\ #1}}{}} \renewcommand{\sectionmark}[1]%
+{\markright{\MakeUppercase{\thesection.\ #1}}} \renewcommand{\headrulewidth}{0.5pt} \renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\fancyhead[LE,RO]{\sl \thepage} \fancyhead[LO]{\sl \rightmark} \fancyhead[RE]{\sl \leftmark}
+
+
+
+\newcommand{\BibTeX}{{\sc Bib}\TeX}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% naslovi
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+
+
+\newcommand{\autfont}{\Large}
+\newcommand{\titfont}{\LARGE\bf}
+\newcommand{\clearemptydoublepage}{\newpage{\pagestyle{empty}\cleardoublepage}}
+\setcounter{tocdepth}{1}	      % globina kazala
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% konstrukti
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+\newtheorem{izrek}{Izrek}[chapter]
+\newtheorem{trditev}{Trditev}[izrek]
+\newenvironment{dokaz}{\emph{Dokaz.}\ }{\hspace{\fill}{$\Box$}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% PDF-A
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% define medatata
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\def\Title{\ttitle}
+\def\Author{\tauthor, ernest.belicic@gmail.com}
+\def\Subject{\ttitleEn}
+\def\Keywords{\tkeywordsEn}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% \convertDate converts D:20080419103507+02'00' to 2008-04-19T10:35:07+02:00
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\def\convertDate{%
+    \getYear
+}
+
+{\catcode`\D=12
+ \gdef\getYear D:#1#2#3#4{\edef\xYear{#1#2#3#4}\getMonth}
+}
+\def\getMonth#1#2{\edef\xMonth{#1#2}\getDay}
+\def\getDay#1#2{\edef\xDay{#1#2}\getHour}
+\def\getHour#1#2{\edef\xHour{#1#2}\getMin}
+\def\getMin#1#2{\edef\xMin{#1#2}\getSec}
+\def\getSec#1#2{\edef\xSec{#1#2}\getTZh}
+\def\getTZh +#1#2{\edef\xTZh{#1#2}\getTZm}
+\def\getTZm '#1#2'{%
+    \edef\xTZm{#1#2}%
+    \edef\convDate{\xYear-\xMonth-\xDay T\xHour:\xMin:\xSec+\xTZh:\xTZm}%
+}
+
+\expandafter\convertDate\pdfcreationdate 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% get pdftex version string
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\newcount\countA
+\countA=\pdftexversion
+\advance \countA by -100
+\def\pdftexVersionStr{pdfTeX-1.\the\countA.\pdftexrevision}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% XMP data
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+\usepackage{xmpincl}
+\includexmp{pdfa-1b}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% pdfInfo
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+\pdfinfo{%
+    /Title    (\ttitle)
+    /Author   (\tauthor, ernest.belicic@gmail.com)
+    /Subject  (\ttitleEn)
+    /Keywords (\tkeywordsEn)
+    /ModDate  (\pdfcreationdate)
+    /Trapped  /False
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\selectlanguage{slovene}
+\frontmatter
+\setcounter{page}{1} %
+\renewcommand{\thepage}{}       % preprecimo težave s številkami strani v kazalu
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%naslovnica
+ \thispagestyle{empty}%
+   \begin{center}
+    {\large\sc Univerza v Ljubljani\\%
+      Fakulteta za računalništvo in informatiko}%
+    \vskip 10em%
+    {\autfont \tauthor\par}%
+    {\titfont \ttitle \par}%
+    {\vskip 2em \textsc{DIPLOMSKO DELO\\[2mm]
+    UNIVERZITETNI ŠTUDIJSKI PROGRAM PRVE STOPNJE RAČUNALNIŠTVO IN INFORMATIKA}\par}%
+    \vfill\null%
+    {\large \textsc{Mentor}: doc.\ dr.  Danijel Skočaj\par}%
+    {\vskip 2em \large Ljubljana 2015 \par}%
+\end{center}
+% prazna stran
+\clearemptydoublepage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%copyright stran
+\thispagestyle{empty}
+\vspace*{8cm}
+Rezultati diplomskega dela so intelektualna lastnina avtorja. Za objavljanje ali izkoriščanje rezultatov diplomskega dela je potrebno pisno soglasje avtorja, Fakultete za računalništvo in informatiko ter mentorja.
+
+\begin{center}
+\mbox{}\vfill
+\emph{Besedilo je oblikovano z urejevalnikom besedil \LaTeX.}
+\end{center}
+% prazna stran
+\clearemptydoublepage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% stran 3 med uvodnimi listi
+\thispagestyle{empty}
+\vspace*{4cm}
+
+\noindent
+Fakulteta za računalništvo in informatiko izdaja naslednjo nalogo:
+\medskip
+\begin{tabbing}
+\hspace{32mm}\= \hspace{6cm} \= \kill
+
+
+
+
+Tematika naloge:
+\end{tabbing}
+Besedilo teme diplomskega dela študent prepiše iz študijskega informacijskega sistema, kamor ga je vnesel mentor. V nekaj stavkih bo opisal, kaj pričakuje od kandidatovega diplomskega dela. Kaj so cilji, kakšne metode uporabiti, morda bo zapisal tudi ključno literaturo.
+\vspace{15mm}
+
+
+
+
+
+
+\vspace{2cm}
+
+% prazna stran
+\clearemptydoublepage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% izjava o avtorstvu
+\vspace*{1cm}
+\begin{center}
+{\Large \textbf{\sc Izjava o avtorstvu diplomskega dela}}
+\end{center}
+
+\vspace{1cm}
+\noindent Spodaj podpisani Ernest Beličič sem avtor  diplomskega dela z naslovom:
+
+\vspace{0.5cm}
+\emph{Večkamerni sistem za lokalizacijo objekta v prostoru}
+
+\vspace{1.5cm}
+\noindent S svojim podpisom zagotavljam, da:
+\begin{itemize}
+	\item sem diplomsko delo izdelal samostojno pod mentorstvom
+		doc.\ dr.\ Danijela Skočaja,
+
+	\item	so elektronska oblika diplomskega dela, naslov (slov., angl.), povzetek (slov., angl.) ter ključne besede (slov., angl.) identični s tiskano obliko diplomskega dela,
+	\item soglašam z javno objavo elektronske oblike diplomskega dela na svetovnem spletu preko univerzitetnega spletnega arhiva.	
+\end{itemize}
+
+\vspace{1cm}
+\noindent V Ljubljani, dne 14. september 2015 \hfill Podpis avtorja:
+
+% prazna stran
+\clearemptydoublepage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% zahvala
+\thispagestyle{empty}\mbox{}\vfill\null\it%
+Hvala vsem.
+\rm\normalfont
+
+% prazna stran
+\clearemptydoublepage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% posvetilo
+\thispagestyle{empty}\mbox{}{\vskip0.20\textheight}\mbox{}\hfill\begin{minipage}{0.55\textwidth}%
+Svoji hčerki Leneji.
+\normalfont\end{minipage}
+
+% prazna stran
+\clearemptydoublepage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% kazalo
+\def\thepage{}% preprecimo tezave s stevilkami strani v kazalu
+\tableofcontents{}
+
+
+% prazna stran
+\clearemptydoublepage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% seznam kratic
+
+\chapter*{Seznam uporabljenih kratic}
+
+\begin{tabular}{l|l|l}
+  {\bf kratica} & {\bf angleško} & {\bf slovensko} \\ \hline
+  % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+  {\bf GPS} & global positioning system & sistem za globalno pozicioniranje \\
+  {\bf SLAM} & simultaneous localization & hkratno lokaliziranje in kartiranje \\
+            & and mapping & \\
+  {\bf IPS} & indoor positioning system & sistem za pozicioniranje v \\
+  			& 							& notranjih prostorih \\
+  {\bf TDOA} & time difference of arrival & časovna razlika prihoda \\
+  {\bf CCD} & charge-coupled device & nabojno povezana naprava \\
+  {\bf DLT} & direct linear transformation & neposredna linearna transformacija \\
+  {\bf SVD} & singular value decomposition & razcep na singularne vrednosti \\
+  {\bf RGB} & red, green, blue & rdeča, zelena, morda \\
+  {\bf HSV} & hue, saturation, value & ton, nasičenost, intenziteta \\
+  {\bf HSL} & hue, saturation, lightness & ton, nasičenost, svetlost \\
+  {\bf CGI} & common gateway interface & vmesnik za skupni dostop \\
+  {\bf IP} & internet protocol & internetni protokol \\
+  {\bf HTTP} & hypertext transfer protocol & protokol za prenos hiperteksta \\
+  {\bf LED} & light-emitting diode & svetleča dioda \\
+\end{tabular}
+
+
+
+% prazna stran
+\clearemptydoublepage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% povzetek
+\addcontentsline{toc}{chapter}{Povzetek}
+\chapter*{Povzetek}
+V vzorcu je predstavljen postopek priprave diplomskega dela z uporabo okolja \LaTeX. Vaš povzetek mora sicer vsebovati približno 100 besed, ta tukaj je odločno prekratek.
+\bigskip
+
+\noindent\textbf{Ključne besede:} \tkeywords.
+% prazna stran
+\clearemptydoublepage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% abstract
+\selectlanguage{english}
+\addcontentsline{toc}{chapter}{Abstract}
+\chapter*{Abstract}
+This sample document presents an approach to typesetting your BSc thesis using \LaTeX. A proper abstract should contain around 100 words which makes this one way too short.
+\bigskip
+
+\noindent\textbf{Keywords:} \tkeywordsEn.
+\selectlanguage{slovene}
+% prazna stran
+\clearemptydoublepage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\mainmatter
+\setcounter{page}{1}
+\pagestyle{fancy}
+
+\chapter{Uvod}
+\section{Motivacija}
+V robotiki je eden izmed glavnih problemov določanje položaja robota v prostoru. Beseda robot ima dandanes zelo širok pomen in lahko zajema naprave od avtomobilov na daljinsko upravljanje, do popolnoma avtonomnih kvadrokopterjev. Pravzaprav sploh ni potrebno, da je robot zmožen premikanja. V nadaljevanju, ko pišem o položaju, lokaciji ali poziciji, implicitno mislim na te v prostoru. Za določanje položaja obstaja veliko rešitev, ki pa se razlikujejo po natančnosti, težavnosti in ceni implementacije. Če nas zanima kje na Zemlji se robot približno nahaja, bomo najverjetneje uporabili GPS (\emph{ang. Global Positioning System}). Prednost tega sistema je robustnost saj je v uporabi že od leta 1978 \cite{wiki:gps}, pomanjkljivost pa premajhna natančnost, če želimo izmeriti položaj do centimetra ali milimetra natančno. Prav tako GPS deluje slabše v zaprtih prostorih. V primeru, da je naš robot opremljen s kamero za zaznavanje globine pa lahko uporabimo tehniko SLAM (\emph{ang. Simultaneous Localization and Mapping}). Pri tej tehniki poleg položaja dobimo tudi karto okolja.
+
+Sam sem se osredotočil razviti sistem za določanje položaja v notranjem prostoru (\emph{ang. IPS - Indoor Positioning System}). Taki sistemi morajo biti natančni vsaj na nekaj decimetrski lestvici, odvisno od namena uporabe. Glavna motivacija za temo diplomskega dela je sistem kvadrokopterjev, ki so ga razvili na ETH Zurich pod okriljem prof. Raffaella D’Andree \cite{fma}. Za zaznavanje položaja uporabljajo enega od sistemov za zaznavanje gibanja (\emph{ang. motion capture system}), ki pa so lahko zelo dragi. Že najcenejši sistem z le dvemi kamerami se giblje nad 1000 EUR. 
+
+Ker so natančni sistemi za določanje položaja v notranjem prostoru dragi, vendar nujni za avtonomno upravljanje kvadrokopterja v prostoru, sem v sklopu diplomske naloge razvil večkamerni sistem za določanje lokacije objekta v prostoru. Objekt je, tako kot v komercialnih sistemih, barvni označevalnik v obliki krogle. 
+
+\section{Pregled področja}
+Veliko sistemov za pozicioniranje v prostoru ne uporablja kamere, vendar druge vrste oddajnikov/sprejemnikov s katerimi se lahko izmeri razdalja do objekta, nato pa s pomočjo trilateracije \cite{wiki:trilateration} ali multilateracije \cite{wiki:multilateration} izračuna pozicija objekta. Te sistemi delujejo po enakem principu. V prostor postavijo t.i. sidra z znanim položajem. To so lahko ultrazvočni ter radijski oddajniki ali sprejemniki, mikrofoni itd. Sidra služijo kot referenčne točke v prostoru s katerimi se izračuna razdalja ali pa razlika razdalj do objekta zanimanja. Ko so razdalje ali razlike razdalj znane, se lahko uporabi prej omenjena postopka za izračun pozicije objekta.
+
+Na Univerzi v Kaliforniji so razvili sistem, ki izračuna pozicijo s pomočjo zvoka \cite{mandal2005beep}. Za sidra so uporabili mikrofone, objekt zanimanja pa je bil mobilni telefon. V 97 \% poskusov so položaj izmerili do $50 \ cm$ natančno. Na Univerzi v Yorku so naredili podobno z Wi-Fi signali in znanim modelom zaprtega prostora \cite{chan2013dynamic}. Na Univerzi v Parani pa so za merjenje razdalje uporabili ultrazvočni signal \cite{auer20033d}. Natančnost njihovega sistema je nekaj desetink milimetra v $7\times7\times7 \ m^3$ velikem prostoru.
+
+Do sedaj opisana dela ne uporabljajo kamer za določanje položaja objekta. V nadaljevanju pa se bom osredotočil na dela, ki jih uporabljajo. Namesto o trilateraciji \cite{wiki:trilateration} ali multirateraciji \cite{wiki:multilateration}, pri računanju položaja s kamerami, govorimo o triangulaciji \cite{wiki:triangulation}. Slika iz navadne kamere nam sama po sebi ne pove razdalje do neke točke ali objekta, vendar le smer žarka, ki pa implicitno določa kote s katerimi lahko izračunamo razdaljo do objekta. Za to tehniko potrebujemo vsaj dve kameri ali pa vsaj dve sliki, ki opazujeta isti objekt iz različnih zornih kotov.
+
+Na Univerzi v Xi’an Jiaotong so razvili stereo sistem za določanje položaja planarne tarče \cite{li2008development}. Uporabili so dve CCD \cite{wiki:ccd} kameri, ki hkrati zajameta sliko ploskve in nato iz dobjenih točk triangulirajo pozicijo ploskve v prostoru. Na Tehnični univerzi v Madridu so uporabili večkamerni sistem za določanje položaja ljudi v prostoru \cite{mohedano2008robust}. Najprej segmentirajo vse premikajoče dele slike od statičnih, saj predpostavljajo, da se bodo ljudje po prostoru premikali. Nato na teh segmentih zaznajo kje se nahajajo ljudje. Največji problem predstavlja okluzija. Pri tem jim pomaga ravno večkamerni sistem, ki zajema slike ljudi iz različnih zornih kotov. Ko določijo kje na slikah se nahaja glava človeka pa lahko izračunajo njegov položaj v prostoru. Na Državni univerzi v Ohiju pa so naredili sistem \cite{lee2013real}, ki je, od opisanih, najbolj soroden mojemu delu. V prostor so postavili štiri visokoločljive omrežne kamere, s ciljem izračunati položaj nekega orodja. Kamere so med seboj kalibrirane. Od štirih morata vsaj dve kameri videti orodje, da se lahko določi njegov položaj. Pred sledenjem objekta, ga morajo najprej zaznati. To naredijo z ujemanjem predlog. S sledenjem oz. zaznavanjem dobijo le približno sredino objekta, ki pa jo z večimi kamerami izpopolnijo.
+
+\section{Cilji}
+Glavni cilj diplomskega dela je ustvariti večkamerni sistem za določanje položaja objekta v prostoru. Pri zaznavanju bo lahko prihajalo do okluzij, zato je minimalna zahteva, da vsaj dve kameri v nekem trenutku vidita objekt. Za vso obdelavo slik se bo uporabil centralni računalnik, ki bo s kamerami povezan v lokalno omrežje. Zaradi lažjega zaznavanja, bo objekt zanimanja barvni označevalnik. Pričakujem natančnost sistema z napako do nekaj centimetrov. Cilj je, da bo določanje položaja delovalo v realnem času z vsaj 10 meritvami na sekundo. Glavna omejitev sistema bo ta da bo deloval ob predpostavki, da se v prostoru nahaja le en objekt, kar onemogoča določanje usmeritve npr. robota. To omejitev pa se bo lahko v prihodnosti odstranilo in bo sistem zmožen hkrati določiti položaj veliko točkam v prostoru. Prednost sistema pa bo ta, da bo lahko medsebojna pokritost vidnega polja kamer minimalna in s tem omogočala večjo pokritost prostora.
+
+\section{Struktura diplome}
+%napiši ko bodo znana poglavja
+
+\chapter{Teorija}
+\section{Parametri kamere}
+Ugotoviti moramo kakšen matematični model najbolj ustreza današnjim kameram. Večina kamer je v osnovi preprosta kamera z luknjico (\emph{ang. pinhole camera}). Model mora opisovati kako se neka točka v svetu preslika na točko v sliki. Model lahko opišemo s t.i. notranjimi in zunanjimi parametri kamere. V grobem, notranji opisujejo interne lastnosti kamere kot je goriščna razdalja, principalna točka, popačenost itd., zunanji pa položaj kamere v prostoru.
+
+\subsection{Notranji parametri}
+Na sliki \ref{similar1} je ponazorjena preslikava točke v svetu na točko v sliki. Ugotovitve v eni dimenziji lahko apliciramo tudi na drugo dimenzijo. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{similar_triangles_1.png}
+\caption{Točka v svetu (desno) se preslika na slikovno ploskev (levo)}
+\label{similar1}
+\end{figure}
+
+Izhodišče predstavlja luknjico kamere. Višina točke v svetu je predstavljena z $x$, oddaljenost od kamere pa z $z$. Točka na sliki je označena z $x’$, goriščna razdalja pa s $f$. Točka v svetu se preko luknjice (koordinatnega izhodišča) preslika na slikovno ploskev. Vse točke v svetu so na slikovni ploskvi rotirane za 180°, kar pa kamere samodejno popravijo, ko vrnejo sliko. Za lažje računanje pa lahko to ugotovitev uporabimo za vpeljavo navidezne slikovne ploskve. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{similar_triangles_2.png}
+\caption{Na sliki se jasno vidi dva podobna pravokotna trikotnika}
+\label{similar2}
+\end{figure}
+
+Hitro opazimo, da je preslikava iz sveta na sliko linearna operacija. Na sliki \ref{similar2} vidimo podobna pravokotna trikotnika, ki ju določa točka v svetu in točka na sliki. Vzpostavimo lahko relacijo,
+\begin{align}
+\frac{x'}{f} &= \frac{x}{z} \\
+x' &= f * \frac{x}{z}
+\end{align}
+Če formulo posplošimo na obe koordinatni osi dobimo,
+\begin{align}
+\begin{bmatrix}
+x' \\
+y'
+\end{bmatrix}
+&= \frac{f}{z}
+\begin{bmatrix}
+x \\
+y
+\end{bmatrix}
+\label{simplemodeleq}
+\end{align}
+
+Enačba \eqref{simplemodeleq} predstavlja najpreprostejši model kamere z luknjico. Ima seveda veliko pomanjkljivost, ki pa jih bomo postopoma odpravili. Enačbo \eqref{simplemodeleq} se da zapisati še preprosteje z uvedbo homogenih koordinat.
+\begin{align}
+\begin{bmatrix}
+x' \\
+y' \\
+1
+\end{bmatrix}
+&\sim 
+\begin{bmatrix}
+f*x \\
+f*y \\
+z
+\end{bmatrix}
+\end{align}
+
+Točka v homogenih koordinatah ni enolično določena z vrednostmi točke saj za homogeno točko $x$ velja $x \sim \lambda x$, kjer $\lambda \neq 0$. Homogeno točko preslikamo nazaj v evklidski prostor tako, da vse koordinate delimo z zadnjo vrednostjo točke. 
+
+Pri predstavitvi digitalnih slik je izhodišče običajno v levem zgornjem kotu. Zgornji model pa predpostavlja izhodišče v sredini slike. V model moramo vpeljati dve konstanti $u$ in $v$, ki bosta prestavili izhodišče koordinatnega sistema slike. To se lahko kompaktno zapiše kot množenje točke v svetu z matriko.
+\begin{align}
+\begin{bmatrix}
+x' \\
+y' \\
+1
+\end{bmatrix}
+&\sim
+\begin{bmatrix}
+f & 0 & u \\
+0 & f & v \\
+0 & 0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+x \\
+y \\
+z
+\end{bmatrix}
+\end{align}
+
+Zgornji model predpostavlja, da so pike na senzorju kamere kvadratne. Dandanes je za veliko kamer to tudi res. Ker pa se da pravokotne ali celo poševne pike enostavno vključiti v obstoječi model, bomo to naredili.
+\begin{align}
+\begin{bmatrix}
+x' \\
+y' \\
+1
+\end{bmatrix}
+&\sim
+\begin{bmatrix}
+f*m_x & s & u \\
+0 & f*m_y & v \\
+0 & 0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+x \\
+y \\
+z
+\end{bmatrix}
+\label{internaleq}
+\end{align}
+
+Enačba \eqref{internaleq} predstavlja notranji model kamere. Goriščna razdalja je označena s $f$, $m_x$ in $m_y$ predstavljata velikost, $s$ pa poševnost pike, $u$ in $v$ pa določata principalno točko. Vektor $[x \ y \ z]^T$ določa točko v svetu, $[x' \ y' \ 1]^T$ pa kam se ta točka preslika na sliko.
+
+Slike iz kamer so lahko tudi popačene. Obstajata dve vrsti popačenosti, ki ju prej opisani model ne more modelirati. To sta radialna in tangencialna popačenost. Radialno popačenost povzroči oblika leče in poznamo dve glavni različici:
+\begin{enumerate}
+\item sodčasto, ki spominja na obliko soda in
+\item blazinasto, ki spominja na obliko blazine
+\end{enumerate}
+Obstaja še kombinacija obeh, ki pa se imenuje brkato popačenje (ker spominja na obliko brk).
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{distorsion.png}
+\caption{Sodčasta popačenost levo, blazinasta popačenost desno}
+\end{figure}
+
+Moč radialne popačenosti slikovne točke je odvisna od razdalje do principalne točke. Modeliramo jo lahko z vsotami polinomov sodih stopenj. Za večino radialnih popačenj zadoščata že dva koeficienta. 
+\begin{align}
+r &= \sqrt{x^2 + y^2} \\
+x_{popaceno} &= x * (1 + k_1*r^2 + k_2*r^4 + k_3*r^6 + \dots) \\
+y_{popaceno} &= y * (1 + k_1*r^2 + k_2*r^4 + k_3*r^6 + \dots)
+\end{align}
+
+Druga popačenost, ki jo poznamo pa je tangencialna in nastane zaradi slabe poravnanosti leč in senzorja.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{tangential.png}
+\caption{Senzor in leča sta vzporedna zato do tangencialne popačenosti v tem primeru ne pride (levo)}
+\end{figure}
+
+Modeliramo jo lahko kot,
+\begin{align}
+r &= \sqrt{x^2 + y^2} \\
+x_{popaceno} &= x + (2 * p_1 * x * y + p_2 * (r^2 + 2 * x^2)) \\
+y_{popaceno} &= y + (p_1 * (r^2 + 2*y^2) + 2 * p_2 * x * y)
+\end{align}
+
+Če povzamemo, notranje parametre kamere določa matrika A in koeficienti popačenja. Koeficiente se lahko predstavi z vektorjem $\vec{r}$, ki določa radialno popačenost in z vektorjem $\vec{t}$, ki določa tangencialno popačenost.
+\begin{align*}
+A &= 
+\begin{bmatrix}
+f*m_x & s & u \\
+0 & f*m_y & v \\
+0 & 0 & 1
+\end{bmatrix} \\
+\vec{r} &= [k_1 \ k_2 \ k_3 \dots] \\
+\vec{t} &= [p_1 \ p_2]
+\end{align*}
+
+\subsection{Zunanji parametri}
+Do sedaj smo predpostavljali, da je koordinatno izhodišče sveta sama kamera. Uporabno bi bilo, če bi lahko poljubno določili koordinatni sistem sveta in vanj postavili kamere. Ravno temu so namenjeni zunanji parametri kamere. Med različnimi koordinatnimi sistemi lahko enolično prehajamo z rotacijo in translacijo. Če napišem malo drugače: iz enega koordinatnega sistema lahko dobimo kateri koli drug koordinatni sistem (z enakim št. dimenzij) tako, da izhodišči poravnamo s translacijo in nato rotiramo osi, da sovpadajo. 
+
+Rotacijo v treh dimenzijah lahko predstavimo z množenjem matrike $R$ velikosti $3 \times 3$. Translacija pa je vsota točke v svetu $\vec{X}$ in translacijskega vektorja $\vec{T}$.
+\begin{equation}
+X_{premaknjen} = R * \vec{X} + \vec{T} = 
+\begin{bmatrix}
+r_{11} & r_{12} & r_{13} \\
+r_{21} & r_{22} & r_{23} \\
+r_{31} & r_{32} & r_{33}
+\end{bmatrix}
+* 
+\begin{bmatrix}
+x \\
+y \\
+z 
+\end{bmatrix}
++
+\begin{bmatrix}
+x_t \\
+y_t \\
+z_t 
+\end{bmatrix}
+\label{coordeq}
+\end{equation}
+
+Izkaže se, da če točko v svetu predstavimo s homogenimi koordinatami, lahko enačbo \eqref{coordeq} zapišemo kot množenje matrike $[R | \vec{T}]$ z vektorjem $\vec{X}$.
+\begin{equation}
+X_{premaknjen} = [R|\vec{T}] * \vec{X} = 
+\begin{bmatrix}
+r_{11} & r_{12} & r_{13} & x_t\\
+r_{21} & r_{22} & r_{23} & y_t\\
+r_{31} & r_{32} & r_{33} & z_t
+\end{bmatrix}
+* 
+\begin{bmatrix}
+x \\
+y \\
+z \\
+1
+\end{bmatrix}
+\label{coordeq}
+\end{equation}
+Zavedati se moramo, da rotacijska matrika $R$ in translacijski vektor $\vec{T}$ ne predstavljata rotacijo in pozicijo kamere v svetu, vendar rotacijo in pozicijo sveta relativno na kamero. Rotacijo kamere lahko dobimo z $R^{-1} = R^T$, pozicijo v svetu pa z $-R^{-1} * \vec{T} = -R^T * \vec{T}$.
+
+\subsection{Model kamere}
+
+Model \eqref{internaleq} lahko dopolnimo z zunanjimi parametri ter tako dobimo popolen model kamere.
+\begin{align}
+X' &\sim A * [R | \vec{T}] * \vec{X} \\
+\begin{bmatrix}
+x' \\
+y' \\
+1
+\end{bmatrix}
+&\sim
+\begin{bmatrix}
+f*m_x & s & u \\
+0 & f*m_y & v \\
+0 & 0 & 1
+\end{bmatrix}
+*
+\begin{bmatrix}
+r_{11} & r_{12} & r_{13} & x_t\\
+r_{21} & r_{22} & r_{23} & y_t\\
+r_{31} & r_{32} & r_{33} & z_t
+\end{bmatrix}
+*
+\begin{bmatrix}
+x \\
+y \\
+z \\
+1
+\end{bmatrix} \\
+\vec{r} &= [k_1 \ k_2 \ k_3 \dots] \\
+\vec{t} &= [p_1 \ p_2]
+\label{internaleq}
+\end{align}
+
+\section{Ocenjevanje parametrov}
+
+\chapter{Sklicevanje na besedilne konstrukte}
+\label{ch1}
+Matematična ali popolna indukcija je eno prvih orodij, ki jih spoznamo za dokazovanje trditev pri matematičnih predmetih.
+\begin{izrek}
+\label{iz:1}
+Za vsako naravno število $n$ velja
+\begin{equation}
+n < 2^n.
+\label{eq:1}
+\end{equation}
+\end{izrek}
+\begin{dokaz}
+Dokazovanje z indukcijo zahteva, da neenakost~\eqref{eq:1} najprej preverimo za najmanjše naravno število --- $0$. Res, ker je $0 < 1 = 2^0$, je neenačba~\eqref{eq:1} za $n=0$ izpolnjena.
+
+Sledi indukcijski korak. S predpostavko, da je neenakost~\eqref{eq:1} veljavna pri nekem naravnem številu $n$, je potrebno pokazati, da je ista neenakost v veljavi tudi pri njegovem nasledniku --- naravnem številu $n+1$. Računajmo.
+\begin{align}
+n+1 &< 2^n + 1  \label{eq:2}\\
+    &\le 2^n + 2^n \label{eq:3}\\
+    &= 2^{n+1} \nonumber
+\end{align}
+Neenakost~\eqref{eq:2} je posledica indukcijske predpostavke, neenakost~\eqref{eq:3} pa enostavno dejstvo, da je za vsako naravno število $n$ izraz $2^n$ vsaj tako velik kot 1. S tem je dokaz Izreka~\ref{iz:1} zaključen.
+\end{dokaz}
+
+Opazimo, da je \LaTeX\ številko izreka podredil številki poglavja.
+
+
+\chapter{Plovke: slike in tabele}
+\label{ch2}
+Slike in daljše tabele praviloma vključujemo v dokument kot plovke. Pozicija plovke v končnem izdelku ni pogojena s tekom besedila, temveč z izgledom strani. \LaTeX\ bo skušal plovko postaviti samostojno, praviloma na vrh strani, na kateri se na takšno plovko prvič sklicujemo. Pri tem pa bo na vsako stran končnega izdelka želel postaviti tudi sorazmerno velik del besedila. V skrajnem primeru, če imamo res preveč plovk, se bo odločil za stran popolnoma zapolnjeno s plovkami.
+
+\section{Formati slik}
+Bitne slike, vektorske slike, kakršnekoli slike, z \LaTeX{}om lahko vključimo vse.
+Slika~\ref{pic1} je v {\tt .pdf} formatu.
+\begin{figure}
+\begin{center}
+\includegraphics[width=10cm]{pic1.pdf}
+\end{center}
+\caption{Herschelov graf, vektorska grafika.}
+\label{pic1}
+\end{figure}
+Pa res lahko vključimo slike katerihkoli formatov? Žal ne. Programski paket \LaTeX\ lahko uporabljamo v več dialektih. Ukaz {\tt latex} ne mara vključenih slik v formatu Portable Document Format {\tt .pdf}, ukaz {\tt pdflatex} pa ne prebavi slik v Encapsulated Postscript Formatu {\tt .eps}.
+Strnjeno v Tabeli~\ref{tbl:1}.
+
+\begin{table}
+\begin{center}
+\begin{tabular}{l|ccc}
+ukaz/format & {\tt .pdf} & {\tt .eps} & ostali formati \\ \hline
+{\tt pdflatex} & da & ne & da \\
+{\tt latex}   & ne & da  & da
+\end{tabular}
+\end{center}
+\caption{}
+\label{tbl:1}
+\end{table}
+
+Nasvet? Odločite se za uporabo ukaza {\tt pdflatex}. Vaš izdelek bo brez vmesnih stopenj na voljo v {.pdf} formatu in ga lahko odnesete v vsako tiskarno. Če morate na vsak način vključiti sliko, ki jo imate v {\tt .eps} formatu, jo vnaprej pretvorite v alternativni format, denimo {\tt .pdf}.
+
+Včasih se da v okolju za uporabo programskega paketa \LaTeX\ nastaviti na kakšen način bomo prebavljali vhodne dokumente. Spustni meni na Sliki~\ref{pic2} odkriva uporabo \LaTeX{}a v njegovi pdf inkarnaciji --- {\tt pdflatex}.
+\begin{figure}
+\begin{center}
+\includegraphics[width=10cm]{pic2.png}
+\end{center}
+\caption{Kateri dialekt uporabljati?}
+\label{pic2}
+\end{figure}
+
+Vključena Slika~\ref{pic2} je seveda bitna.
+%
+
+\chapter{PDF/A}
+Elektronsko verzijo diplome morate oddati v PDF/A formatu. Natančneje PDF/A-1b formatu. 
+
+\LaTeX\ in omenjeni format imata še nekaj težav s sobivanjem. Paket \texttt{pdfx.sty}, ki naj bi v \LaTeX u omogočal podporo PDF/A formatu ne deluje v skladu s pričakovanji. Ta predloga delno ustreza formatu, vsekakor dovolj, da jo študentski informacijski sistem sprejme. Znaten del rešitve je prispeval Damjan Cvetan.
+
+V predlogi, poleg izvornega \texttt{.tex} dokumenta in vloženih slik \texttt{pic1.pdf} in \texttt{pic2.png}, potrebujemo še predlogo datoteke z metapodatki \texttt{pdfa-1b.xmp} in datoteko z barvnim profilom \texttt{sRGBIEC1966-2.1.icm}.
+
+\chapter{Sklepne ugotovitve}
+Izbira \LaTeX\ ali ne \LaTeX\ je seveda prepuščena vam samim. Res je, da so prvi koraki v \LaTeX{}u težavni. Ta dokument naj vam služi kot začetna opora pri hoji.
+
+\bibliography{bibliography}{}
+\bibliographystyle{plain}
+\end{document}
+

@@ -1,0 +1,89 @@
+\begin{thebibliography}{10}
+
+\bibitem{auer20033d}
+V~Auer, MM~Maes, MJC Bonfim, MM~Wanderley, and MV~Lamar.
+\newblock 3d positioning acquisition system with application in real-time
+  processing.
+\newblock {\em Accessed: October}, 1, 2003.
+
+\bibitem{chan2013dynamic}
+S~Chan, G~Sohn, L~Wang, and W~Lee.
+\newblock Dynamic wifi-based indoor positioning in 3d virtual world.
+\newblock {\em ISPRS-International Archives of the Photogrammetry, Remote
+  Sensing and Spatial Information Sciences}, 1(4):1--6, 2013.
+
+\bibitem{fma}
+Raffaello D'Andrea.
+\newblock Flying machine arena.
+\newblock \url{http://raffaello.name/projects/flying-machine-arena/}, 2015.
+\newblock [Online; Dostopano 6. 9. 2015].
+
+\bibitem{lee2013real}
+YJ~Lee and A~Yilmaz.
+\newblock Real-time object detection, tracking, and 3d positioning in a
+  multiple camera setup.
+\newblock In {\em The ISPRS Workshop on Image Sequence Analysis}, 2013.
+
+\bibitem{li2008development}
+Jinjun Li, Hong Zhao, Tao Jiang, and Xiang Zhou.
+\newblock Development of a 3d high-precise positioning system based on a planar
+  target and two ccd cameras.
+\newblock In {\em Intelligent Robotics and Applications}, pages 475--484.
+  Springer, 2008.
+
+\bibitem{mandal2005beep}
+Atri Mandal, Cristina~V Lopes, Tony Givargis, Amir Haghighat, Raja Jurdak, and
+  Pierre Baldi.
+\newblock Beep: 3d indoor positioning using audible sound.
+\newblock In {\em Consumer Communications and Networking Conference, 2005.
+  CCNC. 2005 Second IEEE}, pages 348--353. IEEE, 2005.
+
+\bibitem{mohedano2008robust}
+Ra{\'u}l Mohedano, Carlos~R Del-Blanco, Fernando Jaureguizar, Luis Salgado, and
+  Narciso Garc{\'\i}a.
+\newblock Robust 3d people tracking and positioning system in a semi-overlapped
+  multi-camera environment.
+\newblock In {\em Image Processing, 2008. ICIP 2008. 15th IEEE International
+  Conference on}, pages 2656--2659. IEEE, 2008.
+
+\bibitem{wiki:ccd}
+Wikipedia.
+\newblock Charge-coupled device --- wikipedia{,} the free encyclopedia.
+\newblock
+  \url{https://en.wikipedia.org/w/index.php?title=Charge-coupled_device&oldid=679480626},
+  2015.
+\newblock [Online; Dostopano 6. 9. 2015].
+
+\bibitem{wiki:gps}
+Wikipedia.
+\newblock Global positioning system --- wikipedia{,} the free encyclopedia.
+\newblock
+  \url{https://en.wikipedia.org/w/index.php?title=Global_Positioning_System&oldid=679232332},
+  2015.
+\newblock [Online; Dostopano 6. 9. 2015].
+
+\bibitem{wiki:multilateration}
+Wikipedia.
+\newblock Multilateration --- wikipedia{,} the free encyclopedia.
+\newblock
+  \url{https://en.wikipedia.org/w/index.php?title=Multilateration&oldid=678002521},
+  2015.
+\newblock [Online; Dostopano 6. 9. 2015].
+
+\bibitem{wiki:triangulation}
+Wikipedia.
+\newblock Triangulation --- wikipedia{,} the free encyclopedia.
+\newblock
+  \url{https://en.wikipedia.org/w/index.php?title=Triangulation&oldid=677068010},
+  2015.
+\newblock [Online; Dostopano 6. 9. 2015].
+
+\bibitem{wiki:trilateration}
+Wikipedia.
+\newblock Trilateration --- wikipedia{,} the free encyclopedia.
+\newblock
+  \url{https://en.wikipedia.org/w/index.php?title=Trilateration&oldid=677686385},
+  2015.
+\newblock [Online; Dostopano 6. 9. 2015].
+
+\end{thebibliography}
