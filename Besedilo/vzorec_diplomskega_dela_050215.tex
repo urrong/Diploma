@@ -311,6 +311,7 @@ Hčerki Leneji.
   {\bf IP} & internet protocol & internetni protokol \\
   {\bf HTTP} & hypertext transfer protocol & protokol za prenos hiperteksta \\
   {\bf LED} & light-emitting diode & svetleča dioda \\
+  {\bf PTZ} & pan, tilt, zoom & panorama, nagib, povečanje \\
 \end{tabular}
 
 
@@ -749,6 +750,52 @@ for i = 1...h
 Pri segmentiranju barvnih slik se je potrebno odločiti za primeren barvni model. Primarno so slike zapisane v rdečem, zelenem in modrem kanalu (model RGB). Običajno je bolj primeren model HSV ali HSL, saj H (ton) komponenta določa barvo neodvisno od njene intenzitete in nasičenosti. Slednja modela sta pri segmentaciji bolj robustna, ker sprememba svetlobe ne vpliva toliko na spremembo tonskega kanala.
 
 Izbira barvnega modela in praga je za vsak primer specifična. Včasih je bolje uporabiti model RGB npr. v primeru, če ima označevalnik izrazito barvo ne glede na osvetljitev.
+
+\chapter{Implementacija}
+
+\section{Strojna oprema}
+Vsa obdelava podatkov se odvija na enem prenosnem računalniku. Zajemanje slik poteka sočasno v ločenih procesih. Računalnik ima dve fizični procesni jedri in štiri niti. 
+
+\begin{table}[H]
+\centering
+\begin{tabular}{| r | l |}
+\hline
+CPE & Intel i7-4510U 2.6 GHz \\
+Pomnilnik & 8 GB \\
+Št. jeder/niti & 2 / 4 \\
+Arhitektura & 64-bit \\
+OS & Windows 8.1 Pro \\
+\hline
+\end{tabular}
+\caption{Specifikacije računalnika}
+\end{table}
+
+Uporabil sem štiri Axis 215 PTZ IP kamere. Kamere so povezane v zvezdišče na ethernet omrežju, zvezdišče pa je povezano z brezžičnim usmerjevalnikom. Axis 215 PTZ so varnostne IP kamere namenjene primarno nadzoru okolja. Prednost kamer je, da so zmožne v realnem času preko lokalnega omrežja posredovati do 30 slik na sekundo pri ločljivosti 704 x 576. Slabost pa je ta, da varnostne kamere niso namenjene za simultano zajemanje slike in ne podpirajo skupinskega prožilca. Največja ločljivost je 704 x 576, kar je relativno malo za namen pozicioniranja objekta s premerom 4 cm v \textbf{X x X} velikem prostoru.
+
+Specifikacije kamere:
+….
+
+Axis kamere imajo CGI (common gateway interface) vmesnik, ki omogoča nadzor funkcionalnosti preko HTTP protokola. Vsak model kamere podpira različen nabor ukazov, katerih spisek lahko dobimo z GET zahtevkom na http://<ip-kamere>/axis-cgi/com/ptz.cgi?info=1.
+
+Označevalnik je v osnovi oranžna žogica za namizni tenis. Da pa bi sprememba svetlobe čim manj vplivala na natančnost zazanavanja označevalnika v sliki, sem v žogico vgradil modro svetlobno diodo (LED). Na sliki je označevalnik izrazito rumene barve.
+
+[slike]
+
+
+
+
+
+
+kalibracija kamer
+notranji parametri
+
+zunanji parametri
+
+zaznavanje označevalnika
+
+postavitev sistema
+-work flow za triangulacijo, topologija povezave
+
 
 \bibliography{bibliography}{}
 \bibliographystyle{plain}
