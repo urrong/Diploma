@@ -21,3 +21,8 @@
 \contentsline {subsection}{\numberline {2.2.4}Zaznavanje ozna\IeC {\v c}evalnika}{16}{subsection.2.2.4}
 \contentsline {chapter}{\numberline {3}Implementacija}{19}{chapter.3}
 \contentsline {section}{\numberline {3.1}Strojna oprema}{19}{section.3.1}
+\contentsline {section}{\numberline {3.2}Kalibracija kamer}{23}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Ocenjevanje notranjih parametrov}{23}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Ocenjevanje zunanjih parametrov}{23}{subsection.3.2.2}
+\contentsline {section}{\numberline {3.3}Zazavanja ozna\IeC {\v c}evalnika}{23}{section.3.3}
+\contentsline {section}{\numberline {3.4}Postavitev sistema}{23}{section.3.4}

@@ -733,7 +733,7 @@ Rang matrike B mora biti 4, saj ocenjujemo štiri parametre, ki določajo X. Ena
 
 Pri zaznavanju označevalnika je potrebno sliko iz kamere segmentirati. Segmentacija je postopek ločevanja ozadja od objekta zanimanja. Označevalnik ima običajno izrazito drugačno barvo od okolice, zato da pri zaznavanju ne prihaja do dvoumnosti. Segmentacija ponavadi vrne binarno sliko, kjer je ozadje predstavljeno z vrednostjo 0, segmenti pa z vrednostjo 1. 
 
-Segmentiramo lahko tako sivinsko kot barvno sliko. Za vsako točko v sliki se moramo odločiti ali pripada ozadju (0) ali segmentu (1). Če so vrednosti pik predstavljene z monotono naraščujočimi vrednostmi, lahko določimo prag, ki ločuje ozadje od segmenta.
+Segmentiramo lahko tako sivinsko kot barvno sliko. Za vsako točko v sliki se moramo odločiti ali pripada ozadju (0) ali segmentu (1). Če so vrednosti pik predstavljene z monotono naraščujočimi vrednostmi, lahko določimo prag, ki ločuje ozadje od segmenta. Spodaj je podana psevdo koda segmentacije.
 \begin{lstlisting}
 I //sivinska slika
 w // sirina slike
@@ -754,7 +754,9 @@ Izbira barvnega modela in praga je za vsak primer specifična. Včasih je bolje 
 \chapter{Implementacija}
 
 \section{Strojna oprema}
-Vsa obdelava podatkov se odvija na enem prenosnem računalniku. Zajemanje slik poteka sočasno v ločenih procesih. Računalnik ima dve fizični procesni jedri in štiri niti. 
+
+\noindent{\large \textbf{Računalnik} } \\
+Vsa obdelava podatkov se odvija na enem prenosnem računalniku. Zajemanje slik poteka sočasno v ločenih procesih. Računalnik ima dve fizični procesni jedri in štiri niti. V lokalno omrežje je povezan preko brezžične povezave. 
 
 \begin{table}[H]
 \centering
@@ -770,30 +772,101 @@ OS & Windows 8.1 Pro \\
 \caption{Specifikacije računalnika}
 \end{table}
 
-Uporabil sem štiri Axis 215 PTZ IP kamere. Kamere so povezane v zvezdišče na ethernet omrežju, zvezdišče pa je povezano z brezžičnim usmerjevalnikom. Axis 215 PTZ so varnostne IP kamere namenjene primarno nadzoru okolja. Prednost kamer je, da so zmožne v realnem času preko lokalnega omrežja posredovati do 30 slik na sekundo pri ločljivosti 704 x 576. Slabost pa je ta, da varnostne kamere niso namenjene za simultano zajemanje slike in ne podpirajo skupinskega prožilca. Največja ločljivost je 704 x 576, kar je relativno malo za namen pozicioniranja objekta s premerom 4 cm v \textbf{X x X} velikem prostoru.
+\noindent{\large \textbf{Kamere} } \\
+Uporabil sem štiri Axis 215 PTZ omrežne kamere. To so varnostne IP kamere namenjene primarno nadzoru okolja. Kamere so povezane v zvezdišče na omrežju ethernet, zvezdišče pa je povezano z brezžičnim usmerjevalnikom.  Kamere so zmožne v realnem času preko lokalnega omrežja posredovati do 30 slik na sekundo pri ločljivosti 704 x 576. Vseeno pa varnostne kamere niso namenjene za sinhronizirano zajemanje slik in ne podpirajo skupnega prožilca. Največja ločljivost je 704 x 576, kar je relativno malo za namen pozicioniranja objekta s premerom 4 cm v \textbf{X x X} velikem prostoru.
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{axis_215_ptz.png}
+\caption{Axis 215 PTZ kamera}
+\end{figure}
 
-Specifikacije kamere:
-….
+\begin{table}[H]
+\centering
+\begin{tabular}{| r | l |}
+\hline
+Tip kamere & varnostna IP \\
+Hitrost zajemanja & 30 FPS \\
+Formati pretoka & MPEG-4, MJPEG \\
+Največja ločljivost & 704 $\times$ 576 \\
+Optična povečava & 12$\times$ \\
+Digitalna povečava & 4$\times$ \\
+Povezava z omrežjem & ethernet \\
+Leča & 3,8 - 46 mm \\
+\hline
+\end{tabular}
+\caption{Specifikacije Axis 215 PTZ kamere}
+\end{table}
 
-Axis kamere imajo CGI (common gateway interface) vmesnik, ki omogoča nadzor funkcionalnosti preko HTTP protokola. Vsak model kamere podpira različen nabor ukazov, katerih spisek lahko dobimo z GET zahtevkom na http://<ip-kamere>/axis-cgi/com/ptz.cgi?info=1.
+Axis kamere imajo CGI (\emph{ang. Common Gateway Interface}) vmesnik, ki omogoča nadzor funkcionalnosti preko protokola HTTP (\emph{ang. Hypertext Transfer Protocol}). Vsak model kamere podpira različen nabor ukazov, katerih spisek lahko dobimo z GET zahtevkom na naslov:
+\begin{center}
+\texttt{http://<ip-kamere>/axis-cgi/com/ptz.cgi?info=1}
+\end{center}
+Vsi ukazi pa so podani kot parameter v zahtevku.
+\begin{center}
+\texttt{http://<ip-kamere>/axis-cgi/com/ptz.cgi?<ukaz>=<vrednost>}
+\end{center}
+Spodaj je prikazan izpis ukaza \texttt{info=1} na Axis 215 PTZ kameri.
+\begin{lstlisting}
+Available commands
+:
+{camera=[n]}
+whoami=yes
+center=[x],[y]
+   imagewidth=[n]
+   imageheight=[n]
+move={ home | up | down | left | right | upleft | upright | downleft | downright | stop }
+pan=[abspos]
+tilt=[abspos]
+zoom=[n]
+focus=[n]
+rpan=[offset]
+rtilt=[offset]
+rzoom=[offset]
+rfocus=[offset]
+brightness=[offset]
+rbrightness=[offset]
+autofocus={ on | off }
+ircutfilter={ on | off | auto }
+backlight={ on | off }
+continuouspantiltmove=[x-speed],[y-speed]
+continuouszoommove=[speed]
+continuousfocusmove=[speed]
+auxiliary=[function]
+setserverpresetname=[name]
+setserverpresetno=[n]
+removeserverpresetname=[name]
+gotoserverpresetname=[name]
+gotoserverpresetno=[n]
+barcoord=[x],[y]
+   panbar=[length],{ horizontal | vertical }
+   tiltbar=[length],{ horizontal | vertical }
+   zoombar=[length],{ horizontal | vertical }
+   focusbar=[length],{ horizontal | vertical }
+   irisbar=[length],{ horizontal | vertical }
+   brightnessbar=[length],{ horizontal | vertical }
+speed=[n]
+query={ speed | position | presetposcam | presetposall }
+\end{lstlisting}
 
-Označevalnik je v osnovi oranžna žogica za namizni tenis. Da pa bi sprememba svetlobe čim manj vplivala na natančnost zazanavanja označevalnika v sliki, sem v žogico vgradil modro svetlobno diodo (LED). Na sliki je označevalnik izrazito rumene barve.
+\vspace{2ex}
+\noindent{\large \textbf{Označevalnik} } \\
+Označevalnik je v osnovi oranžna žogica za namizni tenis. Da pa bi sprememba svetlobe čim manj vplivala na natančnost zazanavanja označevalnika, sem v žogico vgradil modro svetlečo diodo (\emph{LED - Light Emitting Diode}) in stikalo. S pritiskom na stikalo prižgemo označevalnik, da ga kamere lahko zaznajo. Na slikah kamer je žogica izrazito rumene barve.
 
-[slike]
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{marker_off.png}
+\includegraphics[scale=0.4]{marker_on.png}
+\caption{Ugasnjen označevalnik je oranžne barve (levo, prižgan pa izrazito rumene barve (desno)}
+\end{figure}
 
+\section{Kalibracija kamer}
+\subsection{Ocenjevanje notranjih parametrov}
 
+\subsection{Ocenjevanje zunanjih parametrov}
 
+\section{Zazavanja označevalnika}
 
-
-
-kalibracija kamer
-notranji parametri
-
-zunanji parametri
-
-zaznavanje označevalnika
-
-postavitev sistema
+\section{Postavitev sistema}
 -work flow za triangulacijo, topologija povezave
 
 
