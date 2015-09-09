@@ -35,6 +35,7 @@
 \usepackage{cite}
 \usepackage{float}
 \usepackage{listings}
+\raggedbottom
 \graphicspath{ {slike/} }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %	DIPLOMA INFO
@@ -381,7 +382,7 @@ Na sliki \ref{similar1} je ponazorjena preslikava točke v svetu na točko v sli
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{similar_triangles_1.png}
-\caption{Točka v svetu (desno) se preslika na slikovno ploskev (levo)}
+\caption{Točka v svetu (desno) se preslika na slikovno ploskev (levo).}
 \label{similar1}
 \end{figure}
 
@@ -390,7 +391,7 @@ Izhodišče predstavlja luknjico kamere. Višina točke v svetu je predstavljena
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{similar_triangles_2.png}
-\caption{Na sliki se jasno vidi dva podobna pravokotna trikotnika}
+\caption{Na sliki se jasno vidi dva podobna pravokotna trikotnika.}
 \label{similar2}
 \end{figure}
 
@@ -483,7 +484,7 @@ Obstaja še kombinacija obeh, ki pa se imenuje brkato popačenje (ker spominja n
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{distorsion.png}
-\caption{Sodčasta popačenost levo, blazinasta popačenost desno}
+\caption{Sodčasta popačenost levo, blazinasta popačenost desno.}
 \end{figure}
 
 Moč radialne popačenosti slikovne točke je odvisna od razdalje do principalne točke. Modeliramo jo lahko z vsotami polinomov sodih stopenj. Za večino radialnih popačenj zadoščata že dva koeficienta. 
@@ -499,7 +500,7 @@ Druga popačenost, ki jo poznamo pa je tangencialna in nastane zaradi slabe pora
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{tangential.png}
-\caption{Senzor in leča sta vzporedna zato do tangencialne popačenosti v tem primeru ne pride (levo)}
+\caption{Senzor in leča sta vzporedna zato do tangencialne popačenosti v tem primeru ne pride (levo).}
 \end{figure}
 
 Modeliramo jo lahko kot,
@@ -607,7 +608,7 @@ V poglavju \ref{parametri} je opisan model kamere. Kamero določajo razni parame
 \subsection{Ocenjevanje notranjih parametrov}
 Za ocenjevanje notranjih parametrov kamere obstaja veliko algoritmov, ki pa se razlikujejo po hitrosti, težavnosti in natančnosti. Dve popularni metodi sta Tsaijev kalibracijski algoritem \cite{horn2000tsai} in Zhangova fleksibilna tehnika za kalibracijo kamer \cite{zhang2000flexible}. Sam sem za ocenjevanje notranjih parametrov uporabil MATLAB-ovo kalibracijsko orodje, ki uporablja variacijo Zhangove tehnike. Več o samem postopku kalibracije je opisano v poglavju %insert here. 
 
-\subsection{Ocenjevanje zunanjih parametrov}
+\subsection{Ocenjevanje zunanjih parametrov}\label{externalparamssection}
 Zunanji parametri kamere določajo kje v prostoru se kamera nahaja. Zgoraj omenjena Zhangova metoda poleg notranjih vrne tudi zunanje parametre, ki pa za namen diplomskega dela niso uporabni, saj bi morali kamere kalibrirati z vsaj eno sliko ploskve, ki jo v celoti vidijo vse kamere. Sistem mora delovati tudi, če imajo kamere minimalno ali celo ničelno prekrivanje vidnega polja. V nadaljevanju bom opisal teoretično podlago metode, ki sem jo uporabil za ocenjevanje zunanjih parametrov. Doseči želimo, da kameram določimo skupen koordinatni sistem sveta.
 
 Metoda predpostavlja, da imamo za neko kamero že izračunane notranje parametre. Za oceno zunanjih parametrov je dovolj le ena slika iz kamere, ki pa ne sme biti popačena. Najprej je torej potrebno popačeno sliko popraviti. Enačbe \eqref{radialdisteq} in \eqref{tangentialdisteq} določajo neposredno preslikavo med popačenimi in nepopačenimi točkami. 
@@ -660,6 +661,7 @@ Obe strani enačbe \eqref{lambdaeq} lahko pomnožimo z leve z $[\vec{X}']_{\time
 S tem korakom smo se znebili neznanega parametra $\lambda$, vendar iz take oblike enačbe težko najdemo rešitev sistema. Za lažjo izpeljavo bomo enačbo \eqref{lambdaeq} z leve pomnožili z inverzom matrike $A$.
 
 \begin{align}
+\label{uvw}
 A^{-1} * \vec{X}' &=
 \begin{bmatrix}
 u \\
@@ -712,6 +714,7 @@ B &=
 xw & yw & zw & w & 0 & 0 & 0 & 0 & -xu & -yu & -zu & -u \\
 -xv & -yv & -zv & -v & xu & yu & zu & u & 0 & 0 & 0 & 0
 \end{bmatrix}
+\label{bmatrix}
 \end{align}
 
 Zadnja vrstica v matriki $B$ je linearna kombinacija prvih dveh. Za vsak par točk (v svetu in na sliki) generiramo prvi dve vrstici matrike $B$ in vse vrstice združimo v skupno matriko $B$ velikosti $2n \times 12$, kjer je $n$ število parov točk. Sistem enačb lahko sedaj rešimo z razcepom na singularne vrednosti (\emph{ang. SVD - Singular Value Decomposition}). SVD razcepi matriko $B$ na $U \Sigma V^T$, kjer je $U$ matrika levih lastnih vektorjev, $\Sigma$ matrika singularnih vrednosti in $V$ matrika desnih lastnih vektorjev. Po definiciji za leve lastne vektorje matrike $B$ velja $B * \vec{v} = \lambda * \vec{v}$, kjer je $\lambda$ lastna vrednost. Če iz matrike $V$ vzamemo vektor, ki ustrza najmanjši lastni vrednosti v matriki $\Sigma$, smo tako dobili netrivialno rešitev, ki najbolje zadošča pogoju $B * \vec{p} = 0$. Rešitev je potrebno le še preoblikovati v $3 \times 4$ matriko zunanjih parametrov. V poglavju \textbf{vstavi poglavje} naslovim problem, ki nastane, če matrika $B$ nima ranga $12$, kar se zgodi, če ocenjujemo parametre s koplanarnimi točkami v prostoru.
@@ -729,7 +732,7 @@ B * \vec{X} &= 0
 
 Rang matrike B mora biti 4, saj ocenjujemo štiri parametre, ki določajo X. Ena točka na sliki nam poda 2 linearno neodvisni enačbi. Potrebujemo torej vsaj 2 različni točki iz dveh različnih slik, ki predstavljata projekcijo iste točke v prostoru na sliko. Sistem zopet rešimo z razcepom na singularne vrednosti kot smo to naredili v prejšnjem poglavju.
 
-\subsection{Zaznavanje označevalnika}
+\subsection{Zaznavanje označevalnika}\label{markersection}
 
 Pri zaznavanju označevalnika je potrebno sliko iz kamere segmentirati. Segmentacija je postopek ločevanja ozadja od objekta zanimanja. Označevalnik ima običajno izrazito drugačno barvo od okolice, zato da pri zaznavanju ne prihaja do dvoumnosti. Segmentacija ponavadi vrne binarno sliko, kjer je ozadje predstavljeno z vrednostjo 0, segmenti pa z vrednostjo 1. 
 
@@ -751,6 +754,20 @@ Pri segmentiranju barvnih slik se je potrebno odločiti za primeren barvni model
 
 Izbira barvnega modela in praga je za vsak primer specifična. Včasih je bolje uporabiti model RGB npr. v primeru, če ima označevalnik izrazito barvo ne glede na osvetljitev.
 
+Iz segmentirane slike moramo izračunati središče zaznanega objekta (če je prisoten na sliki). To lahko storimo s slikovnimi momenti. Prostorski momenti na sivinski sliki I so definirani kot,
+\begin{equation}
+M_{ij} = \sum_x \sum_y x^i * y^j * I(x, y)
+\end{equation}
+
+Poznamo še centralne momente, ki pa so definirani kot,
+\begin{align}
+\bar{x} &= \frac{M_{10}}{M_{00}} \\
+\bar{y} &= \frac{M_{01}}{M_{00}} \\
+\mu_{ij} &= \sum_x \sum_y (x - \bar{x})^i * (y - \bar{y})^j * I(x, y)
+\end{align}
+
+Masno središče je predstavljeno z $\bar{x}$ in $\bar{y}$. Moment $M_{00}$ je enak površini segmenta, $M_{10}$ ter $M_{01}$ pa sta vsoti vrednosti po $x$ in $y$ koordinatah.
+
 \chapter{Implementacija}
 
 \section{Strojna oprema}
@@ -769,7 +786,7 @@ Arhitektura & 64-bit \\
 OS & Windows 8.1 Pro \\
 \hline
 \end{tabular}
-\caption{Specifikacije računalnika}
+\caption{Specifikacije računalnika.}
 \end{table}
 
 \noindent{\large \textbf{Kamere} } \\
@@ -777,7 +794,7 @@ Uporabil sem štiri Axis 215 PTZ omrežne kamere. To so varnostne IP kamere name
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{axis_215_ptz.png}
-\caption{Axis 215 PTZ kamera}
+\caption{Axis 215 PTZ kamera.}
 \end{figure}
 
 \begin{table}[H]
@@ -794,7 +811,7 @@ Povezava z omrežjem & ethernet \\
 Leča & 3,8 - 46 mm \\
 \hline
 \end{tabular}
-\caption{Specifikacije Axis 215 PTZ kamere}
+\caption{Specifikacije Axis 215 PTZ kamere.}
 \end{table}
 
 Axis kamere imajo CGI (\emph{ang. Common Gateway Interface}) vmesnik, ki omogoča nadzor funkcionalnosti preko protokola HTTP (\emph{ang. Hypertext Transfer Protocol}). Vsak model kamere podpira različen nabor ukazov, katerih spisek lahko dobimo z GET zahtevkom na naslov:
@@ -856,15 +873,184 @@ Označevalnik je v osnovi oranžna žogica za namizni tenis. Da pa bi sprememba 
 \centering
 \includegraphics[scale=0.4]{marker_off.png}
 \includegraphics[scale=0.4]{marker_on.png}
-\caption{Ugasnjen označevalnik je oranžne barve (levo, prižgan pa izrazito rumene barve (desno)}
+\caption{Ugasnjen označevalnik je oranžne barve (levo), prižgan pa izrazito rumene barve (desno).}
 \end{figure}
 
+\subsection{Programska oprema}
+Z delom sem začel v programu MATLAB R2014a. MATLAB je visokonivojski programski jezik in razvojno okolje, ki je primarno namenjeno prototipiranju. Podpira računanje z visokonivojskimi strukturami kot so matrike in vektorji. V njem sem razvil konceptno rešitev, ki sem jo nato implementiral v drugi aplikaciji. 
+
+Za zajemanje statičnih slik iz kamer sem uporabil Node.js. Node.js je JavaScript pogon z veliko različnimi moduli. Node.js arhitektura je po zasnovi asinhrona, kar pri vhodno/izhodnih operacijah močno pohitri sistem.
+
+Za iskanje kamer v omrežju sem uporabil Axisov IPUtility, ki samodejno vrne IP naslove vseh kamer, ki so priključene v omrežje.
+
+Za implementacijo glavnega sistema pa sem uporabil Python s knjižnicami Numpy, SciPy ter OpenCV. Morda se zdi Python za realnočasovni sistem slaba izbira, vendar je s pravilno uporabo knjižnic odlično orodje za hitri razvoj. Funkcije v knjižnicah so zaradi hitrosti implementiranje v njižjenivojskih jezikih kot so C/C++. Knjižnica Numpy je namenjena računanju z matrikami, SciPy pa je njena razširitev. OpenCV (Open Computer Vision) pa je namenjen za probleme umetnega zaznavanja in pri svoji implementaciji uporablja strukture Numpy-ja. 
+\textbf{verzije programov in knjižnic}
 \section{Kalibracija kamer}
 \subsection{Ocenjevanje notranjih parametrov}
+Za ocenjevanje notranjih parametrov sem uporabil MATLAB-ov kalibrator kamere. Za kalibracijo mu moramo podati slike šahovnice, ki so bile zajete s kamero, ki jo želimo kalibrirati. Širina šahovnice mora biti različna od višine, da lahko enolično določimo njeno orientacijo. 
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{checkerboard.png}
+\caption{11 $\times$ 12 velika šahovnica.}
+\end{figure}
+
+Za učinkovito kalibracijo notranjih parametrov moramo zajeti okoli 10 - 20 slik z različnimi orientacijami in razdaljami šahovnice. Postopek kalibracije z orodjem je sledeč:
+\begin{enumerate}
+\itemsep0em
+\item zajamemo slike šahovnice,
+\item naložimo jih v orodje za kalibracijo,
+\item izberemo število koeficientov za radialno popačenost (privzeto 2),
+\item obkljukamo ali želimo oceniti poševnost in tangencialno popačenost,
+\item kalibriramo,
+\item postopek lahko ponavljamo s podmnožico slik na podlagi reprojekcijske napake,
+\item ocenjene notranje parametre izvozimo za uporabo
+
+\end{enumerate}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{internal_calibration.png}
+\caption{Na sliki se vidi zaznane robove šahovnice in njena orientacija, graf reprojekcijske napake in vizualizacija zunanjih parametrov.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.35]{reprojection_error.png}
+\includegraphics[scale=0.35]{extrinsic_visualization.png}
+\caption{Graf reprojekcijske napake za vsako sliko (levo), vizualizacija pozicij šahovnic (desno). }
+\end{figure}
+
+\textbf{primer kalibracijske matrike}
 
 \subsection{Ocenjevanje zunanjih parametrov}
+Ocenjevanje zunanjih parametrov je pravzaprav postavljanje kamere v nek skupen koordinatni sistem sveta. Določiti moramo torej rotacijsko matriko $R$ in translacijski vektor $\vec{T}$, ki predstavljata kje se nahaja koordinatni sistem glede na kamero. Za oceno parametrov uporabimo metodo, ki je opisana v poglavju \ref{externalparamssection}. Potrebujemo le eno sliko na kateri lahko določimo točke v svetu. Za potrebe diplomskega dela sem v sobi na tleh označil in določil svoj koordinatni sistem. Med oznakami po $x$ osi je razdala $20 \ cm$, na $y$ osi pa $60 \ cm$. Za enoto sem izbral $1 \ cm$.
 
-\section{Zazavanja označevalnika}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{coord_system.png}
+\caption{Na sliki se vidi označen koordinatni sistem sveta. Točke označene s črnimi pikami so koplanarne in z njimi določimo zunanje parametre kamere.}
+\label{coordsystemimg}
+\end{figure}
+
+Najprej moramo določiti pare $(\vec{X}, \vec{X'})$, ki določajo preslikavo med točko v svetu in točko na sliki. Imeti moramo minimalno 6 parov, ker moramo oceniti 12 parametrov (9 za rotacijsko matriko in 3 za translacijo), en par pa nam določi 2 linearno neodvisni enačbi. Točke v svetu določimo sami, nato pa jih ročno ali avtomatsko označimo na sliki. Sam sem določil 16 parov, s katerimi sem ocenil zunanje parametre. Če je slika kakorkoli popačena, jo moramo popraviti.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{| c | c | c | c | c |}
+\hline
+x & y & z & x' & y' \\
+\hline
+240 & 0 & 0 & 591.1441 & 139.8898 \\
+200 & 0 & 0 & 523.8898 & 156.1610 \\
+160 & 0 & 0 & 460.9746 & 171.3475 \\
+120 & 0 & 0 & 399.1441 & 185.4492 \\
+80 & 0 & 0 & 340.5678 & 198.4661 \\
+40 & 0 & 0 & 284.1610 & 211.4831 \\
+0 & 0 & 0 & 229.9237 & 223.4153 \\
+-40 & 0 & 0 & 177.8559 & 234.2627 \\
+240 & 60 & 0 & 584.6356 & 62.8729 \\
+200 & 60 & 0 & 508.7034 & 83.4831 \\
+160 & 60 & 0 & 437.1102 & 101.9237 \\
+120 & 60 & 0 & 368.7712 & 119.2797 \\
+80 & 60 & 0 & 303.6864 & 135.5508 \\
+40 & 60 & 0 & 241.8559 & 150.7373 \\
+0 & 60 & 0 & 183.2797 & 165.9237 \\
+-40 & 60 & 0 & 125.7881 & 177.8559 \\
+\hline
+\end{tabular}
+\caption{16 parov točk dobljenih iz slike \ref{coordsystemimg}.}
+\label{pointpairs}
+\end{table}
+
+Iz zgornje tabele se lepo vidi, da so vse točke v svetu koplanarne, saj je pri vseh $z = 0$. Sedaj lahko določimo matriko $B$, ki je za eno par točk definirana v enačbi \eqref{bmatrix}. Za vsak par točk dodamo nove vrstice matriki $B$ in tako dobimo matriko velikosti $2n \times 12$ oz. $3n \times 12$ (če izračunamo tudi zadnjo vrstico, ki je redundantna), kjer je $n$ število parov točk. Zavedati se moramo, da so $u, v, w$ določeni z enačbo \eqref{uvw}, kjer uporabimo matriko notranjih parametrov $A$. S tem korakom odstranimo matriko $A$ iz matrike $A * [R|\vec{T}]$ in s tem lažje določimo matriko $[R|\vec{T}]$. Z razcepom na singularne vrednosti (SVD) rešimo sistem $B * \vec{p} = 0$ in dobljeno rešitev preoblikujemo v $3 \times 4$ matriko zunanjih parametrov. Rešitev je pravzaprav deveti stolpec matrike $V$, ki jo vrne SVD razcep in ne dvanajsti kot je opisano pri izpeljavi teorije. To je posledica koplanarnosti svetovnih točk. Matrika $B$ je ranga 9, ker je $z$ komponenta vseh točk v svetu enaka 0. Spodnja matrika prikazuje primer rešitve za pare točk iz tabele \ref{pointpairs}.
+\begin{equation}
+[R|\vec{T}] = 
+\begin{bmatrix}
+-0.0018 & 0.0006 & 0 & 0.1989 \\
+0.0003 & 0.0007 & 0 & 0.1607 \\
+0.0005 & 0.0016  & 0 & -0.9668 \\
+\end{bmatrix}
+\end{equation}
+
+Hitro opazimo, da podmatrika $R$ ni prav nič podobna rotacijski matriki. Stolpci rotacijskih matrik so paroma ortonormirani. Ker računamo s homogenimi koordinatami, lahko dobljeno matriko pomnožimo z neničelnim skalarjem brez, da bi pri tem uničili model kamere. Sedaj lahko ročno popravimo podmatriko $R$, da bo karseda podobna rotacijski matriki.
+\begin{align}
+[R|\vec{T}] = [\vec{R_1} \ \vec{R_2} \ \vec{R_3} \ \vec{T}] &\sim \frac{1}{||R_1||} * 
+\begin{bmatrix}
+-0.0018 & 0.0006 & 0 & 0.1989 \\
+0.0003 & 0.0007 & 0 & 0.1607 \\
+0.0005 & 0.0016  & 0 & -0.9668 \\
+\end{bmatrix} \\
+[R|\vec{T}] &\sim
+\begin{bmatrix}
+-0.9544 & 0.3003 & 0 & 106.6226 \\
+0.1419 & 0.3877 & 0 & 86.1440 \\
+0.2627 & 0.8810 & 0 & -518.2979 \\
+\end{bmatrix}
+\end{align}
+
+Sedaj sta prva dva stolpca ortonormirana oz. skoraj ortonormirana (odvisno od natančnosti ocene parametrov). Sedaj je čas, da naslovimo še zadnji problem rotacijske matrike. Zaradi prej omenjene koplanarnosti je tretji stolpec ničelni vektor. Vemo, da mora biti paroma ortonormiran s prvima stolpcema, zato ga lahko določimo z vektorskim produktom.
+
+\begin{align}
+R_3 &= R_1 \times R_2 =
+\begin{bmatrix}
+-0.9544 \\
+0.1419 \\
+0.2627
+\end{bmatrix}
+\times
+\begin{bmatrix}
+0.3003 \\
+0.3877 \\
+0.8810
+\end{bmatrix} \\
+R_3 &= 
+\begin{bmatrix}
+0.0232 \\
+0.9197 \\
+-0.4127
+\end{bmatrix}
+\end{align}
+
+Sedaj moramo le še določiti pravo smer novo izračunanega vektorja. $R_3$ kot tudi $-R_3$ sta legalni rešitvi in implicitno določata sučnost koordinatnega sistema. Sam sem pravilno rešitev določil ročno na podlagi projekcije točk, kot je vidno iz slike \ref{reprojectionwrongimg}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.25]{reprojection_wrong.png}
+\caption{Projekcija piramide na sliko pokaže, da so prvi trije koordinatni sistemi levosučni, zato moramo obrniti smer zadnjega stolpca matrike $R$.}
+\label{reprojectionwrongimg}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.25]{reprojection_corrected.png}
+\caption{Na novo ocenjeni zunanji parametri pravilno modelirajo kamere, kar je razvidno iz projekcije piramide.}
+\end{figure}
+
+Končna matrika zunanjih parametrov za točke iz tabele \ref{pointpairs} je,
+\begin{equation}
+[R|\vec{T}] = 
+\begin{bmatrix}
+-0.9544 & 0.3003 & 0.0232 & 106.6226 \\
+0.1419 & 0.3877 & 0.9197 & 86.1440 \\
+0.2627 & 0.8810 & -0.4127 & -518.2979 
+\end{bmatrix}
+\end{equation}
+
+Stolpci rotacijske matrike so le približno paroma ortonormirani, kar je posledica vnašanja napak pri ročnem določanju koordinatnega sistema. Če bi matriko prisilno ortonormirali bi prišlo do večje reprojekcijske napake. 
+
+\section{Zaznavanje označevalnika}
+Za zaznavanje označevalnika uporabljam postopek opisan v poglavju \ref{markersection}. Za prag sem določil RGB interval, ker je označevalnik izrazito rumene barve. Spodnja meja intervala je $[200 \ 200 \ 0]$, zgornja pa $[255, 255, 180]$. Spodaj so prikazane slike posameznih faz zaznavanja.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{segmented.png}
+\caption{Segmentacija zajete slike z belo barvo označuje zaznan označevalnik.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{detected.png}
+\caption{Pozicijo označevalnika na sliki (zeleni +) dobimo z masnim središčem segmenta.}
+\end{figure}
 
 \section{Postavitev sistema}
 -work flow za triangulacijo, topologija povezave

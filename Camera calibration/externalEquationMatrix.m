@@ -11,5 +11,4 @@ function [P] = externalEquationMatrix(worldPoints, imagePoints, intrinsicMatrix)
         x = x / x(3);
         P(i*2-1:i*2, :) = [zeros(1, 4), -X', X' * x(2); X', zeros(1, 4), -X' * x(1)];
     end
-    rank(P)
 end

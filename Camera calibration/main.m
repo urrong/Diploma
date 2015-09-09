@@ -51,6 +51,7 @@ for i = 1:numel(imagePoints)
     [U, S, V] = svd(P);
     P = reshape(V(:, 9), 4, 3)';
     P = fixExternalMatrix(P);
+    P
     externalMatrices = [externalMatrices, {P}];
 end
 
@@ -77,7 +78,7 @@ for i = 1:numel(worldImages)
             x = intrinsicParams{i}.IntrinsicMatrix' * externalMatrices{i} * [j k 0 1]';
             x = x / x(3);
             %y = intrinsicParams{i}.IntrinsicMatrix' * externalMatrices{i} * [5*20 1.5*20 100 1]';
-            y = intrinsicParams{i}.IntrinsicMatrix' * externalMatrices{i} * [j k 100 1]';
+            y = intrinsicParams{i}.IntrinsicMatrix' * externalMatrices{i} * [80 30 100 1]';
             y = y / y(3);
             plot([x(1) y(1)], [x(2) y(2)], 'r');
         end
@@ -86,6 +87,7 @@ for i = 1:numel(worldImages)
     hold off;
 end
 
+return
 DEFINE_TRIANGULATION_POINTS = false;
 
 if DEFINE_TRIANGULATION_POINTS
