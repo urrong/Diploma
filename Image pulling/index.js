@@ -42,9 +42,9 @@ Camera.prototype.capture = function(){
 }
 
 var camera1 = new Camera("192.168.1.131", "camera1");
-var camera2 = new Camera("192.168.1.129", "camera2");
-var camera3 = new Camera("192.168.1.126", "camera3");
-var camera4 = new Camera("192.168.1.116", "camera4");
+var camera2 = new Camera("192.168.1.127", "camera2");
+var camera3 = new Camera("192.168.1.121", "camera3");
+var camera4 = new Camera("192.168.1.114", "camera4");
 
 camera1.capture();
 camera2.capture();

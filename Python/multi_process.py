@@ -11,10 +11,10 @@ import scipy.io as sio
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
-#minRGB = np.array([227, 243, 0])
-#maxRGB = np.array([255, 255, 188])
-minRGB = np.array([200, 200, 0])
-maxRGB = np.array([255, 255, 180])
+minRGB = np.array([220, 220, 0])
+maxRGB = np.array([255, 255, 200])
+#minRGB = np.array([200, 200, 0])
+#maxRGB = np.array([255, 255, 180])
 
 class ImagePull(Process):
 	def __init__(self, cArray, ioLock, params):
@@ -100,9 +100,9 @@ if __name__ == "__main__":
 	
 	#ip, pan, tilt
 	camAttributes = [("192.168.1.131", 120, 30),
-					 ("192.168.1.129", 111, 30),
-					 ("192.168.1.126", 159, 30),
-					 ("192.168.1.116", 42, 24)];
+					 ("192.168.1.127", 111, 30),
+					 ("192.168.1.121", 159, 30),
+					 ("192.168.1.114", 42, 24)];
 	
 	#nCams = len(camAttributes)
 	nCams = 4
@@ -183,7 +183,7 @@ if __name__ == "__main__":
 			elif d > 15.0:
 				components.append(line)
 				line = []
-			if d >= 0.0:
+			if d > 0.0:
 				prevPoint = p
 				print p, numFound
 		time.sleep(0.0001)
