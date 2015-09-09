@@ -1,4 +1,5 @@
 import numpy as np
+import sys
 import cv2
 import time
 import httplib
@@ -10,6 +11,30 @@ from scipy.ndimage import measurements
 import scipy.io as sio
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
+import pickle
+
+#interrupt workaround
+# Load the DLL manually to ensure its handler gets
+# set before our handler.
+import os
+import imp
+import ctypes
+import win32api
+import thread
+
+basepath = imp.find_module('numpy')[1]
+ctypes.CDLL(os.path.join(basepath, 'core', 'libmmd.dll'))
+ctypes.CDLL(os.path.join(basepath, 'core', 'libifcoremd.dll'))
+
+# Now set our handler for CTRL_C_EVENT. Other control event 
+# types will chain to the next handler.
+def handler(dwCtrlType, hook_sigint=thread.interrupt_main):
+    if dwCtrlType == 0: # CTRL_C_EVENT
+        hook_sigint()
+        return 1 # don't chain to the next handler
+    return 0 # chain to the next handler
+
+win32api.SetConsoleCtrlHandler(handler, 1)
 
 minRGB = np.array([220, 220, 0])
 maxRGB = np.array([255, 255, 200])
@@ -63,7 +88,7 @@ class ImagePull(Process):
 			s = data.find('\xff\xd8')
 			e = data.find('\xff\xd9')
 			if e != -1 and e != -1:
-				numPics += 1
+				#numPics += 1
 				#self.ioLock.acquire()
 				#print self.name, numPics / (time.time() - start)
 				#self.ioLock.release()
@@ -142,53 +167,62 @@ if __name__ == "__main__":
 	components = []
 	line = []
 	prevPoint = np.array([0.0, 0.0, 0.0])
+	markerPoints = []
 	
-	start = time.time()
-	while time.time() - start < 30:
-		C = np.zeros((nCams * 3, 4))
-		numFound = 0
-		#timestamps = [0] * nCams;
-		t = time.time();
-		for i in range(nCams):
-			foundMarker = False
-			x = [0.0, 0.0, 1.0] #image point
-			with cArrays[i].get_lock():
-				if cArrays[i][0]:
-					x[0] = cArrays[i][0]
-					x[1] = cArrays[i][1]
-					foundMarker = True
-					#linear interpolation
-					if prevImagePoints[i][0]:
-						x[0] = x[0] + (x[0] - prevImagePoints[i][0]) * (t - cArrays[i][2])
-						x[1] = x[1] + (x[1] - prevImagePoints[i][1]) * (t - cArrays[i][2])
-						#TODO
-				else:
-					prevImagePoints[i][0] = 0;
-					prevImagePoints[i][1] = 0;
+	try:
+		while True:
+			C = np.zeros((nCams * 3, 4))
+			numFound = 0
+			#timestamps = [0] * nCams;
+			t = time.time();
+			markers = []
+			for i in range(nCams):
+				foundMarker = False
+				x = [0.0, 0.0, 1.0] #image point
+				with cArrays[i].get_lock():
+					if cArrays[i][0]:
+						x[0] = cArrays[i][0]
+						x[1] = cArrays[i][1]
+						foundMarker = True
+						#linear interpolation
+						if prevImagePoints[i][0]:
+							x[0] = x[0] + (x[0] - prevImagePoints[i][0]) * (t - cArrays[i][2])
+							x[1] = x[1] + (x[1] - prevImagePoints[i][1]) * (t - cArrays[i][2])
+							#TODO
+					else:
+						prevImagePoints[i][0] = 0;
+						prevImagePoints[i][1] = 0;
+				
+				if foundMarker:
+					markers.append(x)
+					numFound += 1
+					cross = np.mat([[0, -x[2], x[1]],
+									[x[2], 0, -x[0]],
+									[-x[1], x[0], 0]])
+					C[i*3:i*3+3, :] = cross.dot(camParams[i]["intrinsics"]).dot(camParams[i]["extrinsics"])
 			
-			if foundMarker:
-				numFound += 1
-				cross = np.mat([[0, -x[2], x[1]],
-								[x[2], 0, -x[0]],
-								[-x[1], x[0], 0]])
-				C[i*3:i*3+3, :] = cross.dot(camParams[i]["intrinsics"]).dot(camParams[i]["extrinsics"])
-		
-		if numFound > 1:
-			u, s, v = np.linalg.svd(C)
-			p = v.T[:, 3]
-			p = (p / p[3])[:3]
-			d = np.linalg.norm(prevPoint - p)
-			if d > 0.0 and d < 15.0:
-				line.append(p)
-			elif d > 15.0:
-				components.append(line)
-				line = []
-			if d > 0.0:
-				prevPoint = p
-				print p, numFound
-		time.sleep(0.0001)
-	
+			if numFound > 3:
+				markerPoints.append(markers)
+				u, s, v = np.linalg.svd(C)
+				p = v.T[:, 3]
+				p = (p / p[3])[:3]
+				d = np.linalg.norm(prevPoint - p)
+				if d > 0.0 and d < 15.0:
+					line.append(p)
+				elif d > 15.0:
+					components.append(line)
+					line = []
+				if d > 0.0:
+					prevPoint = p
+					print p, numFound
+			time.sleep(0.0001)
+	except KeyboardInterrupt:
+		pass
+	pickle.dump(markerPoints, open("marker_points_4.pkl", "wb"))
 	components.append(line)
+	#pickle.dump(components, open("points_planar_4.pkl", "wb"))
+	
+	print len(components)
 	
 	#draw paths
 	figure = plt.figure()
@@ -201,5 +235,5 @@ if __name__ == "__main__":
 	for line in components:
 		if len(line) > 1:
 			line = np.array(line)
-			axes.plot(line[:, 0], line[:, 1], line[:, 2], "g-", linewidth=1)
+			axes.plot(line[:, 0], line[:, 1], line[:, 2], "g-", linewidth=3)
 	plt.show()
