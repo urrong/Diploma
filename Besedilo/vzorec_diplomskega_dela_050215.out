@@ -8,8 +8,13 @@
 \BOOKMARK [0][-]{chapter.2}{Teorija}{}% 8
 \BOOKMARK [1][-]{section.2.1}{Parametri kamere}{chapter.2}% 9
 \BOOKMARK [1][-]{section.2.2}{Ocenjevanje parametrov}{chapter.2}% 10
-\BOOKMARK [0][-]{chapter.3}{Implementacija}{}% 11
-\BOOKMARK [1][-]{section.3.1}{Strojna oprema}{chapter.3}% 12
-\BOOKMARK [1][-]{section.3.2}{Kalibracija kamer}{chapter.3}% 13
-\BOOKMARK [1][-]{section.3.3}{Zaznavanje oznacevalnika}{chapter.3}% 14
-\BOOKMARK [1][-]{section.3.4}{Postavitev sistema}{chapter.3}% 15
+\BOOKMARK [1][-]{section.2.3}{Triangulacija}{chapter.2}% 11
+\BOOKMARK [1][-]{section.2.4}{Zaznavanje oznacevalnika}{chapter.2}% 12
+\BOOKMARK [0][-]{chapter.3}{Implementacija}{}% 13
+\BOOKMARK [1][-]{section.3.1}{Strojna oprema}{chapter.3}% 14
+\BOOKMARK [1][-]{section.3.2}{Programska oprema}{chapter.3}% 15
+\BOOKMARK [1][-]{section.3.3}{Kalibracija kamer}{chapter.3}% 16
+\BOOKMARK [1][-]{section.3.4}{Zaznavanje oznacevalnika}{chapter.3}% 17
+\BOOKMARK [1][-]{section.3.5}{Postavitev sistema}{chapter.3}% 18
+\BOOKMARK [0][-]{chapter.4}{Rezultati}{}% 19
+\BOOKMARK [0][-]{chapter.5}{Zakljucek}{}% 20

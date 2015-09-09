@@ -351,7 +351,7 @@ This sample document presents an approach to typesetting your BSc thesis using \
 
 \chapter{Uvod}
 \section{Motivacija}
-V robotiki je eden izmed glavnih problemov določanje položaja robota v prostoru. Beseda robot ima dandanes zelo širok pomen in lahko zajema naprave od avtomobilov na daljinsko upravljanje, do popolnoma avtonomnih kvadrokopterjev. Pravzaprav sploh ni potrebno, da je robot zmožen premikanja. V nadaljevanju, ko pišem o položaju, lokaciji ali poziciji, implicitno mislim na te v prostoru. Za določanje položaja obstaja veliko rešitev, ki pa se razlikujejo po natančnosti, težavnosti in ceni implementacije. Če nas zanima kje na Zemlji se robot približno nahaja, bomo najverjetneje uporabili GPS (\emph{ang. Global Positioning System}). Prednost tega sistema je robustnost saj je v uporabi že od leta 1978 \cite{wiki:gps}, pomanjkljivost pa premajhna natančnost, če želimo izmeriti položaj do centimetra ali milimetra natančno. Prav tako GPS deluje slabše v zaprtih prostorih. V primeru, da je naš robot opremljen s kamero za zaznavanje globine pa lahko uporabimo tehniko SLAM (\emph{ang. Simultaneous Localization and Mapping}). Pri tej tehniki poleg položaja dobimo tudi karto okolja.
+V robotiki je eden izmed glavnih problemov lokaliziranje robota v prostoru. Beseda robot ima dandanes zelo širok pomen in lahko zajema naprave od avtomobilov na daljinsko upravljanje, do popolnoma avtonomnih kvadrokopterjev. Z besedami lokacija, pozicija in položaj, mislim na točke v 3-dimenzionalnem prostoru (svetu). Za določanje položaja obstaja veliko rešitev, ki pa se razlikujejo po natančnosti, težavnosti in ceni implementacije. Če nas zanima kje na Zemlji se robot približno nahaja, bomo najverjetneje uporabili GPS (\emph{ang. Global Positioning System}). Prednost tega sistema je robustnost saj je v uporabi že od leta 1978 \cite{wiki:gps}, pomanjkljivost pa premajhna natančnost, če želimo izmeriti položaj do centimetra ali milimetra natančno. GPS deluje slabše v zaprtih prostorih, saj strehe in stene odbijejo precejšen del mikrovalovnih signalov. V primeru, da je naš robot opremljen s kamero za zaznavanje globine pa lahko uporabimo tehniko SLAM (\emph{ang. Simultaneous Localization and Mapping}). Pri tej tehniki poleg položaja dobimo tudi karto okolja.
 
 Sam sem se osredotočil razviti sistem za določanje položaja v notranjem prostoru (\emph{ang. IPS - Indoor Positioning System}). Taki sistemi morajo biti natančni vsaj na nekaj decimetrski lestvici, odvisno od namena uporabe. Glavna motivacija za temo diplomskega dela je sistem kvadrokopterjev, ki so ga razvili na ETH Zurich pod okriljem prof. Raffaella D’Andree \cite{fma}. Za zaznavanje položaja uporabljajo enega od sistemov za zaznavanje gibanja (\emph{ang. motion capture system}), ki pa so lahko zelo dragi. Že najcenejši sistem z le dvemi kamerami se giblje nad 1000 EUR. 
 
@@ -367,10 +367,12 @@ Do sedaj opisana dela ne uporabljajo kamer za določanje položaja objekta. V na
 Na Univerzi v Xi’an Jiaotong so razvili stereo sistem za določanje položaja planarne tarče \cite{li2008development}. Uporabili so dve CCD \cite{wiki:ccd} kameri, ki hkrati zajameta sliko ploskve in nato iz dobjenih točk triangulirajo pozicijo ploskve v prostoru. Na Tehnični univerzi v Madridu so uporabili večkamerni sistem za določanje položaja ljudi v prostoru \cite{mohedano2008robust}. Najprej segmentirajo vse premikajoče dele slike od statičnih, saj predpostavljajo, da se bodo ljudje po prostoru premikali. Nato na teh segmentih zaznajo kje se nahajajo ljudje. Največji problem predstavlja okluzija. Pri tem jim pomaga ravno večkamerni sistem, ki zajema slike ljudi iz različnih zornih kotov. Ko določijo kje na slikah se nahaja glava človeka pa lahko izračunajo njegov položaj v prostoru. Na Državni univerzi v Ohiju pa so naredili sistem \cite{lee2013real}, ki je, od opisanih, najbolj soroden mojemu delu. V prostor so postavili štiri visokoločljive omrežne kamere, s ciljem izračunati položaj nekega orodja. Kamere so med seboj kalibrirane. Od štirih morata vsaj dve kameri videti orodje, da se lahko določi njegov položaj. Pred sledenjem objekta, ga morajo najprej zaznati. To naredijo z ujemanjem predlog. S sledenjem oz. zaznavanjem dobijo le približno sredino objekta, ki pa jo z večimi kamerami izpopolnijo.
 
 \section{Cilji}
-Glavni cilj diplomskega dela je ustvariti večkamerni sistem za določanje položaja objekta v prostoru. Pri zaznavanju bo lahko prihajalo do okluzij, zato je minimalna zahteva, da vsaj dve kameri v nekem trenutku vidita objekt. Za vso obdelavo slik se bo uporabil centralni računalnik, ki bo s kamerami povezan v lokalno omrežje. Zaradi lažjega zaznavanja, bo objekt zanimanja barvni označevalnik. Pričakujem natančnost sistema z napako do nekaj centimetrov. Cilj je, da bo določanje položaja delovalo v realnem času z vsaj 10 meritvami na sekundo. Glavna omejitev sistema bo ta da bo deloval ob predpostavki, da se v prostoru nahaja le en objekt, kar onemogoča določanje usmeritve npr. robota. To omejitev pa se bo lahko v prihodnosti odstranilo in bo sistem zmožen hkrati določiti položaj veliko točkam v prostoru. Prednost sistema pa bo ta, da bo lahko medsebojna pokritost vidnega polja kamer minimalna in s tem omogočala večjo pokritost prostora.
+Glavni cilj diplomskega dela je ustvariti večkamerni sistem za določanje položaja objekta v prostoru. Pri zaznavanju bo lahko prihajalo do okluzij, zato je minimalna zahteva, da vsaj dve kameri v nekem trenutku vidita objekt. Za vso obdelavo slik se bo uporabil centralni računalnik, ki bo s kamerami povezan v lokalno omrežje. Zaradi lažjega zaznavanja, bo objekt zanimanja barvni označevalnik. Pričakujem natančnost sistema z napako do nekaj centimetrov. Cilj je, da bo določanje položaja delovalo v realnem času z vsaj 10 meritvami na sekundo. Glavna omejitev sistema bo ta da bo deloval ob predpostavki, da se v prostoru nahaja le en objekt, kar onemogoča določanje usmeritve npr. robota. To omejitev pa se bo lahko v prihodnosti odstranilo in bo sistem zmožen hkrati določiti položaj veliko točkam v prostoru. Prednost sistema pa bo ta, da bo lahko medsebojna pokritost vidnega polja kamer ničelna in s tem večja pokritost prostora.
+
+\textbf{kateri je primeren čas za to poglavje?}
 
 \section{Struktura diplome}
-%napiši ko bodo znana poglavja
+Diplomsko delo je razdeljeno na 5 poglavij. V uvodu je predstavljena motivacija, pregled področja in cilji dela. Drugo poglavje zajema teoretično podlago, ki je nujna za kasnejšo implementacijo rešitve. Tretje poglavje opisuje dejansko implementacijo rešitve in konkretno uporabo prej opisane teorije. V četrtem poglavju so predstavljeni rezultati dela. Zadnje poglavje pa poleg zaključka naslovi tudi možne izboljšave sistema.
 
 \chapter{Teorija}
 \section{Parametri kamere}\label{parametri}
@@ -386,7 +388,7 @@ Na sliki \ref{similar1} je ponazorjena preslikava točke v svetu na točko v sli
 \label{similar1}
 \end{figure}
 
-Izhodišče predstavlja luknjico kamere. Višina točke v svetu je predstavljena z $x$, oddaljenost od kamere pa z $z$. Točka na sliki je označena z $x’$, goriščna razdalja pa s $f$. Točka v svetu se preko luknjice (koordinatnega izhodišča) preslika na slikovno ploskev. Vse točke v svetu so na slikovni ploskvi rotirane za 180°, kar pa kamere samodejno popravijo, ko vrnejo sliko. Za lažje računanje pa lahko to ugotovitev uporabimo za vpeljavo navidezne slikovne ploskve. 
+Izhodišče predstavlja luknjico kamere. Višina točke v svetu je predstavljena z $x$, oddaljenost od kamere pa z $z$. Točka na sliki je označena z $x’$, goriščna razdalja pa s $f$. Točka v svetu se preko luknjice (koordinatnega izhodišča) preslika na slikovno ploskev. Vse točke v svetu so na slikovni ploskvi obrnjene za 180°, kar pa kamere samodejno popravijo, ko vrnejo sliko. Za lažje računanje pa lahko to ugotovitev uporabimo za vpeljavo navidezne slikovne ploskve. 
 
 \begin{figure}[H]
 \centering
@@ -476,6 +478,7 @@ Enačba \eqref{internaleq} predstavlja notranji model kamere. Goriščna razdalj
 
 Slike iz kamer so lahko tudi popačene. Obstajata dve vrsti popačenosti, ki ju prej opisani model ne more modelirati. To sta radialna in tangencialna popačenost. Radialno popačenost povzroči oblika leče in poznamo dve glavni različici:
 \begin{enumerate}
+\itemsep0em
 \item sodčasto, ki spominja na obliko soda in
 \item blazinasto, ki spominja na obliko blazine
 \end{enumerate}
@@ -484,7 +487,7 @@ Obstaja še kombinacija obeh, ki pa se imenuje brkato popačenje (ker spominja n
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{distorsion.png}
-\caption{Sodčasta popačenost levo, blazinasta popačenost desno.}
+\caption{Sodčasta popačenost (levo), blazinasta popačenost (desno).}
 \end{figure}
 
 Moč radialne popačenosti slikovne točke je odvisna od razdalje do principalne točke. Modeliramo jo lahko z vsotami polinomov sodih stopenj. Za večino radialnih popačenj zadoščata že dva koeficienta. 
@@ -606,7 +609,7 @@ z \\
 V poglavju \ref{parametri} je opisan model kamere. Kamero določajo razni parametri, ki pa so za vsako kamero različni. V tem poglavju bom opisal kako oceniti posamezne parametre kamere, da bo model postal uporaben.
 
 \subsection{Ocenjevanje notranjih parametrov}
-Za ocenjevanje notranjih parametrov kamere obstaja veliko algoritmov, ki pa se razlikujejo po hitrosti, težavnosti in natančnosti. Dve popularni metodi sta Tsaijev kalibracijski algoritem \cite{horn2000tsai} in Zhangova fleksibilna tehnika za kalibracijo kamer \cite{zhang2000flexible}. Sam sem za ocenjevanje notranjih parametrov uporabil MATLAB-ovo kalibracijsko orodje, ki uporablja variacijo Zhangove tehnike. Več o samem postopku kalibracije je opisano v poglavju %insert here. 
+Za ocenjevanje notranjih parametrov kamere obstaja veliko algoritmov, ki pa se razlikujejo po hitrosti, težavnosti in natančnosti. Dve popularni metodi sta Tsaijev kalibracijski algoritem \cite{horn2000tsai} in Zhangova fleksibilna tehnika za kalibracijo kamer \cite{zhang2000flexible}. Sam sem za ocenjevanje notranjih parametrov uporabil MATLAB-ovo kalibracijsko orodje, ki uporablja variacijo Zhangove tehnike. Več o samem postopku kalibracije je opisano v poglavju \ref{camcalsec}. 
 
 \subsection{Ocenjevanje zunanjih parametrov}\label{externalparamssection}
 Zunanji parametri kamere določajo kje v prostoru se kamera nahaja. Zgoraj omenjena Zhangova metoda poleg notranjih vrne tudi zunanje parametre, ki pa za namen diplomskega dela niso uporabni, saj bi morali kamere kalibrirati z vsaj eno sliko ploskve, ki jo v celoti vidijo vse kamere. Sistem mora delovati tudi, če imajo kamere minimalno ali celo ničelno prekrivanje vidnega polja. V nadaljevanju bom opisal teoretično podlago metode, ki sem jo uporabil za ocenjevanje zunanjih parametrov. Doseči želimo, da kameram določimo skupen koordinatni sistem sveta.
@@ -616,7 +619,7 @@ Metoda predpostavlja, da imamo za neko kamero že izračunane notranje parametre
 \vec{X}' \sim A * [R | \vec{T}] * \vec{X}
 \end{equation}
 
-Zunanje parametre določa rotacijska matrika $R$ in translacijski vektor $\vec{T}$, kar je v zornji enačbi kompaktno predstavljeno z matriko $[R | \vec{T}]$. Za oceno teh parametrov moramo poznati notranje parametre $A$, točko v svetu $X$ in njeno projekcijo na sliko $X'$. Matriko $[R | \vec{T}]$ lahko ocenimo z metodo DLT (\emph{ang. Direct Linear Transformation}). Ker računamo s homogenimi koordinatami, sta si leva in desna stran enačbe enaka do poljubnega neničelnega faktorja $\lambda$. Zgornjo enačbo lahko zapišemo kot,
+Zunanje parametre določa rotacijska matrika $R$ in translacijski vektor $\vec{T}$, kar je v zgornji enačbi kompaktno predstavljeno z matriko $[R | \vec{T}]$. Za oceno teh parametrov moramo poznati notranje parametre $A$, točko v svetu $X$ in njeno projekcijo na sliko $X'$. Matriko $[R | \vec{T}]$ lahko ocenimo z metodo DLT (\emph{ang. Direct Linear Transformation}). Ker računamo s homogenimi koordinatami, sta si leva in desna stran enačbe enaka do poljubnega neničelnega faktorja $\lambda$. Zgornjo enačbo lahko zapišemo kot,
 \begin{equation}
 \lambda * \vec{X}' = A * [R | \vec{T}] * \vec{X}
 \label{lambdaeq}
@@ -717,9 +720,9 @@ xw & yw & zw & w & 0 & 0 & 0 & 0 & -xu & -yu & -zu & -u \\
 \label{bmatrix}
 \end{align}
 
-Zadnja vrstica v matriki $B$ je linearna kombinacija prvih dveh. Za vsak par točk (v svetu in na sliki) generiramo prvi dve vrstici matrike $B$ in vse vrstice združimo v skupno matriko $B$ velikosti $2n \times 12$, kjer je $n$ število parov točk. Sistem enačb lahko sedaj rešimo z razcepom na singularne vrednosti (\emph{ang. SVD - Singular Value Decomposition}). SVD razcepi matriko $B$ na $U \Sigma V^T$, kjer je $U$ matrika levih lastnih vektorjev, $\Sigma$ matrika singularnih vrednosti in $V$ matrika desnih lastnih vektorjev. Po definiciji za leve lastne vektorje matrike $B$ velja $B * \vec{v} = \lambda * \vec{v}$, kjer je $\lambda$ lastna vrednost. Če iz matrike $V$ vzamemo vektor, ki ustrza najmanjši lastni vrednosti v matriki $\Sigma$, smo tako dobili netrivialno rešitev, ki najbolje zadošča pogoju $B * \vec{p} = 0$. Rešitev je potrebno le še preoblikovati v $3 \times 4$ matriko zunanjih parametrov. V poglavju \textbf{vstavi poglavje} naslovim problem, ki nastane, če matrika $B$ nima ranga $12$, kar se zgodi, če ocenjujemo parametre s koplanarnimi točkami v prostoru.
+Zadnja vrstica v matriki $B$ je linearna kombinacija prvih dveh. Za vsak par točk (v svetu in na sliki) generiramo prvi dve vrstici matrike $B$ in vse vrstice združimo v skupno matriko $B$ velikosti $2n \times 12$, kjer je $n$ število parov točk. Sistem enačb lahko sedaj rešimo z razcepom na singularne vrednosti (\emph{ang. SVD - Singular Value Decomposition}). SVD razcepi matriko $B$ na $U \Sigma V^T$, kjer je $U$ matrika levih lastnih vektorjev, $\Sigma$ matrika singularnih vrednosti in $V$ matrika desnih lastnih vektorjev. Po definiciji za leve lastne vektorje matrike $B$ velja $B * \vec{v} = \lambda * \vec{v}$, kjer je $\lambda$ lastna vrednost. Če iz matrike $V$ vzamemo vektor, ki ustrza najmanjši lastni vrednosti v matriki $\Sigma$, smo tako dobili netrivialno rešitev, ki najbolje zadošča pogoju $B * \vec{p} = 0$. Rešitev je potrebno le še preoblikovati v $3 \times 4$ matriko zunanjih parametrov. V poglavju \ref{camcalsec} naslovim problem, ki nastane, če matrika $B$ nima ranga $12$, kar se zgodi, če ocenjujemo parametre s koplanarnimi točkami v prostoru.
 
-\subsection{Triangulacija}
+\section{Triangulacija}
 
 Iz modela \eqref{totalmodel} želimo oceniti $\vec{X}$. Uporabimo lahko podoben postopek kot pri ocenjevanju zunanjih parametrov.
 
@@ -732,7 +735,7 @@ B * \vec{X} &= 0
 
 Rang matrike B mora biti 4, saj ocenjujemo štiri parametre, ki določajo X. Ena točka na sliki nam poda 2 linearno neodvisni enačbi. Potrebujemo torej vsaj 2 različni točki iz dveh različnih slik, ki predstavljata projekcijo iste točke v prostoru na sliko. Sistem zopet rešimo z razcepom na singularne vrednosti kot smo to naredili v prejšnjem poglavju.
 
-\subsection{Zaznavanje označevalnika}\label{markersection}
+\section{Zaznavanje označevalnika}\label{markersection}
 
 Pri zaznavanju označevalnika je potrebno sliko iz kamere segmentirati. Segmentacija je postopek ločevanja ozadja od objekta zanimanja. Označevalnik ima običajno izrazito drugačno barvo od okolice, zato da pri zaznavanju ne prihaja do dvoumnosti. Segmentacija ponavadi vrne binarno sliko, kjer je ozadje predstavljeno z vrednostjo 0, segmenti pa z vrednostjo 1. 
 
@@ -750,7 +753,7 @@ for i = 1...h
             I[i][j] = 0
 \end{lstlisting}
 
-Pri segmentiranju barvnih slik se je potrebno odločiti za primeren barvni model. Primarno so slike zapisane v rdečem, zelenem in modrem kanalu (model RGB). Običajno je bolj primeren model HSV ali HSL, saj H (ton) komponenta določa barvo neodvisno od njene intenzitete in nasičenosti. Slednja modela sta pri segmentaciji bolj robustna, ker sprememba svetlobe ne vpliva toliko na spremembo tonskega kanala.
+Pri segmentiranju barvnih slik se je potrebno odločiti za primeren barvni model. Primarno so slike zapisane v rdečem, zelenem in modrem kanalu (model RGB). Običajno je bolj primeren model HSV ali HSL, saj H (ton, \emph{ang. hue}) komponenta določa barvo neodvisno od njene intenzitete in nasičenosti. Slednja modela sta pri segmentaciji bolj robustna, ker sprememba svetlobe ne vpliva toliko na spremembo tonskega kanala.
 
 Izbira barvnega modela in praga je za vsak primer specifična. Včasih je bolje uporabiti model RGB npr. v primeru, če ima označevalnik izrazito barvo ne glede na osvetljitev.
 
@@ -876,16 +879,15 @@ Označevalnik je v osnovi oranžna žogica za namizni tenis. Da pa bi sprememba 
 \caption{Ugasnjen označevalnik je oranžne barve (levo), prižgan pa izrazito rumene barve (desno).}
 \end{figure}
 
-\subsection{Programska oprema}
+\section{Programska oprema}
 Z delom sem začel v programu MATLAB R2014a. MATLAB je visokonivojski programski jezik in razvojno okolje, ki je primarno namenjeno prototipiranju. Podpira računanje z visokonivojskimi strukturami kot so matrike in vektorji. V njem sem razvil konceptno rešitev, ki sem jo nato implementiral v drugi aplikaciji. 
 
-Za zajemanje statičnih slik iz kamer sem uporabil Node.js. Node.js je JavaScript pogon z veliko različnimi moduli. Node.js arhitektura je po zasnovi asinhrona, kar pri vhodno/izhodnih operacijah močno pohitri sistem.
+Za zajemanje statičnih slik iz kamer sem uporabil Node.js v0.12.3. Node.js je JavaScript pogon z veliko različnimi moduli. Node.js arhitektura je po zasnovi asinhrona, kar pri vhodno/izhodnih operacijah močno pohitri sistem.
 
 Za iskanje kamer v omrežju sem uporabil Axisov IPUtility, ki samodejno vrne IP naslove vseh kamer, ki so priključene v omrežje.
 
-Za implementacijo glavnega sistema pa sem uporabil Python s knjižnicami Numpy, SciPy ter OpenCV. Morda se zdi Python za realnočasovni sistem slaba izbira, vendar je s pravilno uporabo knjižnic odlično orodje za hitri razvoj. Funkcije v knjižnicah so zaradi hitrosti implementiranje v njižjenivojskih jezikih kot so C/C++. Knjižnica Numpy je namenjena računanju z matrikami, SciPy pa je njena razširitev. OpenCV (Open Computer Vision) pa je namenjen za probleme umetnega zaznavanja in pri svoji implementaciji uporablja strukture Numpy-ja. 
-\textbf{verzije programov in knjižnic}
-\section{Kalibracija kamer}
+Za implementacijo glavnega sistema pa sem uporabil Python 2.7 s knjižnicami Numpy v1.9.2, SciPy v0.15.1 ter OpenCV v3.0.0. Morda se zdi Python za realnočasovni sistem slaba izbira, vendar je s pravilno uporabo knjižnic odlično orodje za hitri razvoj. Funkcije v knjižnicah so zaradi hitrosti implementirane v njižjenivojskih jezikih kot so C/C++. Knjižnica Numpy je namenjena računanju z matrikami, SciPy pa je njena razširitev. OpenCV (Open Computer Vision) pa je namenjen za probleme umetnega zaznavanja in pri svoji implementaciji uporablja strukture Numpy-ja. 
+\section{Kalibracija kamer}\label{camcalsec}
 \subsection{Ocenjevanje notranjih parametrov}
 Za ocenjevanje notranjih parametrov sem uporabil MATLAB-ov kalibrator kamere. Za kalibracijo mu moramo podati slike šahovnice, ki so bile zajete s kamero, ki jo želimo kalibrirati. Širina šahovnice mora biti različna od višine, da lahko enolično določimo njeno orientacijo. 
 \begin{figure}[H]
@@ -919,10 +921,25 @@ Za učinkovito kalibracijo notranjih parametrov moramo zajeti okoli 10 - 20 slik
 \caption{Graf reprojekcijske napake za vsako sliko (levo), vizualizacija pozicij šahovnic (desno). }
 \end{figure}
 
-\textbf{primer kalibracijske matrike}
+\begin{figure}[H]
+\begin{align}
+A &= 
+\begin{bmatrix}
+761,6027 & 0 & 386,6599 \\
+0 & 835,939 & 362,0371 \\
+0 & 0 & 1
+\end{bmatrix} \\
+\vec{r} &= [-0,2934 \ 0,1331] \\
+\vec{t} &= [0.0006 \ 0,0012]
+\end{align}
+\caption{Primer ocenjenih notranjih parametrov ene imed kamer. Tangencialna popačenost je skoraj zanemarljiva.}
+\end{figure}
+
 
 \subsection{Ocenjevanje zunanjih parametrov}
-Ocenjevanje zunanjih parametrov je pravzaprav postavljanje kamere v nek skupen koordinatni sistem sveta. Določiti moramo torej rotacijsko matriko $R$ in translacijski vektor $\vec{T}$, ki predstavljata kje se nahaja koordinatni sistem glede na kamero. Za oceno parametrov uporabimo metodo, ki je opisana v poglavju \ref{externalparamssection}. Potrebujemo le eno sliko na kateri lahko določimo točke v svetu. Za potrebe diplomskega dela sem v sobi na tleh označil in določil svoj koordinatni sistem. Med oznakami po $x$ osi je razdala $20 \ cm$, na $y$ osi pa $60 \ cm$. Za enoto sem izbral $1 \ cm$.
+Ocenjevanje zunanjih parametrov je pravzaprav postavljanje kamere v nek skupen koordinatni sistem sveta. Določiti moramo torej rotacijsko matriko $R$ in translacijski vektor $\vec{T}$, ki predstavljata kje se nahaja koordinatni sistem glede na kamero. Za oceno parametrov uporabimo metodo, ki je opisana v poglavju \ref{externalparamssection}. Potrebujemo le eno sliko na kateri lahko določimo točke v svetu. Za potrebe diplomskega dela sem v sobi na tleh označil in določil svoj koordinatni sistem. Med oznakami po $x$ osi je razdala $20 \ cm$, na $y$ osi pa $60 \ cm$. Enota je $1 \ cm$.
+
+\textbf{ali je pravina uporaba prve osebe ednine?}
 
 \begin{figure}[H]
 \centering
@@ -1038,7 +1055,7 @@ Končna matrika zunanjih parametrov za točke iz tabele \ref{pointpairs} je,
 Stolpci rotacijske matrike so le približno paroma ortonormirani, kar je posledica vnašanja napak pri ročnem določanju koordinatnega sistema. Če bi matriko prisilno ortonormirali bi prišlo do večje reprojekcijske napake. 
 
 \section{Zaznavanje označevalnika}
-Za zaznavanje označevalnika uporabljam postopek opisan v poglavju \ref{markersection}. Za prag sem določil RGB interval, ker je označevalnik izrazito rumene barve. Spodnja meja intervala je $[200 \ 200 \ 0]$, zgornja pa $[255, 255, 180]$. Spodaj so prikazane slike posameznih faz zaznavanja.
+Za zaznavanje označevalnika uporabljam postopek opisan v poglavju \ref{markersection}. Za prag sem določil RGB interval, ker je označevalnik izrazito rumene barve. Spodnja meja intervala je $[200 \ 200 \ 0]$, zgornja pa $[255, 255, 180]$. V prosotoru ne sme prihajati do velikih sprememb v osvetljenosti, zato imajo kamere nastavljen fiksni kontrast, dnevna svetloba pa je izolirana od prostora. Spodaj so prikazane slike posameznih faz zaznavanja.
 
 \begin{figure}[H]
 \centering
@@ -1053,8 +1070,12 @@ Za zaznavanje označevalnika uporabljam postopek opisan v poglavju \ref{markerse
 \end{figure}
 
 \section{Postavitev sistema}
--work flow za triangulacijo, topologija povezave
+%work flow za triangulacijo
+%topologija povezave
 
+\chapter{Rezultati}
+
+\chapter{Zaključek}
 
 \bibliography{bibliography}{}
 \bibliographystyle{plain}

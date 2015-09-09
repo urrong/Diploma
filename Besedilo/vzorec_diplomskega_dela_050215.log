@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.9.3)  9 SEP 2015 03:19
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.9.7)  9 SEP 2015 09:14
 entering extended mode
 **vzorec_diplomskega_dela_050215.tex
 (vzorec_diplomskega_dela_050215.tex
@@ -562,7 +562,19 @@ een already used, duplicate ignored
 l.280 \clearemptydoublepage
                             [12
 
-] (vzorec_diplomskega_dela_050215.toc)
+] (vzorec_diplomskega_dela_050215.toc
+Package babel Info: Redefining slovene shorthand "|
+(babel)             in language  on input line 31.
+Package babel Info: Redefining slovene shorthand "|
+(babel)             in language  on input line 31.
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.31 ...ine {5}Zaklju\IeC {\v c}ek}{37}{chapter.5}
+                                                   [13
+
+])
 \tf@toc=\write5
 Package babel Info: Redefining slovene shorthand "|
 (babel)             in language  on input line 289.
@@ -573,21 +585,7 @@ een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.289 \clearemptydoublepage
-                            [13
-
-]
-Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 289.
-Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 289.
-pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
-een already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.289 \clearemptydoublepage
-                            [14
-
-]
+                            [14]
 Overfull \hbox (15.69525pt too wide) in paragraph at lines 296--317
 [] 
  []
@@ -602,6 +600,7 @@ een already used, duplicate ignored
                    \relax 
 l.321 \clearemptydoublepage
                             [15
+
 
 ]
 Package babel Info: Redefining slovene shorthand "|
@@ -671,6 +670,12 @@ Package babel Info: Redefining slovene shorthand "|
 (babel)             in language  on input line 352.
 Package babel Info: Redefining slovene shorthand "|
 (babel)             in language  on input line 353.
+
+Overfull \hbox (6.38431pt too wide) in paragraph at lines 354--355
+\OT1/cmr/m/n/12 dimenzionalnem pro-storu (svetu). Za dolocanje polozaja ob-st
+aja ve-liko resitev,
+ []
+
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ucs\uni-32.def"
 File: uni-32.def 2013/05/13 UCS: Unicode data U+2000..U+20FF
 )
@@ -713,177 +718,187 @@ Package babel Info: Redefining slovene shorthand "|
 (babel)             in language  on input line 371.
  [3]
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 372.
+(babel)             in language  on input line 374.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 375.
+(babel)             in language  on input line 377.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 375.
+(babel)             in language  on input line 377.
  [4]
 Poglavje 2.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 375.
+(babel)             in language  on input line 377.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 376.
-<slike/similar_triangles_1.png, id=199, 569.0058pt x 426.8748pt>
+(babel)             in language  on input line 378.
+<slike/similar_triangles_1.png, id=224, 569.0058pt x 426.8748pt>
 File: slike/similar_triangles_1.png Graphic file (type png)
 
 <use slike/similar_triangles_1.png>
-Package pdftex.def Info: slike/similar_triangles_1.png used on input line 384.
+Package pdftex.def Info: slike/similar_triangles_1.png used on input line 386.
 (pdftex.def)             Requested size: 390.00105pt x 292.58333pt.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 388.
+(babel)             in language  on input line 390.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 388.
+(babel)             in language  on input line 390.
  [5
 
 ]
 
-LaTeX Warning: Command \textquoteright invalid in math mode on input line 389.
+LaTeX Warning: Command \textquoteright invalid in math mode on input line 391.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ucs\uni-0.def"
 File: uni-0.def 2013/05/13 UCS: Unicode data U+0000..U+00FF
 )
-<slike/similar_triangles_2.png, id=207, 569.0058pt x 426.8748pt>
+<slike/similar_triangles_2.png, id=232, 569.0058pt x 426.8748pt>
 File: slike/similar_triangles_2.png Graphic file (type png)
 
 <use slike/similar_triangles_2.png>
-Package pdftex.def Info: slike/similar_triangles_2.png used on input line 393.
+Package pdftex.def Info: slike/similar_triangles_2.png used on input line 395.
 (pdftex.def)             Requested size: 390.00105pt x 292.58333pt.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 397.
+(babel)             in language  on input line 399.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 397.
+(babel)             in language  on input line 399.
  [6pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.397 
+l.399 
        <./slike/similar_triangles_1.png>]
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 430.
+(babel)             in language  on input line 432.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 430.
+(babel)             in language  on input line 432.
  [7pdfTeX warning (ext4): destination with the same identifier (name{figure.2.2
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.430 \end{align}
+l.432 \end{align}
                   <./slike/similar_triangles_2.png>]
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 480.
+(babel)             in language  on input line 483.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 480.
+(babel)             in language  on input line 483.
  [8]
-<slike/distorsion.png, id=234, 569.0058pt x 284.5029pt>
+<slike/distorsion.png, id=259, 569.0058pt x 284.5029pt>
 File: slike/distorsion.png Graphic file (type png)
 
 <use slike/distorsion.png>
-Package pdftex.def Info: slike/distorsion.png used on input line 486.
+Package pdftex.def Info: slike/distorsion.png used on input line 489.
 (pdftex.def)             Requested size: 390.00105pt x 195.00052pt.
 
-<slike/tangential.png, id=235, 569.0058pt x 284.5029pt>
+<slike/tangential.png, id=260, 569.0058pt x 284.5029pt>
 File: slike/tangential.png Graphic file (type png)
 
 <use slike/tangential.png>
-Package pdftex.def Info: slike/tangential.png used on input line 502.
+Package pdftex.def Info: slike/tangential.png used on input line 505.
 (pdftex.def)             Requested size: 390.00105pt x 195.00052pt.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 505.
+(babel)             in language  on input line 508.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 505.
+(babel)             in language  on input line 508.
  [9pdfTeX warning (ext4): destination with the same identifier (name{figure.2.3
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.505 
+l.508 
        <./slike/distorsion.png>]
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 528.
+(babel)             in language  on input line 531.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 528.
+(babel)             in language  on input line 531.
  [10pdfTeX warning (ext4): destination with the same identifier (name{figure.2.
 4}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.528 
+l.531 
        <./slike/tangential.png>]
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 603.
+(babel)             in language  on input line 606.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 603.
+(babel)             in language  on input line 606.
  [11]
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 605.
+(babel)             in language  on input line 608.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 613.
+(babel)             in language  on input line 616.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 613.
+(babel)             in language  on input line 616.
  [12]
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 632.
+(babel)             in language  on input line 635.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 632.
+(babel)             in language  on input line 635.
  [13]
-Overfull \hbox (56.27943pt too wide) in paragraph at lines 705--705
+Overfull \hbox (56.27943pt too wide) in paragraph at lines 708--708
 [] 
  []
 
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 705.
+(babel)             in language  on input line 708.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 705.
+(babel)             in language  on input line 708.
 [14]
-Overfull \hbox (15.90894pt too wide) in paragraph at lines 718--718
+Overfull \hbox (15.90894pt too wide) in paragraph at lines 721--721
 [] 
  []
 
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 721.
+(babel)             in language  on input line 724.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 721.
+(babel)             in language  on input line 724.
 [15]
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 738.
+(babel)             in language  on input line 725.
 Package babel Info: Redefining slovene shorthand "|
 (babel)             in language  on input line 738.
- [16]
-LaTeX Font Info:    Try loading font information for OML+cmr on input line 747.
+
+
+Package hyperref Warning: Composite letter `\textasciicaron+c'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textasciicaron' on input line 738.
+
+Package babel Info: Redefining slovene shorthand "|
+(babel)             in language  on input line 741.
+Package babel Info: Redefining slovene shorthand "|
+(babel)             in language  on input line 741.
+[16]
+LaTeX Font Info:    Try loading font information for OML+cmr on input line 750.
 
  ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\omlcmr.fd"
 File: omlcmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <12> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 747.
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 750.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 767.
+(babel)             in language  on input line 770.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 767.
+(babel)             in language  on input line 770.
+ [17]
+Package babel Info: Redefining slovene shorthand "|
+(babel)             in language  on input line 774.
+Package babel Info: Redefining slovene shorthand "|
+(babel)             in language  on input line 774.
 
-[17]
-Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 771.
-Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 771.
- [18]
+[18]
 Poglavje 3.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 771.
+(babel)             in language  on input line 774.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 773.
-<slike/axis_215_ptz.png, id=346, 2872.7325pt x 1890.06125pt>
+(babel)             in language  on input line 776.
+<slike/axis_215_ptz.png, id=371, 2872.7325pt x 1890.06125pt>
 File: slike/axis_215_ptz.png Graphic file (type png)
 
 <use slike/axis_215_ptz.png>
-Package pdftex.def Info: slike/axis_215_ptz.png used on input line 796.
+Package pdftex.def Info: slike/axis_215_ptz.png used on input line 799.
 (pdftex.def)             Requested size: 389.99387pt x 256.58925pt.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 798.
+(babel)             in language  on input line 801.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 798.
+(babel)             in language  on input line 801.
  [19
 
 pdfTeX warning (ext4): destination with the same identifier (name{table.3.1}) h
@@ -891,277 +906,320 @@ as been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.798 \end{figure}
+l.801 \end{figure}
                   ]
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 818.
+(babel)             in language  on input line 821.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 818.
+(babel)             in language  on input line 821.
  [20pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
 1}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.818 \begin{center}
+l.821 \begin{center}
                     pdfTeX warning (ext4): destination with the same identifier
  (name{table.3.2}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.818 \begin{center}
+l.821 \begin{center}
                      <./slike/axis_215_ptz.png>]
-Overfull \hbox (237.44891pt too wide) in paragraph at lines 834--835
+Overfull \hbox (237.44891pt too wide) in paragraph at lines 837--838
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][] 
  []
 
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 851.
+(babel)             in language  on input line 854.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 851.
+(babel)             in language  on input line 854.
 [21]
-Overfull \hbox (4.79932pt too wide) in paragraph at lines 865--866
+Overfull \hbox (4.79932pt too wide) in paragraph at lines 868--869
 [][][][][][][][][][][][][][][][][][][][][] 
  []
 
-<slike/marker_off.png, id=388, 370.7451pt x 556.2381pt>
+<slike/marker_off.png, id=413, 370.7451pt x 556.2381pt>
 File: slike/marker_off.png Graphic file (type png)
 
 <use slike/marker_off.png>
-Package pdftex.def Info: slike/marker_off.png used on input line 874.
+Package pdftex.def Info: slike/marker_off.png used on input line 877.
 (pdftex.def)             Requested size: 148.29541pt x 222.49129pt.
 
-<slike/marker_on.png, id=389, 370.7451pt x 556.2381pt>
+<slike/marker_on.png, id=414, 370.7451pt x 556.2381pt>
 File: slike/marker_on.png Graphic file (type png)
 
 <use slike/marker_on.png>
-Package pdftex.def Info: slike/marker_on.png used on input line 875.
+Package pdftex.def Info: slike/marker_on.png used on input line 878.
 (pdftex.def)             Requested size: 148.29541pt x 222.49129pt.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 878.
+(babel)             in language  on input line 881.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 878.
+(babel)             in language  on input line 881.
  [22]
-Overfull \hbox (0.12651pt too wide) in paragraph at lines 886--888
+Package babel Info: Redefining slovene shorthand "|
+(babel)             in language  on input line 882.
+
+Overfull \hbox (0.23993pt too wide) in paragraph at lines 885--886
+[]\OT1/cmr/m/n/12 Za za-je-ma-nje staticnih slik iz ka-mer sem upo-ra-bil Node
+.js v0.12.3. Node.js
+ []
+
+
+Overfull \hbox (17.75133pt too wide) in paragraph at lines 889--890
 []\OT1/cmr/m/n/12 Za im-ple-men-ta-cijo glav-nega sis-tema pa sem upo-ra-bil Py
-thon s knjiznicami
- []
-
-
-Overfull \hbox (3.54268pt too wide) in paragraph at lines 886--888
-\OT1/cmr/m/n/12 zvoj. Funk-cije v knjiznicah so za-radi hi-tro-sti im-ple-men-
-ti-ra-nje v njizjenivojskih
+thon 2.7 s knjiznicami
  []
 
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 888.
+(babel)             in language  on input line 890.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 888.
+(babel)             in language  on input line 890.
 [23pdfTeX warning (ext4): destination with the same identifier (name{figure.3.2
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.888 \section
-              {Kalibracija kamer} <./slike/marker_off.png> <./slike/marker_on.p
-ng>]
+l.890 \section
+              {Kalibracija kamer}\label{camcalsec} <./slike/marker_off.png> <./
+slike/marker_on.png>]
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 888.
- <slike/checkerboard.png, id=418, 481.8pt x 481.8pt>
+(babel)             in language  on input line 890.
+ <slike/checkerboard.png, id=442, 481.8pt x 481.8pt>
 File: slike/checkerboard.png Graphic file (type png)
 
 <use slike/checkerboard.png>
-Package pdftex.def Info: slike/checkerboard.png used on input line 893.
+Package pdftex.def Info: slike/checkerboard.png used on input line 895.
 (pdftex.def)             Requested size: 192.71658pt x 192.71658pt.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 903.
+(babel)             in language  on input line 904.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 903.
+(babel)             in language  on input line 904.
  [24pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
 3}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.903 \item o
-             bkljukamo ali želimo oceniti poševnost in tangencialno popač...
+l.904 \item i
+             zberemo število koeficientov za radialno popačenost (privzeto...
  <./slike/checkerboard.png>]
-<slike/internal_calibration.png, id=427, 1427.3325pt x 843.15pt>
+<slike/internal_calibration.png, id=450, 1427.3325pt x 843.15pt>
 File: slike/internal_calibration.png Graphic file (type png)
 
 <use slike/internal_calibration.png>
-Package pdftex.def Info: slike/internal_calibration.png used on input line 911.
+Package pdftex.def Info: slike/internal_calibration.png used on input line 913.
 
 (pdftex.def)             Requested size: 390.00214pt x 230.38101pt.
 
-<slike/reprojection_error.png, id=428, 547.04375pt x 547.04375pt>
+<slike/reprojection_error.png, id=451, 547.04375pt x 547.04375pt>
 File: slike/reprojection_error.png Graphic file (type png)
 
 <use slike/reprojection_error.png>
-Package pdftex.def Info: slike/reprojection_error.png used on input line 917.
+Package pdftex.def Info: slike/reprojection_error.png used on input line 919.
 (pdftex.def)             Requested size: 191.46817pt x 191.46817pt.
 
-<slike/extrinsic_visualization.png, id=429, 547.04375pt x 547.04375pt>
+<slike/extrinsic_visualization.png, id=452, 547.04375pt x 547.04375pt>
 File: slike/extrinsic_visualization.png Graphic file (type png)
 
 <use slike/extrinsic_visualization.png>
 Package pdftex.def Info: slike/extrinsic_visualization.png used on input line 9
-18.
+20.
 (pdftex.def)             Requested size: 191.46817pt x 191.46817pt.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 921.
+(babel)             in language  on input line 923.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 921.
+(babel)             in language  on input line 923.
  [25pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
 4}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.921 
+l.923 
        <./slike/internal_calibration.png>]
-<slike/coord_system.png, id=441, 706.64pt x 578.16pt>
-File: slike/coord_system.png Graphic file (type png)
-
-<use slike/coord_system.png>
-Package pdftex.def Info: slike/coord_system.png used on input line 929.
-(pdftex.def)             Requested size: 390.001pt x 319.09174pt.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 933.
+(babel)             in language  on input line 941.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 933.
+(babel)             in language  on input line 941.
  [26pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
 5}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.933 
-       <./slike/reprojection_error.png> <./slike/extrinsic_visualization.png>]
-Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 963.
-Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 963.
-
-[27pdfTeX warning (ext4): destination with the same identifier (name{figure.3.6
-}) has been already used, duplicate ignored
+l.941 
+      pdfTeX warning (ext4): destination with the same identifier (name{figure.
+3.6}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.963 
+l.941 
+       <./slike/reprojection_error.png> <./slike/extrinsic_visualization.png>]
+<slike/coord_system.png, id=475, 706.64pt x 578.16pt>
+File: slike/coord_system.png Graphic file (type png)
+
+<use slike/coord_system.png>
+Package pdftex.def Info: slike/coord_system.png used on input line 946.
+(pdftex.def)             Requested size: 390.001pt x 319.09174pt.
+Package babel Info: Redefining slovene shorthand "|
+(babel)             in language  on input line 952.
+Package babel Info: Redefining slovene shorthand "|
+(babel)             in language  on input line 952.
+ [27pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
+7}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.952 
        <./slike/coord_system.png>]
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 965.
+(babel)             in language  on input line 982.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 965.
+(babel)             in language  on input line 982.
  [28pdfTeX warning (ext4): destination with the same identifier (name{table.3.3
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.965 \begin{equation}
+l.982 \begin{equation}
                       ]
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1014.
+(babel)             in language  on input line 1028.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1014.
+(babel)             in language  on input line 1028.
  [29]
-<slike/reprojection_wrong.png, id=473, 1500.60625pt x 1229.59375pt>
+<slike/reprojection_wrong.png, id=499, 1500.60625pt x 1229.59375pt>
 File: slike/reprojection_wrong.png Graphic file (type png)
 
 <use slike/reprojection_wrong.png>
-Package pdftex.def Info: slike/reprojection_wrong.png used on input line 1017.
+Package pdftex.def Info: slike/reprojection_wrong.png used on input line 1034.
 (pdftex.def)             Requested size: 375.15065pt x 307.39769pt.
 
-<slike/reprojection_corrected.png, id=474, 1550.79375pt x 1269.74374pt>
+<slike/reprojection_corrected.png, id=500, 1550.79375pt x 1269.74374pt>
 File: slike/reprojection_corrected.png Graphic file (type png)
 
 <use slike/reprojection_corrected.png>
 Package pdftex.def Info: slike/reprojection_corrected.png used on input line 10
-24.
+41.
 (pdftex.def)             Requested size: 387.6975pt x 317.43515pt.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1027.
+(babel)             in language  on input line 1044.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1027.
+(babel)             in language  on input line 1044.
  [30pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
-7}) has been already used, duplicate ignored
+8}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1027 
+l.1044 
         <./slike/reprojection_wrong.png>]
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1040.
+(babel)             in language  on input line 1057.
 
 
 Package hyperref Warning: Composite letter `\textasciicaron+c'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textasciicaron' on input line 1040.
+(hyperref)                removing `\textasciicaron' on input line 1057.
 
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1042.
+(babel)             in language  on input line 1059.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1042.
-[31pdfTeX warning (ext4): destination with the same identifier (name{figure.3.8
+(babel)             in language  on input line 1059.
+[31pdfTeX warning (ext4): destination with the same identifier (name{figure.3.9
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1042 
+l.1059 
         <./slike/reprojection_corrected.png>]
-<slike/segmented.png, id=488, 1409.265pt x 1154.3125pt>
+<slike/segmented.png, id=516, 1409.265pt x 1154.3125pt>
 File: slike/segmented.png Graphic file (type png)
 
 <use slike/segmented.png>
-Package pdftex.def Info: slike/segmented.png used on input line 1045.
+Package pdftex.def Info: slike/segmented.png used on input line 1062.
 (pdftex.def)             Requested size: 389.98975pt x 319.43604pt.
 
-Underfull \hbox (badness 2376) in paragraph at lines 1046--1046
-[]\OT1/cmr/m/n/12 Slika 3.9: []Segmentacija za-jete slike z belo barvo oznacuj
-e za-znan
+Underfull \hbox (badness 1708) in paragraph at lines 1063--1063
+[]\OT1/cmr/m/n/12 Slika 3.10: []Segmentacija za-jete slike z belo barvo oznacu
+je za-znan
  []
 
-<slike/detected.png, id=489, 1408.26125pt x 1152.305pt>
+<slike/detected.png, id=517, 1408.26125pt x 1152.305pt>
 File: slike/detected.png Graphic file (type png)
 
 <use slike/detected.png>
-Package pdftex.def Info: slike/detected.png used on input line 1051.
+Package pdftex.def Info: slike/detected.png used on input line 1068.
 (pdftex.def)             Requested size: 389.99132pt x 319.10907pt.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1054.
+(babel)             in language  on input line 1071.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1054.
+(babel)             in language  on input line 1071.
  [32pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
-9}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.1054 
-        <./slike/segmented.png>]
-Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1055.
- (vzorec_diplomskega_dela_050215.bbl
-Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1.
-Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1.
- [33pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
 10}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1 \begin{thebibliography}{10}
-                                <./slike/detected.png>]
+l.1071 
+        <./slike/segmented.png>]
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1.
+(babel)             in language  on input line 1072.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1.
+(babel)             in language  on input line 1076.
+Package babel Info: Redefining slovene shorthand "|
+(babel)             in language  on input line 1076.
+ [33pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
+11}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.1076 \chapter
+               {Rezultati} <./slike/detected.png>]
+Package babel Info: Redefining slovene shorthand "|
+(babel)             in language  on input line 1076.
+Package babel Info: Redefining slovene shorthand "|
+(babel)             in language  on input line 1076.
  [34
+
+]
+Poglavje 4.
+Package babel Info: Redefining slovene shorthand "|
+(babel)             in language  on input line 1076.
+Package babel Info: Redefining slovene shorthand "|
+(babel)             in language  on input line 1078.
+Package babel Info: Redefining slovene shorthand "|
+(babel)             in language  on input line 1078.
+[35]
+Package babel Info: Redefining slovene shorthand "|
+(babel)             in language  on input line 1078.
+Package babel Info: Redefining slovene shorthand "|
+(babel)             in language  on input line 1078.
+ [36
+
+]
+Poglavje 5.
+Package babel Info: Redefining slovene shorthand "|
+(babel)             in language  on input line 1078.
+
+Package hyperref Warning: Composite letter `\textasciicaron+c'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textasciicaron' on input line 1078.
+
+(vzorec_diplomskega_dela_050215.bbl
+Package babel Info: Redefining slovene shorthand "|
+(babel)             in language  on input line 1.
+Package babel Info: Redefining slovene shorthand "|
+(babel)             in language  on input line 1.
+ [37]
+Package babel Info: Redefining slovene shorthand "|
+(babel)             in language  on input line 1.
+Package babel Info: Redefining slovene shorthand "|
+(babel)             in language  on input line 1.
+ [38
 
 ]
 Package babel Info: Redefining slovene shorthand "|
 (babel)             in language  on input line 46.
 Package babel Info: Redefining slovene shorthand "|
 (babel)             in language  on input line 46.
- [35]
+ [39]
 Underfull \hbox (badness 10000) in paragraph at lines 56--62
 []$\OT1/cmtt/m/n/12 https : / / en . wikipedia . org / w / index . php ? title 
 = Charge-[]coupled _$
@@ -1210,34 +1268,34 @@ Underfull \hbox (badness 10000) in paragraph at lines 88--94
  []
 
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1061.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1082.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1061.
+(babel)             in language  on input line 1082.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1061.
- [36]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1061.
+(babel)             in language  on input line 1082.
+ [40]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1082.
  (vzorec_diplomskega_dela_050215.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1061.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1061.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1082.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1082.
 
 Package rerunfilecheck Info: File `vzorec_diplomskega_dela_050215.out' has not 
 changed.
-(rerunfilecheck)             Checksum: A2E17486DF7488CEA7BB2B8577C43976;858.
+(rerunfilecheck)             Checksum: 772FF1C6498AD3E5A9E69DA860791ADD;1148.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1061.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1082.
  ) 
 Here is how much of TeX's memory you used:
- 10213 strings out of 493673
- 140045 string characters out of 3141528
- 237740 words of memory out of 3000000
- 13208 multiletter control sequences out of 15000+200000
+ 10229 strings out of 493673
+ 140201 string characters out of 3141528
+ 237779 words of memory out of 3000000
+ 13214 multiletter control sequences out of 15000+200000
  13138 words of font info for 48 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
- 29i,14n,43p,1414b,1769s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 29i,15n,43p,1414b,1769s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 <C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><
 C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:
@@ -1252,10 +1310,10 @@ les (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files
 iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Program Files (x86)/MiK
 TeX 2.9/fonts/type1/public/amsfonts/cm/cmti8.pfb><C:/Program Files (x86)/MiKTeX
  2.9/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on vzorec_diplomskega_dela_050215.pdf (56 pages, 24652166 bytes)
+Output written on vzorec_diplomskega_dela_050215.pdf (60 pages, 24659978 bytes)
 .
 PDF statistics:
- 615 PDF objects out of 1000 (max. 8388607)
- 203 named destinations out of 1000 (max. 500000)
- 205 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 661 PDF objects out of 1000 (max. 8388607)
+ 213 named destinations out of 1000 (max. 500000)
+ 245 words of extra memory for PDF output out of 10000 (max. 10000000)
 
