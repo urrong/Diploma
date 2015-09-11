@@ -312,7 +312,7 @@ Hčerki Leneji.
   {\bf IP} & internet protocol & internetni protokol \\
   {\bf HTTP} & hypertext transfer protocol & protokol za prenos hiperteksta \\
   {\bf LED} & light-emitting diode & svetleča dioda \\
-  {\bf PTZ} & pan, tilt, zoom & panorama, nagib, povečanje \\
+  {\bf PTZ} & pan, tilt, zoom & obrat, nagib, povečava \\
 \end{tabular}
 
 
@@ -351,14 +351,14 @@ This sample document presents an approach to typesetting your BSc thesis using \
 
 \chapter{Uvod}
 \section{Motivacija}
-V robotiki je eden izmed glavnih problemov lokaliziranje robota v prostoru. Beseda robot ima dandanes zelo širok pomen in lahko zajema naprave od avtomobilov na daljinsko upravljanje, do popolnoma avtonomnih kvadrokopterjev. Z besedami lokacija, pozicija in položaj, mislim na točke v 3-dimenzionalnem prostoru (svetu). Za določanje položaja obstaja veliko rešitev, ki pa se razlikujejo po natančnosti, težavnosti in ceni implementacije. Če nas zanima kje na Zemlji se robot približno nahaja, bomo najverjetneje uporabili GPS (\emph{ang. Global Positioning System}). Prednost tega sistema je robustnost saj je v uporabi že od leta 1978 \cite{wiki:gps}, pomanjkljivost pa premajhna natančnost, če želimo izmeriti položaj do centimetra ali milimetra natančno. GPS deluje slabše v zaprtih prostorih, saj strehe in stene odbijejo precejšen del mikrovalovnih signalov. V primeru, da je naš robot opremljen s kamero za zaznavanje globine pa lahko uporabimo tehniko SLAM (\emph{ang. Simultaneous Localization and Mapping}). Pri tej tehniki poleg položaja dobimo tudi karto okolja.
+V robotiki je eden izmed glavnih problemov lokalizacija robota v prostoru. Beseda robot ima dandanes zelo širok pomen in lahko zajema naprave od avtomobilov na daljinsko upravljanje, do popolnoma avtonomnih kvadrokopterjev. Z besedami lokacija, pozicija in položaj, mislim na točke v 3-dimenzionalnem prostoru (svetu). Za določanje položaja obstaja veliko rešitev, ki pa se razlikujejo po natančnosti, težavnosti in ceni implementacije. Če nas zanima kje na Zemlji se robot približno nahaja, bomo najverjetneje uporabili GPS (\emph{ang. Global Positioning System}). Prednost tega sistema je robustnost saj je v uporabi že od leta 1978 \cite{wiki:gps}, pomanjkljivost pa premajhna natančnost, če želimo izmeriti položaj do centimetra ali milimetra natančno. GPS deluje slabše v zaprtih prostorih, saj strehe in stene odbijejo precejšen del mikrovalovnih signalov. V primeru, da je naš robot opremljen s kamero za zaznavanje globine pa lahko uporabimo tehniko SLAM (\emph{ang. Simultaneous Localization and Mapping}). Pri tej tehniki poleg položaja dobimo tudi karto okolja.
 
-Sam sem se osredotočil razviti sistem za določanje položaja v notranjem prostoru (\emph{ang. IPS - Indoor Positioning System}). Taki sistemi morajo biti natančni vsaj na nekaj decimetrski lestvici, odvisno od namena uporabe. Glavna motivacija za temo diplomskega dela je sistem kvadrokopterjev, ki so ga razvili na ETH Zurich pod okriljem prof. Raffaella D’Andree \cite{fma}. Za zaznavanje položaja uporabljajo enega od sistemov za zaznavanje gibanja (\emph{ang. motion capture system}), ki pa so lahko zelo dragi. Že najcenejši sistem z le dvemi kamerami se giblje nad 1000 EUR. 
+Sam sem se osredotočil razviti sistem za določanje položaja v notranjem prostoru (\emph{ang. IPS - Indoor Positioning System}). Taki sistemi morajo biti natančni vsaj na nekaj decimetrski lestvici, odvisno od namena uporabe. Glavna motivacija za temo diplomskega dela je sistem kvadrokopterjev, ki so ga razvili na ETH Zurich pod okriljem prof. Raffaella D’Andree \cite{fma}. Za zaznavanje položaja uporabljajo enega od sistemov za zaznavanje gibanja (\emph{ang. motion capture system}), ki pa so lahko zelo dragi. Že najcenejši sistem z le dvema kamerama se giblje nad 1000 EUR. 
 
 Ker so natančni sistemi za določanje položaja v notranjem prostoru dragi, vendar nujni za avtonomno upravljanje kvadrokopterja v prostoru, sem v sklopu diplomske naloge razvil večkamerni sistem za določanje lokacije objekta v prostoru. Objekt je, tako kot v komercialnih sistemih, barvni označevalnik v obliki krogle. 
 
 \section{Pregled področja}
-Veliko sistemov za pozicioniranje v prostoru ne uporablja kamere, vendar druge vrste oddajnikov/sprejemnikov s katerimi se lahko izmeri razdalja do objekta, nato pa s pomočjo trilateracije \cite{wiki:trilateration} ali multilateracije \cite{wiki:multilateration} izračuna pozicija objekta. Te sistemi delujejo po enakem principu. V prostor postavijo t.i. sidra z znanim položajem. To so lahko ultrazvočni ter radijski oddajniki ali sprejemniki, mikrofoni itd. Sidra služijo kot referenčne točke v prostoru s katerimi se izračuna razdalja ali pa razlika razdalj do objekta zanimanja. Ko so razdalje ali razlike razdalj znane, se lahko uporabi prej omenjena postopka za izračun pozicije objekta.
+Veliko sistemov za pozicioniranje v prostoru ne uporablja kamere, ampak druge vrste oddajnikov/sprejemnikov s katerimi se lahko izmeri razdalja do objekta, nato pa s pomočjo trilateracije \cite{wiki:trilateration} ali multilateracije \cite{wiki:multilateration} izračuna pozicija objekta. Te sistemi delujejo po enakem principu. V prostor postavijo t.i. sidra z znanim položajem. To so lahko ultrazvočni ter radijski oddajniki ali sprejemniki, mikrofoni itd. Sidra služijo kot referenčne točke v prostoru s katerimi se izračuna razdalja ali pa razlika razdalj do objekta zanimanja. Ko so razdalje ali razlike razdalj znane, se lahko uporabi prej omenjena postopka za izračun pozicije objekta.
 
 Na Univerzi v Kaliforniji so razvili sistem, ki izračuna pozicijo s pomočjo zvoka \cite{mandal2005beep}. Za sidra so uporabili mikrofone, objekt zanimanja pa je bil mobilni telefon. V 97 \% poskusov so položaj izmerili do $50 \ cm$ natančno. Na Univerzi v Yorku so naredili podobno z Wi-Fi signali in znanim modelom zaprtega prostora \cite{chan2013dynamic}. Na Univerzi v Parani pa so za merjenje razdalje uporabili ultrazvočni signal \cite{auer20033d}. Natančnost njihovega sistema je nekaj desetink milimetra v $7\times7\times7 \ m^3$ velikem prostoru.
 
@@ -367,16 +367,14 @@ Do sedaj opisana dela ne uporabljajo kamer za določanje položaja objekta. V na
 Na Univerzi v Xi’an Jiaotong so razvili stereo sistem za določanje položaja planarne tarče \cite{li2008development}. Uporabili so dve CCD \cite{wiki:ccd} kameri, ki hkrati zajameta sliko ploskve in nato iz dobjenih točk triangulirajo pozicijo ploskve v prostoru. Na Tehnični univerzi v Madridu so uporabili večkamerni sistem za določanje položaja ljudi v prostoru \cite{mohedano2008robust}. Najprej segmentirajo vse premikajoče dele slike od statičnih, saj predpostavljajo, da se bodo ljudje po prostoru premikali. Nato na teh segmentih zaznajo kje se nahajajo ljudje. Največji problem predstavlja okluzija. Pri tem jim pomaga ravno večkamerni sistem, ki zajema slike ljudi iz različnih zornih kotov. Ko določijo kje na slikah se nahaja glava človeka pa lahko izračunajo njegov položaj v prostoru. Na Državni univerzi v Ohiju pa so naredili sistem \cite{lee2013real}, ki je, od opisanih, najbolj soroden mojemu delu. V prostor so postavili štiri visokoločljive omrežne kamere, s ciljem izračunati položaj nekega orodja. Kamere so med seboj kalibrirane. Od štirih morata vsaj dve kameri videti orodje, da se lahko določi njegov položaj. Pred sledenjem objekta, ga morajo najprej zaznati. To naredijo z ujemanjem predlog. S sledenjem oz. zaznavanjem dobijo le približno sredino objekta, ki pa jo z večimi kamerami izpopolnijo.
 
 \section{Cilji}
-Glavni cilj diplomskega dela je ustvariti večkamerni sistem za določanje položaja objekta v prostoru. Pri zaznavanju bo lahko prihajalo do okluzij, zato je minimalna zahteva, da vsaj dve kameri v nekem trenutku vidita objekt. Za vso obdelavo slik se bo uporabil centralni računalnik, ki bo s kamerami povezan v lokalno omrežje. Zaradi lažjega zaznavanja, bo objekt zanimanja barvni označevalnik. Pričakujem natančnost sistema z napako do nekaj centimetrov. Cilj je, da bo določanje položaja delovalo v realnem času z vsaj 10 meritvami na sekundo. Glavna omejitev sistema bo ta da bo deloval ob predpostavki, da se v prostoru nahaja le en objekt, kar onemogoča določanje usmeritve npr. robota. To omejitev pa se bo lahko v prihodnosti odstranilo in bo sistem zmožen hkrati določiti položaj veliko točkam v prostoru. Prednost sistema pa bo ta, da bo lahko medsebojna pokritost vidnega polja kamer ničelna in s tem večja pokritost prostora.
-
-\textbf{kateri je primeren čas za to poglavje?}
+Glavni cilj diplomskega dela je ustvariti večkamerni sistem za določanje položaja objekta v prostoru. Pri zaznavanju bo lahko prihajalo do okluzij, zato je minimalna zahteva, da vsaj dve kameri v nekem trenutku vidita objekt. Za obdelavo slik se bo uporabil centralni računalnik, ki bo s kamerami povezan v lokalno omrežje. Zaradi lažjega zaznavanja, bo objekt zanimanja barvni označevalnik. Napaka sistema mora biti v povprečju manjša od $5 \ cm$. Določanje položaja bo delovalo v realnem času z vsaj 10 meritvami na sekundo. Glavna omejitev sistema bo ta, da bo deloval ob predpostavki, da se v prostoru nahaja le en objekt, kar onemogoča določanje orientacije npr. robota. To omejitev pa se bo lahko v prihodnosti odstranilo in bo sistem zmožen hkrati določiti položaj veliko točkam v prostoru. Sistem bo moral omogočati postavitev kamer, ki med seboj nimajo preseka vidnega polja. 
 
 \section{Struktura diplome}
 Diplomsko delo je razdeljeno na 5 poglavij. V uvodu je predstavljena motivacija, pregled področja in cilji dela. Drugo poglavje zajema teoretično podlago, ki je nujna za kasnejšo implementacijo rešitve. Tretje poglavje opisuje dejansko implementacijo rešitve in konkretno uporabo prej opisane teorije. V četrtem poglavju so predstavljeni rezultati dela. Zadnje poglavje pa poleg zaključka naslovi tudi možne izboljšave sistema.
 
 \chapter{Teoretična podlaga}
 \section{Parametri kamere}\label{parametri}
-Ugotoviti moramo kakšen matematični model najbolj ustreza današnjim kameram. Večina kamer je v osnovi preprosta kamera z luknjico (\emph{ang. pinhole camera}). Model mora opisovati kako se neka točka v svetu preslika na točko v sliki. Model lahko opišemo s t.i. notranjimi in zunanjimi parametri kamere. V grobem, notranji opisujejo interne lastnosti kamere kot je goriščna razdalja, principalna točka, popačenost itd., zunanji pa položaj kamere v prostoru.
+Ugotoviti moramo kakšen matematični model najbolj ustreza današnjim kameram. Večino kamer lahko modeliramo z modelom kamere z luknjico (\emph{ang. pinhole camera}). Model mora opisovati kako se neka točka v svetu preslika na točko v sliki. Model lahko opišemo s t.i. notranjimi in zunanjimi parametri kamere. V grobem, notranji opisujejo interne lastnosti kamere kot je goriščna razdalja, principalna točka, popačenost itd., zunanji pa položaj kamere v prostoru.
 
 \subsection{Notranji parametri}
 Na sliki \ref{similar1} je ponazorjena preslikava točke v svetu na točko v sliki. Ugotovitve v eni dimenziji lahko apliciramo tudi na drugo dimenzijo. 
@@ -569,7 +567,7 @@ z \\
 \end{bmatrix}
 \label{coordeq}
 \end{equation}
-Zavedati se moramo, da rotacijska matrika $R$ in translacijski vektor $\vec{T}$ ne predstavljata rotacijo in pozicijo kamere v svetu, vendar rotacijo in pozicijo sveta relativno na kamero. Rotacijo kamere lahko dobimo z $R^{-1} = R^T$, pozicijo v svetu pa z $-R^{-1} * \vec{T} = -R^T * \vec{T}$.
+Zavedati se moramo, da rotacijska matrika $R$ in translacijski vektor $\vec{T}$ ne predstavljata rotacijo in pozicijo kamere v svetu, ampak rotacijo in pozicijo sveta relativno na kamero. Rotacijo kamere lahko dobimo z $R^{-1} = R^T$, pozicijo v svetu pa z $-R^{-1} * \vec{T} = -R^T * \vec{T}$.
 
 \subsection{Model kamere}
 
@@ -617,9 +615,10 @@ Zunanji parametri kamere določajo kje v prostoru se kamera nahaja. Zgoraj omenj
 Metoda predpostavlja, da imamo za neko kamero že izračunane notranje parametre. Za oceno zunanjih parametrov je dovolj le ena slika iz kamere, ki pa ne sme biti popačena. Najprej je torej potrebno popačeno sliko popraviti. Enačbe \eqref{radialdisteq} in \eqref{tangentialdisteq} določajo neposredno preslikavo med popačenimi in nepopačenimi točkami. 
 \begin{equation}
 \vec{X}' \sim A * [R | \vec{T}] * \vec{X}
+\label{cammodeleq}
 \end{equation}
 
-Zunanje parametre določa rotacijska matrika $R$ in translacijski vektor $\vec{T}$, kar je v zgornji enačbi kompaktno predstavljeno z matriko $[R | \vec{T}]$. Za oceno teh parametrov moramo poznati notranje parametre $A$, točko v svetu $X$ in njeno projekcijo na sliko $X'$. Matriko $[R | \vec{T}]$ lahko ocenimo z metodo DLT (\emph{ang. Direct Linear Transformation}). Ker računamo s homogenimi koordinatami, sta si leva in desna stran enačbe enaka do poljubnega neničelnega faktorja $\lambda$. Zgornjo enačbo lahko zapišemo kot,
+Zunanje parametre določa rotacijska matrika $R$ in translacijski vektor $\vec{T}$, kar je v zgornji enačbi kompaktno predstavljeno z matriko $[R | \vec{T}]$. Za oceno teh parametrov moramo poznati notranje parametre $A$, točko v svetu $X$ in njeno projekcijo na sliko $X'$. Matriko $[R | \vec{T}]$ lahko ocenimo z metodo DLT (\emph{ang. Direct Linear Transformation}). Ker računamo s homogenimi koordinatami, sta si leva in desna stran enačbe enaka do poljubnega neničelnega faktorja $\lambda$. Enačbo \eqref{cammodeleq} lahko zapišemo z
 \begin{equation}
 \lambda * \vec{X}' = A * [R | \vec{T}] * \vec{X}
 \label{lambdaeq}
@@ -775,7 +774,7 @@ Masno središče je predstavljeno z $\bar{x}$ in $\bar{y}$. Moment $M_{00}$ je e
 
 \section{Strojna oprema}
 
-\noindent{\large \textbf{Računalnik} } \\
+\subsection{Računalnik}
 Vsa obdelava podatkov se odvija na enem prenosnem računalniku. Zajemanje slik poteka sočasno v ločenih procesih. Računalnik ima dve fizični procesni jedri in štiri niti. V lokalno omrežje je povezan preko brezžične povezave. 
 
 \begin{table}[H]
@@ -792,8 +791,8 @@ OS & Windows 8.1 Pro \\
 \caption{Specifikacije računalnika.}
 \end{table}
 
-\noindent{\large \textbf{Kamere} } \\
-Uporabil sem štiri Axis 215 PTZ omrežne kamere. To so varnostne IP kamere namenjene primarno nadzoru okolja. Kamere so povezane v zvezdišče na omrežju ethernet, zvezdišče pa je povezano z brezžičnim usmerjevalnikom.  Kamere so zmožne v realnem času preko lokalnega omrežja posredovati do 30 slik na sekundo pri ločljivosti $704 \times 576$. Vseeno pa varnostne kamere niso namenjene za sinhronizirano zajemanje slik in ne podpirajo skupnega prožilca. Največja ločljivost je $704 \times 576$, kar je relativno malo za namen pozicioniranja objekta s premerom $4$ cm v $7,5 \times 7,5 \times 3 \ m^3$ velikem prostoru.
+\subsection{Kamere}
+Uporabil sem štiri Axis 215 PTZ omrežne kamere. To so varnostne IP kamere namenjene primarno nadzoru okolja. Kamere so povezane v zvezdišče na omrežju ethernet, zvezdišče pa je povezano z brezžičnim usmerjevalnikom.  Kamere so zmožne v realnem času preko lokalnega omrežja posredovati do 30 slik na sekundo pri ločljivosti $704 \times 576$. Vseeno pa varnostne kamere niso namenjene za sinhronizirano zajemanje slik in ne podpirajo skupnega prožilca. Največja ločljivost je $704 \times 576$, kar je relativno malo za pozicioniranje objekta v $7,5 \times 7,5 \times 3 \ m^3$ velikem prostoru.
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{axis_215_ptz.png}
@@ -814,7 +813,7 @@ Povezava z omrežjem & ethernet \\
 Leča & 3,8 - 46 mm \\
 \hline
 \end{tabular}
-\caption{Specifikacije Axis 215 PTZ kamere.}
+\caption{Specifikacije Axis 215 PTZ.}
 \end{table}
 
 Axis kamere imajo CGI (\emph{ang. Common Gateway Interface}) vmesnik, ki omogoča nadzor funkcionalnosti preko protokola HTTP (\emph{ang. Hypertext Transfer Protocol}). Vsak model kamere podpira različen nabor ukazov, katerih spisek lahko dobimo z GET zahtevkom na naslov:
@@ -868,8 +867,8 @@ speed=[n]
 query={ speed | position | presetposcam | presetposall }
 \end{lstlisting}
 
-\vspace{2ex}
-\noindent{\large \textbf{Označevalnik} } \\
+%\vspace{2ex}
+\subsection{Označevalnik}
 Označevalnik je v osnovi oranžna žogica za namizni tenis. Da pa bi sprememba svetlobe čim manj vplivala na natančnost zazanavanja označevalnika, sem v žogico vgradil modro svetlečo diodo (\emph{LED - Light Emitting Diode}) in stikalo. S pritiskom na stikalo prižgemo označevalnik, da ga kamere lahko zaznajo. Na slikah kamer je žogica izrazito rumene barve.
 
 \begin{figure}[H]
@@ -918,7 +917,7 @@ Za učinkovito kalibracijo notranjih parametrov moramo zajeti okoli 10 - 20 slik
 \centering
 \includegraphics[scale=0.35]{reprojection_error.png}
 \includegraphics[scale=0.35]{extrinsic_visualization.png}
-\caption{Graf reprojekcijske napake za vsako sliko (levo), vizualizacija pozicij šahovnic (desno). }
+\caption{Graf reprojekcijske napake za vsako sliko (levo) in vizualizacija pozicij šahovnic s središčem v kameri (desno). }
 \end{figure}
 
 \begin{figure}[H]
@@ -932,14 +931,12 @@ A &=
 \vec{r} &= [-0,2934 \ 0,1331] \\
 \vec{t} &= [0.0006 \ 0,0012]
 \end{align}
-\caption{Primer ocenjenih notranjih parametrov ene imed kamer. Tangencialna popačenost je skoraj zanemarljiva.}
+\caption{Primer ocenjenih notranjih parametrov ene izmed kamer. Tangencialna popačenost je skoraj zanemarljiva.}
 \end{figure}
 
 
 \subsection{Ocenjevanje zunanjih parametrov}
 Ocenjevanje zunanjih parametrov je pravzaprav postavljanje kamere v nek skupen koordinatni sistem sveta. Določiti moramo torej rotacijsko matriko $R$ in translacijski vektor $\vec{T}$, ki predstavljata kje se nahaja koordinatni sistem glede na kamero. Za oceno parametrov uporabimo metodo, ki je opisana v poglavju \ref{externalparamssection}. Potrebujemo le eno sliko na kateri lahko določimo točke v svetu. Za potrebe diplomskega dela sem v sobi na tleh označil in določil svoj koordinatni sistem. Med oznakami po $x$ osi je razdala $20 \ cm$, na $y$ osi pa $60 \ cm$. Enota je $1 \ cm$.
-
-\textbf{ali je pravina uporaba prve osebe ednine?}
 
 \begin{figure}[H]
 \centering
@@ -1054,7 +1051,7 @@ Končna matrika zunanjih parametrov za točke iz tabele \ref{pointpairs} je,
 
 Stolpci rotacijske matrike so le približno paroma ortonormirani, kar je posledica vnašanja napak pri ročnem določanju koordinatnega sistema. Če bi matriko prisilno ortonormirali bi prišlo do večje reprojekcijske napake. 
 
-\section{Zaznavanje označevalnika}
+\section{Implementacija zaznavanja označevalnika}
 Za zaznavanje označevalnika uporabljam postopek opisan v poglavju \ref{markersection}. Za prag sem določil RGB interval, ker je označevalnik izrazito rumene barve. Spodnja meja intervala je $[220 \ 220 \ 0]$, zgornja pa $[255, 255, 200]$. V prosotoru ne sme prihajati do velikih sprememb v osvetljenosti, zato imajo kamere nastavljen fiksni kontrast, dnevna svetloba pa je izolirana od prostora. Spodaj so prikazane slike posameznih faz zaznavanja.
 
 \begin{figure}[H]
@@ -1085,12 +1082,32 @@ Kamere so preko ethernet omrežje povezane v zvezdišče in nato v brezžični u
 \caption{Topologija povezave.}
 \end{figure}
 
-%work flow za triangulacijo
+Proces zaznavanja položaja je razdeljen v preproste korake, ki jih opisuje spodnja psevdo koda.
+
+\begin{lstlisting}
+Glavni proces: 
+  Zazeni n podprocesov, kjer je n stevilo kamer.
+  Ponavljaj:
+    Za vsak podproces:
+      Sprejmi tocko oznacevalnika.
+      Dopolni matriko za triangulacijo.
+    Ce vsaj dve kameri zaznata oznacevalnik:
+      Trianguliraj polozaj oznacevalnika v prostoru.
+      Izpisi polozaj.
+
+Podproces:
+  Vzpostavi komunikacijo s kamero.
+  Inicializiraj privzete parametre kamere.
+  Ponavljaj:
+    Zajemi sliko iz kamere.
+    Zaznaj oznacevalnik.
+    Sporoci tocko oznacevalnika glavnemu procesu.
+\end{lstlisting}
 
 \chapter{Rezultati}
 \section{Reprojekcija kalibracijskih točk}
 
-Povprečna reprojekcijska napaka pri kalibriranju notranjih parametrov je med 0.14 in 0.16 slikovnih pik. To je posledica selektivne izbire slik s katerimi zavestno zmanjšamo napako. Napaka pod 1 piko, je pri delu s slikami, kjer je najmanjša enota ravno 1 pika, zelo dobra. Bolj zanimiva je reprojekcija kalibracijskih točk zunanjih parametrov. Točke na slikah so bile določene ročno z ločljivostjo meritve 1 slikovne pike. Pomemben faktor pri tem postopku je vnos človeške napake. Sistem se je kljub napakam kalibriral tako, da je vsota razlik kvadratov najmanjša. 
+Povprečna reprojekcijska napaka pri kalibriranju notranjih parametrov je med 0.14 in 0.16 slikovnih pik. To je posledica selektivne izbire slik s katerimi zavestno zmanjšamo napako. Napaka pod 1 slikovnim elementom, je pri delu s slikami zelo dobra. Bolj zanimiva je reprojekcija kalibracijskih točk zunanjih parametrov. Točke na slikah so bile določene ročno z ločljivostjo meritve 1 slikovnega elementa. Pomemben faktor pri tem postopku je vnos človeške napake. Sistem se je kljub napakam kalibriral tako, da je vsota razlik kvadratov najmanjša. 
 
 \begin{table}[H]
 \centering
@@ -1104,20 +1121,20 @@ kamera 3 & 0.9786 & 0.6938 \\
 kamera 4 & 0.8289 & 0.1011 \\
 \hline
 \end{tabular}
-\caption{Povprečna napaka eprojekcije kalibracijskih točk zunanjih parametrov. Napake so merjene v slikovnih pikah.}
+\caption{Povprečna napaka reprojekcije kalibracijskih točk zunanjih parametrov. Napake so merjene v slikovnih elementih.}
 \label{pointpairs}
 \end{table}
 
-Opazimo lahko, da so povprečne napake dokaj konsistentne pri okoli 0.9 slikovne pike. Pri tretji kameri izstopa varianca, kar je lahko posledica slabšega ročnega določanja točk.
+Opazimo lahko, da so povprečne napake dokaj konsistentne pri okoli 0.9 slikovnega elementa. Pri tretji kameri izstopa varianca, kar je lahko posledica slabšega ročnega določanja točk.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{reprojected_bar.png}
-\caption{Histogrami reprojekcijskih napak. Velikost koša je 0.1 slikovne pike.}
+\caption{Histogrami reprojekcijskih napak. Velikost koša je 0.1 slikovnega elementa.}
 \end{figure}
 
 \section{Natančnost zaznavanja označevalnika}
-Množica podatkov obsega okoli 25 slik označevalnika iz vsake kamere. Skupaj torej okoli 100 slik. Na vseh slikah je bila ročno izbrana sredina označevalnika in ta točka velja za resnico. Ocenjeni sta dve vrsti množic. Prva ima na vseh slikah statično pozicijo označevalnika, saj je bil v času zajemanja slik označevalnik na istem mestu. Zaradi šuma pri zajemu slik pa algoritem za zaznavanje označevalnika ne zazna vedno enako točko na sliki. Povprečje napake je $0,8614$ slikovnih pik z varianco $0,1899$. Iz spodnjih histogramov se lepo vidi, da je varianca majhna. Slike iz tretje in četrte kamere skoraj vedno določijo enako točko označevalnika. Pri slikah iz prve in druge kamere pa šum povzroči majhno spremembo intenzitet pik, kar posledično zmede algoritem za zaznavanje označevalnika.
+Množica podatkov obsega okoli 25 slik označevalnika iz vsake kamere. Skupaj torej okoli 100 slik. Na vseh slikah je bila ročno izbrana sredina označevalnika in ta točka velja za resnico. Ocenjeni sta dve vrsti množic. Prva ima na vseh slikah statično pozicijo označevalnika, saj je bil v času zajemanja slik označevalnik na istem mestu. Zaradi šuma pri zajemu slik pa algoritem za zaznavanje označevalnika ne zazna vedno enako točko na sliki. Povprečje napake je $0,8614$ slikovnega elementa z varianco $0,1899$. Iz spodnjih histogramov se lepo vidi, da je varianca majhna. Slike iz tretje in četrte kamere skoraj vedno določijo enako točko označevalnika. Pri slikah iz prve in druge kamere pa šum povzroči majhno spremembo intenzitet pik, kar posledično zmede algoritem za zaznavanje označevalnika.
 
 \begin{figure}[H]
 \centering
@@ -1131,7 +1148,7 @@ Množica podatkov obsega okoli 25 slik označevalnika iz vsake kamere. Skupaj to
 \caption{Graf vektorjev napak. Enote so slikovne pike. Zanimiva je opazka, da so vektorji usmerjeni predvsem v prvi kvadrant.}
 \end{figure}
 
-V množici 80 slik pa je označevalnik vsakič na drugem mestu v prosotru (je dinamičen). Povprečje napake je $0,852$ slikovnih pik z varianco $0,2124$. Iz histogramov vidimo, da je napaka bolj enakomerno porazdeljena kot pri zaznavanju statičnega označevalnika.
+V množici 80 slik pa je označevalnik vsakič na drugem mestu v prosotru (je dinamičen). Povprečje napake je $0,852$ slikovnega elementa z varianco $0,2124$. Iz histogramov vidimo, da je napaka bolj enakomerno porazdeljena kot pri zaznavanju statičnega označevalnika.
 
 \begin{figure}[H]
 \centering
@@ -1142,8 +1159,30 @@ V množici 80 slik pa je označevalnik vsakič na drugem mestu v prosotru (je di
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{marker_detection_dynamic_errors.png}
-\caption{Graf vektorjev napak. Enote so slikovne pike. Gostota zaznanih točk je večja v zgornji polovici grafa, kar je lahko posledica rahle neenakomerne osvetljenosti označevalnika.}
+\caption{Graf vektorjev napak. Enota je slikovni element. Gostota zaznanih točk je večja v zgornji polovici grafa, kar je lahko posledica rahle neenakomerne osvetljenosti označevalnika.}
 \end{figure}
+
+\section{Natančnost pozicioniranja}
+Zunanji parametri kamer so bili kalibrirani s 16 koplanarnimi točkami. Za testiranje natančnosti pa v prostoru izberemo poljubno točko s poznanimi koordinatami. Izbranih je bilo 12 točk v svetu na katerih je bil postavljen označevalnik. Na eni točki je bilo opravljenih več meritev, ki so prikazane v tabeli \ref{positionerrortable}.
+\begin{table}[H]
+\centering
+\begin{tabular}{| c | c | c | c |}
+\hline
+št. kamer & višina točke (cm) & povprečna napaka (cm) & varianca napake \\
+\hline
+2 & 2 & 2,3594 & 0,5225 \\
+3 & 2 & 1,2737 & 0,1988 \\
+4 & 2 & 1,2146 & 0,6575 \\
+
+2 & 62,6 & 3,4443 & 5,1579 \\
+3 & 62,6 & 3,8677 & 2,3627 \\
+4 & 62,6 & 8,7621 & 21,4037 \\
+\hline
+\end{tabular}
+\caption{}
+\label{positionerrortable}
+\end{table}
+
 
 \chapter{Zaključek}
 

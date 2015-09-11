@@ -83,6 +83,7 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.2.1}Ocenjevanje notranjih parametrov}{12}{subsection.2.2.1}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.2.2}Ocenjevanje zunanjih parametrov}{12}{subsection.2.2.2}}
 \newlabel{externalparamssection}{{2.2.2}{12}{Ocenjevanje zunanjih parametrov}{subsection.2.2.2}{}}
+\newlabel{cammodeleq}{{2.19}{13}{Ocenjevanje zunanjih parametrov}{equation.2.2.19}{}}
 \newlabel{lambdaeq}{{2.20}{13}{Ocenjevanje zunanjih parametrov}{equation.2.2.20}{}}
 \newlabel{uvw}{{2.25}{15}{Ocenjevanje zunanjih parametrov}{equation.2.2.25}{}}
 \newlabel{longeq}{{2.30}{15}{Ocenjevanje zunanjih parametrov}{equation.2.2.30}{}}
@@ -94,46 +95,52 @@
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{toc}{\contentsline {section}{\numberline {3.1}Strojna oprema}{19}{section.3.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.1}Ra\IeC {\v c}unalnik}{19}{subsection.3.1.1}}
 \@writefile{lot}{\contentsline {table}{\numberline {3.1}{\ignorespaces Specifikacije ra\IeC {\v c}unalnika.}}{19}{table.3.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.2}Kamere}{19}{subsection.3.1.2}}
 \@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces Axis 215 PTZ kamera.}}{20}{figure.3.1}}
-\@writefile{lot}{\contentsline {table}{\numberline {3.2}{\ignorespaces Specifikacije Axis 215 PTZ kamere.}}{20}{table.3.2}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.2}{\ignorespaces Specifikacije Axis 215 PTZ.}}{21}{table.3.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.3}Ozna\IeC {\v c}evalnik}{23}{subsection.3.1.3}}
 \@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces Ugasnjen ozna\IeC {\v c}evalnik je oran\IeC {\v z}ne barve (levo), pri\IeC {\v z}gan pa izrazito rumene barve (desno).}}{23}{figure.3.2}}
 \@writefile{toc}{\contentsline {section}{\numberline {3.2}Programska oprema}{23}{section.3.2}}
 \@writefile{toc}{\contentsline {section}{\numberline {3.3}Kalibracija kamer}{24}{section.3.3}}
 \newlabel{camcalsec}{{3.3}{24}{Kalibracija kamer}{section.3.3}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.3.1}Ocenjevanje notranjih parametrov}{24}{subsection.3.3.1}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces 11 $\times $ 12 velika \IeC {\v s}ahovnica.}}{24}{figure.3.3}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces Na sliki se vidi zaznane robove \IeC {\v s}ahovnice in njena orientacija, graf reprojekcijske napake in vizualizacija zunanjih parametrov.}}{25}{figure.3.4}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.5}{\ignorespaces Graf reprojekcijske napake za vsako sliko (levo), vizualizacija pozicij \IeC {\v s}ahovnic (desno). }}{26}{figure.3.5}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.6}{\ignorespaces Primer ocenjenih notranjih parametrov ene imed kamer. Tangencialna popa\IeC {\v c}enost je skoraj zanemarljiva.}}{26}{figure.3.6}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.2}Ocenjevanje zunanjih parametrov}{26}{subsection.3.3.2}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.7}{\ignorespaces Na sliki se vidi ozna\IeC {\v c}en koordinatni sistem sveta. To\IeC {\v c}ke ozna\IeC {\v c}ene s \IeC {\v c}rnimi pikami so koplanarne in z njimi dolo\IeC {\v c}imo zunanje parametre kamere.}}{27}{figure.3.7}}
-\newlabel{coordsystemimg}{{3.7}{27}{Na sliki se vidi označen koordinatni sistem sveta. Točke označene s črnimi pikami so koplanarne in z njimi določimo zunanje parametre kamere}{figure.3.7}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {3.3}{\ignorespaces 16 parov to\IeC {\v c}k dobljenih iz slike \ref  {coordsystemimg}.}}{28}{table.3.3}}
-\newlabel{pointpairs}{{3.3}{28}{16 parov točk dobljenih iz slike \ref {coordsystemimg}}{table.3.3}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.8}{\ignorespaces Projekcija piramide na sliko poka\IeC {\v z}e, da so prvi trije koordinatni sistemi levosu\IeC {\v c}ni, zato moramo obrniti smer zadnjega stolpca matrike $R$.}}{30}{figure.3.8}}
-\newlabel{reprojectionwrongimg}{{3.8}{30}{Projekcija piramide na sliko pokaže, da so prvi trije koordinatni sistemi levosučni, zato moramo obrniti smer zadnjega stolpca matrike $R$}{figure.3.8}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.9}{\ignorespaces Na novo ocenjeni zunanji parametri pravilno modelirajo kamere, kar je razvidno iz projekcije piramide.}}{31}{figure.3.9}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.4}Zaznavanje ozna\IeC {\v c}evalnika}{32}{section.3.4}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.10}{\ignorespaces Segmentacija zajete slike z belo barvo ozna\IeC {\v c}uje zaznan ozna\IeC {\v c}evalnik.}}{32}{figure.3.10}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.11}{\ignorespaces Pozicijo ozna\IeC {\v c}evalnika na sliki (zeleni +) dobimo z masnim sredi\IeC {\v s}\IeC {\v c}em segmenta.}}{33}{figure.3.11}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.5}Postavitev sistema}{33}{section.3.5}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.12}{\ignorespaces Kamere v prostoru.}}{34}{figure.3.12}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.13}{\ignorespaces Topologija povezave.}}{34}{figure.3.13}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {4}Rezultati}{35}{chapter.4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces 11 $\times $ 12 velika \IeC {\v s}ahovnica.}}{25}{figure.3.3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces Na sliki se vidi zaznane robove \IeC {\v s}ahovnice in njena orientacija, graf reprojekcijske napake in vizualizacija zunanjih parametrov.}}{26}{figure.3.4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.5}{\ignorespaces Graf reprojekcijske napake za vsako sliko (levo) in vizualizacija pozicij \IeC {\v s}ahovnic s sredi\IeC {\v s}\IeC {\v c}em v kameri (desno). }}{26}{figure.3.5}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.6}{\ignorespaces Primer ocenjenih notranjih parametrov ene izmed kamer. Tangencialna popa\IeC {\v c}enost je skoraj zanemarljiva.}}{27}{figure.3.6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.2}Ocenjevanje zunanjih parametrov}{27}{subsection.3.3.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.7}{\ignorespaces Na sliki se vidi ozna\IeC {\v c}en koordinatni sistem sveta. To\IeC {\v c}ke ozna\IeC {\v c}ene s \IeC {\v c}rnimi pikami so koplanarne in z njimi dolo\IeC {\v c}imo zunanje parametre kamere.}}{28}{figure.3.7}}
+\newlabel{coordsystemimg}{{3.7}{28}{Na sliki se vidi označen koordinatni sistem sveta. Točke označene s črnimi pikami so koplanarne in z njimi določimo zunanje parametre kamere}{figure.3.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.3}{\ignorespaces 16 parov to\IeC {\v c}k dobljenih iz slike \ref  {coordsystemimg}.}}{29}{table.3.3}}
+\newlabel{pointpairs}{{3.3}{29}{16 parov točk dobljenih iz slike \ref {coordsystemimg}}{table.3.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.8}{\ignorespaces Projekcija piramide na sliko poka\IeC {\v z}e, da so prvi trije koordinatni sistemi levosu\IeC {\v c}ni, zato moramo obrniti smer zadnjega stolpca matrike $R$.}}{31}{figure.3.8}}
+\newlabel{reprojectionwrongimg}{{3.8}{31}{Projekcija piramide na sliko pokaže, da so prvi trije koordinatni sistemi levosučni, zato moramo obrniti smer zadnjega stolpca matrike $R$}{figure.3.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.9}{\ignorespaces Na novo ocenjeni zunanji parametri pravilno modelirajo kamere, kar je razvidno iz projekcije piramide.}}{32}{figure.3.9}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.4}Implementacija zaznavanja ozna\IeC {\v c}evalnika}{33}{section.3.4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.10}{\ignorespaces Segmentacija zajete slike z belo barvo ozna\IeC {\v c}uje zaznan ozna\IeC {\v c}evalnik.}}{33}{figure.3.10}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.11}{\ignorespaces Pozicijo ozna\IeC {\v c}evalnika na sliki (zeleni +) dobimo z masnim sredi\IeC {\v s}\IeC {\v c}em segmenta.}}{34}{figure.3.11}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.5}Postavitev sistema}{34}{section.3.5}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.12}{\ignorespaces Kamere v prostoru.}}{35}{figure.3.12}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.13}{\ignorespaces Topologija povezave.}}{35}{figure.3.13}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {4}Rezultati}{37}{chapter.4}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {4.1}Reprojekcija kalibracijskih to\IeC {\v c}k}{35}{section.4.1}}
-\@writefile{lot}{\contentsline {table}{\numberline {4.1}{\ignorespaces Povpre\IeC {\v c}na napaka eprojekcije kalibracijskih to\IeC {\v c}k zunanjih parametrov. Napake so merjene v slikovnih pikah.}}{35}{table.4.1}}
-\newlabel{pointpairs}{{4.1}{35}{Povprečna napaka eprojekcije kalibracijskih točk zunanjih parametrov. Napake so merjene v slikovnih pikah}{table.4.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces Histogrami reprojekcijskih napak. Velikost ko\IeC {\v s}a je 0.1 slikovne pike.}}{36}{figure.4.1}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.2}Natan\IeC {\v c}nost zaznavanja ozna\IeC {\v c}evalnika}{37}{section.4.2}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces Histogrami napak zaznavanja stati\IeC {\v c}nega ozna\IeC {\v c}evalnika.}}{38}{figure.4.2}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces Graf vektorjev napak. Enote so slikovne pike. Zanimiva je opazka, da so vektorji usmerjeni predvsem v prvi kvadrant.}}{39}{figure.4.3}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.4}{\ignorespaces Histogrami napak zaznavanja dinami\IeC {\v c}nega ozna\IeC {\v c}evalnika.}}{40}{figure.4.4}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.5}{\ignorespaces Graf vektorjev napak. Enote so slikovne pike. Gostota zaznanih to\IeC {\v c}k je ve\IeC {\v c}ja v zgornji polovici grafa, kar je lahko posledica rahle neenakomerne osvetljenosti ozna\IeC {\v c}evalnika.}}{41}{figure.4.5}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.1}Reprojekcija kalibracijskih to\IeC {\v c}k}{37}{section.4.1}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.1}{\ignorespaces Povpre\IeC {\v c}na napaka reprojekcije kalibracijskih to\IeC {\v c}k zunanjih parametrov. Napake so merjene v slikovnih elementih.}}{37}{table.4.1}}
+\newlabel{pointpairs}{{4.1}{37}{Povprečna napaka reprojekcije kalibracijskih točk zunanjih parametrov. Napake so merjene v slikovnih elementih}{table.4.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces Histogrami reprojekcijskih napak. Velikost ko\IeC {\v s}a je 0.1 slikovnega elementa.}}{38}{figure.4.1}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}Natan\IeC {\v c}nost zaznavanja ozna\IeC {\v c}evalnika}{38}{section.4.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces Histogrami napak zaznavanja stati\IeC {\v c}nega ozna\IeC {\v c}evalnika.}}{40}{figure.4.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces Graf vektorjev napak. Enote so slikovne pike. Zanimiva je opazka, da so vektorji usmerjeni predvsem v prvi kvadrant.}}{41}{figure.4.3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.4}{\ignorespaces Histogrami napak zaznavanja dinami\IeC {\v c}nega ozna\IeC {\v c}evalnika.}}{42}{figure.4.4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.5}{\ignorespaces Graf vektorjev napak. Enota je slikovni element. Gostota zaznanih to\IeC {\v c}k je ve\IeC {\v c}ja v zgornji polovici grafa, kar je lahko posledica rahle neenakomerne osvetljenosti ozna\IeC {\v c}evalnika.}}{43}{figure.4.5}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.3}Natan\IeC {\v c}nost pozicioniranja}{43}{section.4.3}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.2}{\ignorespaces }}{44}{table.4.2}}
+\newlabel{positionerrortable}{{4.2}{44}{}{table.4.2}{}}
 \bibdata{bibliography}
-\@writefile{toc}{\contentsline {chapter}{\numberline {5}Zaklju\IeC {\v c}ek}{43}{chapter.5}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}Zaklju\IeC {\v c}ek}{45}{chapter.5}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \bibcite{auer20033d}{1}

@@ -218,9 +218,9 @@ if __name__ == "__main__":
 			time.sleep(0.0001)
 	except KeyboardInterrupt:
 		pass
-	pickle.dump(markerPoints, open("marker_points_4.pkl", "wb"))
+	pickle.dump(markerPoints, open("marker_points_path.pkl", "wb"))
 	components.append(line)
-	#pickle.dump(components, open("points_planar_4.pkl", "wb"))
+	#pickle.dump(components, open("points.pkl", "wb"))
 	
 	print len(components)
 	
