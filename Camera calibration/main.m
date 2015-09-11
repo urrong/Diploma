@@ -1,7 +1,7 @@
 clear
 
 crossMatrix = @(x) [0 -x(3) x(2); x(3) 0 -x(1); -x(2) x(1) 0];
-subplot = @(m,n,p) subtightplot (m, n, p, [0.01 0.01], [0 0], [0 0]);
+subplot = @(m,n,p) subtightplot (m, n, p, [0.06 0.02], [0.05 0.05], [0.02 0.02]);
 
 worldImageNames = dir('camera images');
 worldImages = {};
@@ -51,7 +51,6 @@ for i = 1:numel(imagePoints)
     [U, S, V] = svd(P);
     P = reshape(V(:, 9), 4, 3)';
     P = fixExternalMatrix(P);
-    P
     externalMatrices = [externalMatrices, {P}];
 end
 
@@ -66,7 +65,32 @@ for i = 1:numel(intrinsicParams)
 end
 
 save('variables/cameraParams_py.mat', 'params')
+figure
+%reprojeciton error
+for i = 1:numel(worldImages)
+    e = [];
+    for j = 1:size(worldPoints, 1)
+        x = intrinsicParams{i}.IntrinsicMatrix' * externalMatrices{i} * [worldPoints(j, :) 1]';
+        x = x / x(3);
+        e = [e norm(x(1:2) - imagePoints{i}(j, :)')];
+    end
+    m = sum(e) / numel(e)
+    sum((e - m) .^ 2) / numel(e)
+    %bar plotting
+    subplot(4, 1, i);
+    edges = linspace(0, 2.1, 22);
+    bar(histc(e, edges));
+    title(['Kamera ' num2str(i)], 'FontSize', 18)
+    ylim([0 5])
+    xlim([0 21])
+    set(gca,'FontSize', 18)
+    set(gca,'XTick', 0:21);
+    set(gca,'XTickLabel',edges );
+    set(gca,'YTick', 0:5);
+    set(gca,'YTickLabel', 0:5)
+end
 
+return
 figure(1)
 %project world coordinates on image
 for i = 1:numel(worldImages)

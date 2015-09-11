@@ -10,7 +10,8 @@ if READ
             markerImages = [markerImages, {I}];
         end
     end
-    return
+    %save('markerImages.mat', 'markerImages');
+    %return
     centers = {};
     for i = 1:numel(markerImages)
         imshow(markerImages{i})
@@ -19,21 +20,24 @@ if READ
         centers = [centers, [x, y]];
     end
     save('centers.mat', 'centers');
+    save('markerImages.mat', 'markerImages');
 end
-load('centers.mat')
+
+load('markerImages.mat');
+load('centers.mat');
 
 % minimum = [240, 240, 0];
 % maximum = [255, 255, 200];
 
-minimum = [200, 200, 0];
-maximum = [255, 255, 180];
+minimum = [220, 220, 0];
+maximum = [255, 255, 200];
 
 minimum2 = [200, 200, 0];
 maximum2 = [255, 255, 230];
 
 errors = [];
+errvec = [];
 s = 0.5;
-n = 0;
 for i = 1:numel(markerImages)
     I = imresize(markerImages{i}, s);
     
@@ -49,17 +53,18 @@ for i = 1:numel(markerImages)
     if A == 0
         continue;
     end
-    n = n + 1;
     [r, c] = find(I_T);
     x = sum(c) / A / s;
     y = sum(r) / A / s;
     
-    if norm([x y] - centers{i}) > 5
-        n = n - 1;
+    if norm([x y] - centers{i}) > 2.5
+        i
         continue;
     end
     
-    errors = [errors, norm([x y] - centers{i})];
+    err = [x y] - centers{i};
+    errvec = [errvec; err];
+    errors = [errors, norm(err)];
     
 %     imshow(markerImages{i})
 %     set(gcf,'units','normalized','outerposition',[0 0 1 1])
@@ -100,10 +105,48 @@ for i = 1:numel(markerImages)
     
 
 end
+mi = sum(errors) / numel(errors)
+sigma = sum((errors - mi).^2) / numel(errors)
 errors
-n
-mi = sum(errors) / n
-sigma = sum((errors - mi).^2) / (n-1)
+errvec
 
+figure
+set(gca,'FontSize', 18)
+for i = 1:size(errvec, 1)
+    hold on
+    plot([0 errvec(i, 1)], [0 errvec(i, 2)], 'LineWidth', 2)
+    plot(errvec(i, 1), errvec(i, 2), 'xb', 'MarkerSize', 20, 'LineWidth', 2)
+    hold off
+end
+hold on
+plot(0, 0, 'xr', 'MarkerSize', 20, 'LineWidth', 2)
+hold off
+return
 
+%bar plotting
+%meje = [0, 21, 39, 59, 80];
+meje = [0, 25, 50, 75, 100];
+for i = 1:4
+    subplot(4, 1, i)
+    edges = linspace(0, 2, 21);
+    bar(histc(errors(meje(i)+1:meje(i+1)), edges));
+    title(['Kamera ' num2str(i)], 'FontSize', 18)
+    ylim([0 4])
+    xlim([0 21])
+    set(gca,'FontSize', 18)
+    set(gca,'XTick', 0:20);
+    set(gca,'XTickLabel', 0:0.1:2);
+    %set(gca,'YTick', 0:10:30);
+end
+%bar plotting
+%edges = linspace(0, 1.6, 17);
+%bar(histc(errors, edges));
+%title(['Kamera ' num2str(i)], 'FontSize', 18)
+%ylim([0 5])
+%xlim([0 21])
+%set(gca,'FontSize', 18)
+%set(gca,'XTick', 0:21);
+%set(gca,'XTickLabel',edges );
+%set(gca,'YTick', 0:5);
+%set(gca,'YTickLabel', 0:5)
 

@@ -374,7 +374,7 @@ Glavni cilj diplomskega dela je ustvariti večkamerni sistem za določanje polo�
 \section{Struktura diplome}
 Diplomsko delo je razdeljeno na 5 poglavij. V uvodu je predstavljena motivacija, pregled področja in cilji dela. Drugo poglavje zajema teoretično podlago, ki je nujna za kasnejšo implementacijo rešitve. Tretje poglavje opisuje dejansko implementacijo rešitve in konkretno uporabo prej opisane teorije. V četrtem poglavju so predstavljeni rezultati dela. Zadnje poglavje pa poleg zaključka naslovi tudi možne izboljšave sistema.
 
-\chapter{Teorija}
+\chapter{Teoretična podlaga}
 \section{Parametri kamere}\label{parametri}
 Ugotoviti moramo kakšen matematični model najbolj ustreza današnjim kameram. Večina kamer je v osnovi preprosta kamera z luknjico (\emph{ang. pinhole camera}). Model mora opisovati kako se neka točka v svetu preslika na točko v sliki. Model lahko opišemo s t.i. notranjimi in zunanjimi parametri kamere. V grobem, notranji opisujejo interne lastnosti kamere kot je goriščna razdalja, principalna točka, popačenost itd., zunanji pa položaj kamere v prostoru.
 
@@ -793,7 +793,7 @@ OS & Windows 8.1 Pro \\
 \end{table}
 
 \noindent{\large \textbf{Kamere} } \\
-Uporabil sem štiri Axis 215 PTZ omrežne kamere. To so varnostne IP kamere namenjene primarno nadzoru okolja. Kamere so povezane v zvezdišče na omrežju ethernet, zvezdišče pa je povezano z brezžičnim usmerjevalnikom.  Kamere so zmožne v realnem času preko lokalnega omrežja posredovati do 30 slik na sekundo pri ločljivosti 704 x 576. Vseeno pa varnostne kamere niso namenjene za sinhronizirano zajemanje slik in ne podpirajo skupnega prožilca. Največja ločljivost je 704 x 576, kar je relativno malo za namen pozicioniranja objekta s premerom 4 cm v \textbf{X x X} velikem prostoru.
+Uporabil sem štiri Axis 215 PTZ omrežne kamere. To so varnostne IP kamere namenjene primarno nadzoru okolja. Kamere so povezane v zvezdišče na omrežju ethernet, zvezdišče pa je povezano z brezžičnim usmerjevalnikom.  Kamere so zmožne v realnem času preko lokalnega omrežja posredovati do 30 slik na sekundo pri ločljivosti $704 \times 576$. Vseeno pa varnostne kamere niso namenjene za sinhronizirano zajemanje slik in ne podpirajo skupnega prožilca. Največja ločljivost je $704 \times 576$, kar je relativno malo za namen pozicioniranja objekta s premerom $4$ cm v $7,5 \times 7,5 \times 3 \ m^3$ velikem prostoru.
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{axis_215_ptz.png}
@@ -1055,7 +1055,7 @@ Končna matrika zunanjih parametrov za točke iz tabele \ref{pointpairs} je,
 Stolpci rotacijske matrike so le približno paroma ortonormirani, kar je posledica vnašanja napak pri ročnem določanju koordinatnega sistema. Če bi matriko prisilno ortonormirali bi prišlo do večje reprojekcijske napake. 
 
 \section{Zaznavanje označevalnika}
-Za zaznavanje označevalnika uporabljam postopek opisan v poglavju \ref{markersection}. Za prag sem določil RGB interval, ker je označevalnik izrazito rumene barve. Spodnja meja intervala je $[200 \ 200 \ 0]$, zgornja pa $[255, 255, 180]$. V prosotoru ne sme prihajati do velikih sprememb v osvetljenosti, zato imajo kamere nastavljen fiksni kontrast, dnevna svetloba pa je izolirana od prostora. Spodaj so prikazane slike posameznih faz zaznavanja.
+Za zaznavanje označevalnika uporabljam postopek opisan v poglavju \ref{markersection}. Za prag sem določil RGB interval, ker je označevalnik izrazito rumene barve. Spodnja meja intervala je $[220 \ 220 \ 0]$, zgornja pa $[255, 255, 200]$. V prosotoru ne sme prihajati do velikih sprememb v osvetljenosti, zato imajo kamere nastavljen fiksni kontrast, dnevna svetloba pa je izolirana od prostora. Spodaj so prikazane slike posameznih faz zaznavanja.
 
 \begin{figure}[H]
 \centering
@@ -1070,10 +1070,80 @@ Za zaznavanje označevalnika uporabljam postopek opisan v poglavju \ref{markerse
 \end{figure}
 
 \section{Postavitev sistema}
+V prostoru z dimenzijami $7,4 \times 7,7 \times 2,97 \ m^3$ so bile na strop pritrjene štiri Axis 215 PTZ kamere. Sistem deluje v realnem času s 24 meritvami na sekundo. Spodnja slika ilustrira postavitev in orientacijo kamer ter njihovo oštevilčenost.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{room_setting.png}
+\caption{Kamere v prostoru.}
+\end{figure}
+
+Kamere so preko ethernet omrežje povezane v zvezdišče in nato v brezžični usmerjevalnik. Prenosni računalnik je v omrežje povezan brezžično. Na računalniku teče glavni program, ki komunicira s kamerami in računa položaj označevalnika v prostoru. Topologijo povezave predstavlja spodnja slika.
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{topology.png}
+\caption{Topologija povezave.}
+\end{figure}
+
 %work flow za triangulacijo
-%topologija povezave
 
 \chapter{Rezultati}
+\section{Reprojekcija kalibracijskih točk}
+
+Povprečna reprojekcijska napaka pri kalibriranju notranjih parametrov je med 0.14 in 0.16 slikovnih pik. To je posledica selektivne izbire slik s katerimi zavestno zmanjšamo napako. Napaka pod 1 piko, je pri delu s slikami, kjer je najmanjša enota ravno 1 pika, zelo dobra. Bolj zanimiva je reprojekcija kalibracijskih točk zunanjih parametrov. Točke na slikah so bile določene ročno z ločljivostjo meritve 1 slikovne pike. Pomemben faktor pri tem postopku je vnos človeške napake. Sistem se je kljub napakam kalibriral tako, da je vsota razlik kvadratov najmanjša. 
+
+\begin{table}[H]
+\centering
+\begin{tabular}{| l | c | c |}
+\hline
+ & povprečna napaka & varianca povprečne napake \\
+\hline
+kamera 1 & 0.8542 & 0.2965 \\
+kamera 2 & 0.8739 & 0.1146 \\
+kamera 3 & 0.9786 & 0.6938 \\
+kamera 4 & 0.8289 & 0.1011 \\
+\hline
+\end{tabular}
+\caption{Povprečna napaka eprojekcije kalibracijskih točk zunanjih parametrov. Napake so merjene v slikovnih pikah.}
+\label{pointpairs}
+\end{table}
+
+Opazimo lahko, da so povprečne napake dokaj konsistentne pri okoli 0.9 slikovne pike. Pri tretji kameri izstopa varianca, kar je lahko posledica slabšega ročnega določanja točk.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{reprojected_bar.png}
+\caption{Histogrami reprojekcijskih napak. Velikost koša je 0.1 slikovne pike.}
+\end{figure}
+
+\section{Natančnost zaznavanja označevalnika}
+Množica podatkov obsega okoli 25 slik označevalnika iz vsake kamere. Skupaj torej okoli 100 slik. Na vseh slikah je bila ročno izbrana sredina označevalnika in ta točka velja za resnico. Ocenjeni sta dve vrsti množic. Prva ima na vseh slikah statično pozicijo označevalnika, saj je bil v času zajemanja slik označevalnik na istem mestu. Zaradi šuma pri zajemu slik pa algoritem za zaznavanje označevalnika ne zazna vedno enako točko na sliki. Povprečje napake je $0,8614$ slikovnih pik z varianco $0,1899$. Iz spodnjih histogramov se lepo vidi, da je varianca majhna. Slike iz tretje in četrte kamere skoraj vedno določijo enako točko označevalnika. Pri slikah iz prve in druge kamere pa šum povzroči majhno spremembo intenzitet pik, kar posledično zmede algoritem za zaznavanje označevalnika.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{marker_detection_static_bar.png}
+\caption{Histogrami napak zaznavanja statičnega označevalnika.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{marker_detection_static_errors.png}
+\caption{Graf vektorjev napak. Enote so slikovne pike. Zanimiva je opazka, da so vektorji usmerjeni predvsem v prvi kvadrant.}
+\end{figure}
+
+V množici 80 slik pa je označevalnik vsakič na drugem mestu v prosotru (je dinamičen). Povprečje napake je $0,852$ slikovnih pik z varianco $0,2124$. Iz histogramov vidimo, da je napaka bolj enakomerno porazdeljena kot pri zaznavanju statičnega označevalnika.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{marker_detection_dynamic_bar.png}
+\caption{Histogrami napak zaznavanja dinamičnega označevalnika.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{marker_detection_dynamic_errors.png}
+\caption{Graf vektorjev napak. Enote so slikovne pike. Gostota zaznanih točk je večja v zgornji polovici grafa, kar je lahko posledica rahle neenakomerne osvetljenosti označevalnika.}
+\end{figure}
 
 \chapter{Zaključek}
 
