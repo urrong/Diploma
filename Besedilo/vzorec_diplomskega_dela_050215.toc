@@ -7,7 +7,7 @@
 \contentsline {chapter}{\numberline {1}Uvod}{1}{chapter.1}
 \contentsline {section}{\numberline {1.1}Motivacija}{1}{section.1.1}
 \contentsline {section}{\numberline {1.2}Pregled podro\IeC {\v c}ja}{2}{section.1.2}
-\contentsline {section}{\numberline {1.3}Cilji}{3}{section.1.3}
+\contentsline {section}{\numberline {1.3}Cilji}{4}{section.1.3}
 \contentsline {section}{\numberline {1.4}Struktura diplome}{4}{section.1.4}
 \contentsline {chapter}{\numberline {2}Teoreti\IeC {\v c}na podlaga}{5}{chapter.2}
 \contentsline {section}{\numberline {2.1}Parametri kamere}{5}{section.2.1}
@@ -18,20 +18,19 @@
 \contentsline {subsection}{\numberline {2.2.1}Ocenjevanje notranjih parametrov}{12}{subsection.2.2.1}
 \contentsline {subsection}{\numberline {2.2.2}Ocenjevanje zunanjih parametrov}{12}{subsection.2.2.2}
 \contentsline {section}{\numberline {2.3}Triangulacija}{16}{section.2.3}
-\contentsline {section}{\numberline {2.4}Zaznavanje ozna\IeC {\v c}evalnika}{16}{section.2.4}
-\contentsline {chapter}{\numberline {3}Implementacija}{19}{chapter.3}
-\contentsline {section}{\numberline {3.1}Strojna oprema}{19}{section.3.1}
-\contentsline {subsection}{\numberline {3.1.1}Ra\IeC {\v c}unalnik}{19}{subsection.3.1.1}
-\contentsline {subsection}{\numberline {3.1.2}Kamere}{19}{subsection.3.1.2}
-\contentsline {subsection}{\numberline {3.1.3}Ozna\IeC {\v c}evalnik}{23}{subsection.3.1.3}
-\contentsline {section}{\numberline {3.2}Programska oprema}{23}{section.3.2}
-\contentsline {section}{\numberline {3.3}Kalibracija kamer}{24}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}Ocenjevanje notranjih parametrov}{24}{subsection.3.3.1}
-\contentsline {subsection}{\numberline {3.3.2}Ocenjevanje zunanjih parametrov}{27}{subsection.3.3.2}
-\contentsline {section}{\numberline {3.4}Implementacija zaznavanja ozna\IeC {\v c}evalnika}{33}{section.3.4}
-\contentsline {section}{\numberline {3.5}Postavitev sistema}{34}{section.3.5}
-\contentsline {chapter}{\numberline {4}Rezultati}{37}{chapter.4}
-\contentsline {section}{\numberline {4.1}Reprojekcija kalibracijskih to\IeC {\v c}k}{37}{section.4.1}
-\contentsline {section}{\numberline {4.2}Natan\IeC {\v c}nost zaznavanja ozna\IeC {\v c}evalnika}{38}{section.4.2}
-\contentsline {section}{\numberline {4.3}Natan\IeC {\v c}nost pozicioniranja}{43}{section.4.3}
-\contentsline {chapter}{\numberline {5}Zaklju\IeC {\v c}ek}{45}{chapter.5}
+\contentsline {chapter}{\numberline {3}Implementacija}{17}{chapter.3}
+\contentsline {section}{\numberline {3.1}Strojna oprema}{17}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Ra\IeC {\v c}unalnik}{17}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.2}Kamere}{17}{subsection.3.1.2}
+\contentsline {section}{\numberline {3.2}Programska oprema}{21}{section.3.2}
+\contentsline {section}{\numberline {3.3}Kalibracija kamer}{21}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Ocenjevanje notranjih parametrov}{21}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}Ocenjevanje zunanjih parametrov}{24}{subsection.3.3.2}
+\contentsline {section}{\numberline {3.4}Zaznavanje ozna\IeC {\v c}evalnika}{30}{section.3.4}
+\contentsline {section}{\numberline {3.5}Postavitev sistema}{33}{section.3.5}
+\contentsline {chapter}{\numberline {4}Eksperimentalni rezultati}{35}{chapter.4}
+\contentsline {section}{\numberline {4.1}Reprojekcija kalibracijskih to\IeC {\v c}k}{35}{section.4.1}
+\contentsline {section}{\numberline {4.2}Natan\IeC {\v c}nost zaznavanja ozna\IeC {\v c}evalnika}{37}{section.4.2}
+\contentsline {section}{\numberline {4.3}Natan\IeC {\v c}nost lokalizacije}{43}{section.4.3}
+\contentsline {section}{\numberline {4.4}Natan\IeC {\v c}nost trajektorije}{48}{section.4.4}
+\contentsline {chapter}{\numberline {5}Zaklju\IeC {\v c}ek}{53}{chapter.5}

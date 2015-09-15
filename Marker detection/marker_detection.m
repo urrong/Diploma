@@ -38,7 +38,7 @@ maximum2 = [255, 255, 230];
 errors = [];
 errvec = [];
 s = 0.5;
-for i = 1:numel(markerImages)
+for i = 1:1%numel(markerImages)
     I = imresize(markerImages{i}, s);
     
     I1 = I(:,:,1) >= minimum(1) & I(:,:,1) <= maximum(1);
@@ -110,6 +110,14 @@ sigma = sum((errors - mi).^2) / numel(errors)
 errors
 errvec
 
+imshow(markerImages{1})
+hold on
+plot([x centers{1}(1)], [y centers{1}(2)], '-b', 'LineWidth', 2)
+plot(centers{1}(1), centers{1}(2), 'or', 'MarkerSize', 10, 'LineWidth', 2)
+plot(x, y, 'xg', 'MarkerSize', 20, 'LineWidth', 2)
+hold off
+return
+
 figure
 set(gca,'FontSize', 18)
 for i = 1:size(errvec, 1)
@@ -121,8 +129,10 @@ end
 hold on
 plot(0, 0, 'xr', 'MarkerSize', 20, 'LineWidth', 2)
 hold off
-return
+xlabel('napaka na osi x (slikovni element)', 'FontSize', 18)
+ylabel('napaka na osi y (slikovni element)', 'FontSize', 18)
 
+figure
 %bar plotting
 %meje = [0, 21, 39, 59, 80];
 meje = [0, 25, 50, 75, 100];
@@ -131,11 +141,12 @@ for i = 1:4
     edges = linspace(0, 2, 21);
     bar(histc(errors(meje(i)+1:meje(i+1)), edges));
     title(['Kamera ' num2str(i)], 'FontSize', 18)
-    ylim([0 4])
+    ylim([0 30])
     xlim([0 21])
     set(gca,'FontSize', 18)
     set(gca,'XTick', 0:20);
     set(gca,'XTickLabel', 0:0.1:2);
+    xlabel('napaka (slikovni element)')
     %set(gca,'YTick', 0:10:30);
 end
 %bar plotting
