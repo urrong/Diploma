@@ -268,7 +268,7 @@ Lokalizacija predmeta ali osebe v prostoru je zelo pomembna naloga v veliko apli
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % zahvala
 \thispagestyle{empty}\mbox{}\vfill\null\it%
-Rad bi se zahvalil vsem, ki ste ali pa še boste del mojega življenja. Posebna zahvala gre Veroniki, ki mi je priskrbela čas za študij, z opravljanjem nekaterih mojih obveznosti. 
+Rad bi se zahvalil vsem, ki ste, ali pa še boste del mojega življenja. Posebna zahvala gre Veroniki, ki mi je omogočila čas za študij, z opravljanjem nekaterih mojih obveznosti. 
 
 Najlepša hvala mentorju doc. dr. Danijelu Skočaju, ki je v svojem zasedenem urniku vedno našel čas za konzultacije in popravke diplomskega dela. Nasvete za pisanje strokovnega dela si bom zapomnil in jih s pridom uporabljal v bodočih delih.
 
@@ -278,7 +278,7 @@ Posebno mesto v zahvali si zaslužijo Leneja, Veronika, Milutin, Jure, Nina, Dar
 
 Zahvala za naj lektorico gre Juliji, saj je v le nekaj urah pregledala in popravila veliko slovničnih napak.
 
-Opravičujem se tistemu, ki ga v zahvali nisem eksplicitno omenil pa meni, da bi ga moral.
+Opravičujem se tistemu, ki ga v zahvali nisem eksplicitno omenil in meni, da bi ga moral.
 \rm\normalfont
 
 % prazna stran
@@ -340,7 +340,7 @@ Hčerki Leneji.
 \chapter*{Povzetek}
 Lokalizacija igra pomembno vlogo v številnih aplikacijah, na primer filmska in igračarska industrija uporabljata lokalizacijske sisteme za zajem gibanja telesa.
 
-V diplomskem delu implementiramo postopek lokalizacije v prostoru s pomočjo kamer. Objekt, ki ga lokaliziramo, je okrogel svetleči barvni označevalnik. Kameram določimo notranje in zunanje parametre ter jih tako umestimo v prostor, pri čemer notranje parametre določimo z MATLAB-ovim orodjem za kalibracijo kamer, zunanje pa izračunamo s pomočjo metode DLT in SVD. V realnem času zaznavamo označevalnik na slikah in s postopkom triangulacije določimo njegov položaj v prostoru. Sistem tudi ustrezno evalviramo in ocenimo napake lokalizacije. Izkaže se, da so napake v sistemu večinoma sistematične in bi jih v praksi lahko popravili.
+V diplomskem delu implementiramo postopek lokalizacije v prostoru s pomočjo kamer. Objekt, ki ga lokaliziramo, je okrogel svetleči barvni označevalnik. Kameram določimo notranje in zunanje parametre ter jih tako umestimo v prostor, pri čemer notranje parametre določimo z MATLAB-ovim orodjem za kalibracijo kamer, zunanje pa izračunamo s pomočjo metode DLT in SVD. V realnem času zaznavamo označevalnik na slikah in s postopkom triangulacije določimo njegov položaj v prostoru. Sistem tudi ustrezno evalviramo in ocenimo napake lokalizacije. Izkaže se, da so napake v sistemu večinoma sistematične in se jih lahko popravi.
 \bigskip
 
 \noindent\textbf{Ključne besede:} \tkeywords.
@@ -354,7 +354,7 @@ V diplomskem delu implementiramo postopek lokalizacije v prostoru s pomočjo kam
 \chapter*{Abstract}
 Localization plays a big role in many applications for example film and game industry are using localization systems for capturing body movement.
 
-In this thesis we implement localization procedure using cameras. Localization object is a light emitting spherical color marker. We compute cameras intrinsic and extrinsic parameters effectively fitting camera in space. Intrinsic parameters are determined using MATLAB camera calibration tool. Extrinsic parameters are calculated using DLT and SVD methods. From images we detect marker in real time and use triangulation to determine its position in space. We properly evaluate the system and measure localization accuracy. It turns out that system errors are mostly structured and in practice could be fixed.
+In this thesis we implement localization procedure using cameras. Localization object is a light emitting spherical color marker. We compute cameras intrinsic and extrinsic parameters effectively fitting camera in space. Intrinsic parameters are determined using MATLAB camera calibration tool. Extrinsic parameters are calculated using DLT and SVD methods. From images we detect marker in real time and use triangulation to determine its position in space. We properly evaluate the system and measure localization accuracy. It turns out that system errors are mostly structured and can be corrected.
 \bigskip
 
 \noindent\textbf{Keywords:} \tkeywordsEn.
@@ -1058,7 +1058,7 @@ Označevalnik je v osnovi oranžna žogica za namizni tenis. Da pa bi sprememba 
 \label{markerimg}
 \end{figure}
 
-Prag, ki je pravzaprav pas, smo določili z analizo barve slikovnih elementov označevalnika. Za grobo oceno smo vzeli minimalne in maksimalne vrednosti izmerjenih barv. Ker je označevalnik izrazito rumene barve se model RGB izkaže za boljšega kakor model HSV. Interval smo spremenili do te mere, da smo se znebili napačnih detekcij, vendar ohranili natančnost v čim večji meri. Spodnja meja intervala je $[220 \ 220 \ 0]$, zgornja pa $[255, 255, 200]$. V prostoru ne sme prihajati do velikih sprememb v osvetljenosti, zato imajo kamere nastavljen fiksni kontrast, dnevna svetloba pa je izolirana od prostora. Na slikah \ref{segmentedimg} in \ref{detectedimg} sta prikazani posamezni fazi zaznavanja.
+Prag, ki je pravzaprav interval, smo določili z analizo barve slikovnih elementov označevalnika. Za grobo oceno smo vzeli minimalne in maksimalne vrednosti izmerjenih barv. Ker je označevalnik izrazito rumene barve se model RGB izkaže za boljšo izbiro kakor model HSV. Interval smo spremenili do te mere, da smo se znebili napačnih detekcij, vendar v čim večji meri ohranili natančnost. Spodnja meja intervala je $[220 \ 220 \ 0]$, zgornja pa $[255, 255, 200]$. V prostoru ne sme prihajati do velikih sprememb v osvetljenosti, zato imajo kamere nastavljen fiksni kontrast, dnevna svetloba pa je izolirana od prostora. Na slikah \ref{segmentedimg} in \ref{detectedimg} sta prikazani posamezni fazi zaznavanja.
 
 \begin{figure}[H]
 \centering
@@ -1395,13 +1395,13 @@ x ($cm$) & y ($cm$) & z ($cm$) \\
 Iz slik se vidi, da je trajektorija, relativno na obliko, dobro določena, ampak narobe umeščena v prostor. Obstajata dva glavna razloga za napake v lokalizaciji: slaba kalibracija kamer ali slabo zaznavanje označevalnika. Napaka pri zaznavanju označevalnika je največ $1,5$ slikovnih pik, kar je premalo, da bi povzročilo tako drastične spremembe pri zaznavanju. Vsaka kamera je kalibrirana neodvisno od druge, zato je zelo verjetno, da je prostor za vsako kamero rahlo drugačen. To bi razložilo opazovano obnašanje zaznavanja. Triangulacija z večjim številom kamer v povprečju vrne boljši rezultat, saj se napake med seboj skoraj izničijo. Opazimo lahko, da triangulacija s prvo in četrto kamero povzroči največjo napako. 
 
 \chapter{Zaključek}
-V diplomski nalogi smo naredili večkamerni sistem za lokalizacijo objekta v prostoru. Uporabili smo štiri Axis 215 PTZ kamere in jih postavili v kote kvadratnega stropa sobe. Usmerjene so bile proti sredini tal. Z orodjem smo določili notranje parametre kamer, za izračun zunanjih parametrov pa smo uporabili metodi DLT in SVD. Zunanje parametre smo določili s koplanarnimi točkami v prostoru, kar v sistem enačb vnese dvoumnost rešitve (sučnost koordinatnega sistema). Pravilno rešitev izberemo ročno. 
+V diplomski nalogi smo naredili večkamerni sistem za lokalizacijo objekta v prostoru. Uporabili smo štiri Axis 215 PTZ kamere in jih postavili v kote kvadratnega stropa sobe. Usmerjene so bile proti sredini tal. Z orodjem smo določili notranje parametre kamer, za izračun zunanjih parametrov pa smo uporabili metodi DLT in SVD. Zunanje parametre smo določili s koplanarnimi točkami v prostoru, kar v sistem enačb vnese dvoumnost rešitve (sučnost koordinatnega sistema). Pravilno rešitev smo izbrali ročno. 
 
-Označevalnik zaznavamo s preprostim postopkom segmentacije, nato pa s slikovnimi momenti izračunamo njegovo masno središče. Sistem deluje v realnem času s 24 meritvami na sekundo. Rezultati so pokazali, da je natančnost zaznavanja označevalnika visoka (povprečno $0,85$ slikovnih pik napake).
+Označevalnik zaznavamo s preprostim postopkom segmentacije, nato pa s slikovnimi momenti izračunamo njegovo masno središče. Sistem deluje v realnem času s 24 meritvami na sekundo. Rezultati so pokazali, da je natančnost zaznavanja označevalnika visoka (povprečno $0,85$ slikovnih elementov napake).
 
-Natančnost lokalizacije je v veliki meri odvisna od natančnosti kalibracije kamer in manj od zaznavanja označevalnika. Prav tako je pomembno, katere kamere uporabimo pri triangulaciji. So pa napake pri lokalizaciji sistematične, kar pomeni, da bi jih s pravilno analizo lahko v veliki meri odpravili.
+Natančnost lokalizacije je v veliki meri odvisna od natančnosti kalibracije kamer in manj od zaznavanja označevalnika. Prav tako je pomembno, katere kamere uporabimo pri triangulaciji. Napake so pri lokalizaciji sistematične, kar pomeni, da bi jih s pravilno analizo lahko v veliki meri odpravili.
 
-Prostora za izboljšave je še veliko. Ker kamere nimajo sočasnega prožilca za zajem slik, lahko pride do majhne nesinhroniziranosti med slikami (trianguliramo s pozicijami označevalnika v različnih časih), kar pri velikih hitrostih objekta predstavlja velik problem. Sistem bi lahko izboljšali z interpolacijo lokacij označevalnika na slikah. Trenutno je potrebno za kalibracijo zunanjih paramterov ročno izbrati kalibracijske točke. Sistem bi lahko nadgradili tako, da kalibracija poteka avtomatizirano na podlagi vzorca v prostoru (npr. šahovnice). Nenazadnje pa je sistem zelo omejen z vrsto objekta, ki ga lokalizira (svetleč barvni označevalnik). Veliko bolj uporabno bi bilo implementirati splošni sledilnik, ki razlikuje med različnimi objekti na sliki in s tem omogoča sočasno lokalizacijo vseh objektov zanimanja.
+Prostora za izboljšave je še veliko. Ker kamere nimajo sočasnega prožilca za zajem slik, lahko pride do majhne nesinhroniziranosti med slikami (trianguliramo s pozicijami označevalnika v različnih časih), kar pri velikih hitrostih objekta povzroči nezanemarljivo napako. Sistem bi lahko izboljšali z interpolacijo lokacij označevalnika na slikah. Trenutno je potrebno za kalibracijo zunanjih paramterov ročno izbrati kalibracijske točke. Sistem bi lahko nadgradili tako, da kalibracija poteka avtomatizirano na podlagi vzorca v prostoru (npr. šahovnice). Nenazadnje pa je sistem zelo omejen z vrsto objekta, ki ga lokalizira (svetleč barvni označevalnik). Bolj uporabno bi bilo implementirati splošni sledilnik, ki razlikuje med različnimi objekti na sliki in s tem omogoča sočasno lokalizacijo vseh objektov zanimanja.
 
 Sistem se lahko v trenutni obliki uporablja za vizualizacijo relativne trajektorije objekta. Naredi se lahko aplikacija za navidezno risanje po prostoru. Sistematične napake so najverjetneje posledica napak v kalibraciji, kar pomeni, da lahko z natančno kalibracijo kamer, povečamo natančnost lokalizacije. Optimalno bi bil sistem primeren za lokalizacijo mobilnega robota, ki bi se lahko avtonomno premikal po prostoru.
 
