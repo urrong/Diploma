@@ -338,8 +338,9 @@ Hčerki Leneji.
 % povzetek
 \addcontentsline{toc}{chapter}{Povzetek}
 \chapter*{Povzetek}
-Lokalizacija igra pomembno vlogo v avtonomni robotiki. Vsak avtonomni sistem mora namreč vedeti, kje v prostoru se nahaja, da lahko pravilno in učinkovito načrtuje svoje akcije. 
-V diplomskem delu implementiramo postopek lokalizacije v prostoru s pomočjo kamer. Objekt, ki ga lokaliziramo, je okrogel svetleči barvni označevalnik. Kameram določimo notranje in zunanje parametre ter jih tako umestimo v prostor, pri čemer notranje parametre določimo z MATLAB-ovim orodjem za kalibracijo kamer, zunanje pa izračunamo s pomočjo metode DLT in SVD. V realnem času zaznavamo označevalnik na slikah in s postopkom triangulacije določimo njegov položaj v prostoru. Sistem tudi ustrezno evalviramo in ocenimo napake lokalizacije.
+Lokalizacija igra pomembno vlogo v številnih aplikacijah, na primer filmska in igračarska industrija uporabljata lokalizacijske sisteme za zajem gibanja telesa.
+
+V diplomskem delu implementiramo postopek lokalizacije v prostoru s pomočjo kamer. Objekt, ki ga lokaliziramo, je okrogel svetleči barvni označevalnik. Kameram določimo notranje in zunanje parametre ter jih tako umestimo v prostor, pri čemer notranje parametre določimo z MATLAB-ovim orodjem za kalibracijo kamer, zunanje pa izračunamo s pomočjo metode DLT in SVD. V realnem času zaznavamo označevalnik na slikah in s postopkom triangulacije določimo njegov položaj v prostoru. Sistem tudi ustrezno evalviramo in ocenimo napake lokalizacije. Izkaže se, da so napake v sistemu večinoma sistematične in bi jih v praksi lahko popravili.
 \bigskip
 
 \noindent\textbf{Ključne besede:} \tkeywords.
@@ -351,8 +352,9 @@ V diplomskem delu implementiramo postopek lokalizacije v prostoru s pomočjo kam
 \selectlanguage{english}
 \addcontentsline{toc}{chapter}{Abstract}
 \chapter*{Abstract}
-Localization plays a big role in autonomous robotics. Every autonomous system has to know its location in space to be able to accurately and efficiently plan its actions.
-In this thesis we implement localization procedure using cameras. Localization object is a light emitting spherical color marker. We compute cameras intrinsic and extrinsic parameters effectively fitting camera in space. Intrinsic parameters are determined using MATLAB camera calibration tool. Extrinsic parameters are calculated using DLT and SVD methods. From images we detect marker in real time and use triangulation to determine its position in space. We properly evaluate the system and measure localization accuracy.
+Localization plays a big role in many applications for example film and game industry are using localization systems for capturing body movement.
+
+In this thesis we implement localization procedure using cameras. Localization object is a light emitting spherical color marker. We compute cameras intrinsic and extrinsic parameters effectively fitting camera in space. Intrinsic parameters are determined using MATLAB camera calibration tool. Extrinsic parameters are calculated using DLT and SVD methods. From images we detect marker in real time and use triangulation to determine its position in space. We properly evaluate the system and measure localization accuracy. It turns out that system errors are mostly structured and in practice could be fixed.
 \bigskip
 
 \noindent\textbf{Keywords:} \tkeywordsEn.
@@ -1289,7 +1291,7 @@ x ($cm$) & y ($cm$) & z ($cm$) \\
 \end{figure}
 
 
-Na slikah \ref{vec2}, \ref{vec3} in \ref{vec4} so vizualizirani vektorji napak za meritve iz tabele \ref{positionerrortable}. Barve vektorjev predstavljajo različne točke iz tabele \ref{measuringptstab}. Hitro lahko opazimo, da napake niso naključne ampak strukturirane. Na slikah \ref{bar2}, \ref{bar3} in \ref{bar4} pa so prikazani histogrami napak. Pri vseh meritvah je največja napaka na osi $y$. Kalibracijske točke za zunanje parametre kamer (tabela \ref{pointpairs}) imajo veliko večjo varianco v smeri $x$, zato morda $y$ komponenta ni dovolj natančno določena.
+Na slikah \ref{vec2}, \ref{vec3} in \ref{vec4} so vizualizirani vektorji napak za meritve iz tabele \ref{positionerrortable}. Barve vektorjev predstavljajo različne točke iz tabele \ref{measuringptstab}. Hitro lahko opazimo, da napake niso naključne ampak sistematične. Na slikah \ref{bar2}, \ref{bar3} in \ref{bar4} pa so prikazani histogrami napak. Pri vseh meritvah je največja napaka na osi $y$. Kalibracijske točke za zunanje parametre kamer (tabela \ref{pointpairs}) imajo veliko večjo varianco v smeri $x$, zato morda $y$ komponenta ni dovolj natančno določena.
 
 \section{Natančnost trajektorije}
 Trajektorijo dobimo tako, da združimo meritve skozi čas. Slike prikazujejo zaznane trajektorije, ki so za zaznavanje lokacij uporabile različne kombinacije kamer. Z rdečo barvo je označena točna trajektorija, z zeleno pa zaznana trajektorija. Trajektorija je lomljenka, ki jo določajo točke v tabeli \ref{trajectory}.
@@ -1397,11 +1399,11 @@ V diplomski nalogi smo naredili večkamerni sistem za lokalizacijo objekta v pro
 
 Označevalnik zaznavamo s preprostim postopkom segmentacije, nato pa s slikovnimi momenti izračunamo njegovo masno središče. Sistem deluje v realnem času s 24 meritvami na sekundo. Rezultati so pokazali, da je natančnost zaznavanja označevalnika visoka (povprečno $0,85$ slikovnih pik napake).
 
-Natančnost lokalizacije je v veliki meri odvisna od natančnosti kalibracije kamer in manj od zanavanja označevalnika. Prav tako je pomembno, katere kamere uporabimo pri triangulaciji. Sistem lahko uporabimo za opazovanje in merjenje trajektorije objekta.
+Natančnost lokalizacije je v veliki meri odvisna od natančnosti kalibracije kamer in manj od zaznavanja označevalnika. Prav tako je pomembno, katere kamere uporabimo pri triangulaciji. So pa napake pri lokalizaciji sistematične, kar pomeni, da bi jih s pravilno analizo lahko v veliki meri odpravili.
 
 Prostora za izboljšave je še veliko. Ker kamere nimajo sočasnega prožilca za zajem slik, lahko pride do majhne nesinhroniziranosti med slikami (trianguliramo s pozicijami označevalnika v različnih časih), kar pri velikih hitrostih objekta predstavlja velik problem. Sistem bi lahko izboljšali z interpolacijo lokacij označevalnika na slikah. Trenutno je potrebno za kalibracijo zunanjih paramterov ročno izbrati kalibracijske točke. Sistem bi lahko nadgradili tako, da kalibracija poteka avtomatizirano na podlagi vzorca v prostoru (npr. šahovnice). Nenazadnje pa je sistem zelo omejen z vrsto objekta, ki ga lokalizira (svetleč barvni označevalnik). Veliko bolj uporabno bi bilo implementirati splošni sledilnik, ki razlikuje med različnimi objekti na sliki in s tem omogoča sočasno lokalizacijo vseh objektov zanimanja.
 
-
+Sistem se lahko v trenutni obliki uporablja za vizualizacijo relativne trajektorije objekta. Naredi se lahko aplikacija za navidezno risanje po prostoru. Sistematične napake so najverjetneje posledica napak v kalibraciji, kar pomeni, da lahko z natančno kalibracijo kamer, povečamo natančnost lokalizacije. Optimalno bi bil sistem primeren za lokalizacijo mobilnega robota, ki bi se lahko avtonomno premikal po prostoru.
 
 \bibliography{bibliography}{}
 \bibliographystyle{plain}
