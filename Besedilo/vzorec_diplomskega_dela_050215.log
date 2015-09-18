@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.9.7)  15 SEP 2015 08:41
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.9.7)  15 SEP 2015 14:18
 entering extended mode
 **vzorec_diplomskega_dela_050215.tex
 (vzorec_diplomskega_dela_050215.tex
@@ -959,12 +959,12 @@ Package babel Info: Redefining slovene shorthand "|
 (babel)             in language  on input line 757.
 Package babel Info: Redefining slovene shorthand "|
 (babel)             in language  on input line 759.
-<slike/axis_215_ptz.png, id=385, 2872.7325pt x 1890.06125pt>
+<slike/axis_215_ptz.png, id=385, 366.168pt x 240.9pt>
 File: slike/axis_215_ptz.png Graphic file (type png)
 
 <use slike/axis_215_ptz.png>
 Package pdftex.def Info: slike/axis_215_ptz.png used on input line 782.
-(pdftex.def)             Requested size: 389.99387pt x 256.58925pt.
+(pdftex.def)             Requested size: 390.00797pt x 256.58417pt.
 Package babel Info: Redefining slovene shorthand "|
 (babel)             in language  on input line 784.
 Package babel Info: Redefining slovene shorthand "|
@@ -979,230 +979,223 @@ Package babel Info: Redefining slovene shorthand "|
 Package babel Info: Redefining slovene shorthand "|
 (babel)             in language  on input line 802.
  [18 <./slike/axis_215_ptz.png>]
-Overfull \hbox (237.44891pt too wide) in paragraph at lines 820--821
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
-][][][][][] 
- []
-
 Package babel Info: Redefining slovene shorthand "|
 (babel)             in language  on input line 826.
 Package babel Info: Redefining slovene shorthand "|
 (babel)             in language  on input line 826.
-[19]
-Overfull \hbox (4.79932pt too wide) in paragraph at lines 851--852
+ [19]
+Overfull \hbox (4.79932pt too wide) in paragraph at lines 852--853
 [][][][][][][][][][][][][][][][][][][][][] 
  []
 
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 856.
+(babel)             in language  on input line 857.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 858.
+(babel)             in language  on input line 859.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 858.
+(babel)             in language  on input line 859.
  [20]
-Overfull \hbox (4.15656pt too wide) in paragraph at lines 859--860
+Overfull \hbox (4.15656pt too wide) in paragraph at lines 860--861
 []\OT1/cmr/m/n/12 Za za-je-ma-nje staticnih slik iz ka-mer smo upo-ra-bili Nod
 e.js v0.12.3. Node.js
  []
 
 
-Overfull \hbox (6.65422pt too wide) in paragraph at lines 863--864
+Overfull \hbox (6.65422pt too wide) in paragraph at lines 864--865
 []\OT1/cmr/m/n/12 Za im-ple-men-ta-cijo glav-nega sis-tema smo upo-ra-bili Pyth
 on 2.7 s knjiznicami
  []
 
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 865.
-<slike/checkerboard.png, id=451, 481.8pt x 481.8pt>
+(babel)             in language  on input line 866.
+<slike/checkerboard.png, id=452, 481.8pt x 481.8pt>
 File: slike/checkerboard.png Graphic file (type png)
 
 <use slike/checkerboard.png>
-Package pdftex.def Info: slike/checkerboard.png used on input line 870.
+Package pdftex.def Info: slike/checkerboard.png used on input line 871.
 (pdftex.def)             Requested size: 192.71658pt x 192.71658pt.
 
 Underfull \vbox (badness 7256) has occurred while \output is active []
 
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 873.
+(babel)             in language  on input line 874.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 873.
+(babel)             in language  on input line 874.
  [21]
-<slike/internal_calibration.png, id=457, 1427.3325pt x 843.15pt>
+<slike/internal_calibration.png, id=458, 1427.3325pt x 843.15pt>
 File: slike/internal_calibration.png Graphic file (type png)
 
 <use slike/internal_calibration.png>
-Package pdftex.def Info: slike/internal_calibration.png used on input line 888.
+Package pdftex.def Info: slike/internal_calibration.png used on input line 889.
 
 (pdftex.def)             Requested size: 390.00214pt x 230.38101pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 891.
+(babel)             in language  on input line 892.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 891.
+(babel)             in language  on input line 892.
  [22 <./slike/checkerboard.png>]
-<slike/reprojection_error.png, id=472, 547.04375pt x 547.04375pt>
+<slike/reprojection_error.png, id=473, 547.04375pt x 547.04375pt>
 File: slike/reprojection_error.png Graphic file (type png)
 
 <use slike/reprojection_error.png>
-Package pdftex.def Info: slike/reprojection_error.png used on input line 894.
+Package pdftex.def Info: slike/reprojection_error.png used on input line 895.
 (pdftex.def)             Requested size: 191.46817pt x 191.46817pt.
 
-<slike/extrinsic_visualization.png, id=473, 547.04375pt x 547.04375pt>
+<slike/extrinsic_visualization.png, id=474, 547.04375pt x 547.04375pt>
 File: slike/extrinsic_visualization.png Graphic file (type png)
 
 <use slike/extrinsic_visualization.png>
 Package pdftex.def Info: slike/extrinsic_visualization.png used on input line 8
-95.
+96.
 (pdftex.def)             Requested size: 191.46817pt x 191.46817pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 912.
+(babel)             in language  on input line 913.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 912.
+(babel)             in language  on input line 913.
  [23 <./slike/internal_calibration.png> <./slike/reprojection_error.png> <./sli
-ke/extrinsic_visualization.png>] <slike/coord_system.png, id=482, 706.64pt x 57
+ke/extrinsic_visualization.png>] <slike/coord_system.png, id=483, 706.64pt x 57
 8.16pt>
 File: slike/coord_system.png Graphic file (type png)
 
 <use slike/coord_system.png>
-Package pdftex.def Info: slike/coord_system.png used on input line 919.
+Package pdftex.def Info: slike/coord_system.png used on input line 920.
 (pdftex.def)             Requested size: 390.001pt x 319.09174pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 923.
+(babel)             in language  on input line 924.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 923.
+(babel)             in language  on input line 924.
  [24]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 953.
+(babel)             in language  on input line 954.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 953.
+(babel)             in language  on input line 954.
  [25 <./slike/coord_system.png>]
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 955.
+(babel)             in language  on input line 956.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 955.
+(babel)             in language  on input line 956.
  [26]
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1004.
+(babel)             in language  on input line 1005.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1004.
+(babel)             in language  on input line 1005.
  [27]
-<slike/reprojection_wrong.png, id=518, 1500.60625pt x 1229.59375pt>
+<slike/reprojection_wrong.png, id=519, 1500.60625pt x 1229.59375pt>
 File: slike/reprojection_wrong.png Graphic file (type png)
 
 <use slike/reprojection_wrong.png>
-Package pdftex.def Info: slike/reprojection_wrong.png used on input line 1007.
+Package pdftex.def Info: slike/reprojection_wrong.png used on input line 1008.
 (pdftex.def)             Requested size: 375.15065pt x 307.39769pt.
 
-<slike/reprojection_corrected.png, id=519, 1550.79375pt x 1269.74374pt>
+<slike/reprojection_corrected.png, id=520, 1550.79375pt x 1269.74374pt>
 File: slike/reprojection_corrected.png Graphic file (type png)
 
 <use slike/reprojection_corrected.png>
 Package pdftex.def Info: slike/reprojection_corrected.png used on input line 10
-14.
+15.
 (pdftex.def)             Requested size: 387.6975pt x 317.43515pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1017.
+(babel)             in language  on input line 1018.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1017.
+(babel)             in language  on input line 1018.
  [28 <./slike/reprojection_wrong.png>]
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1030.
+(babel)             in language  on input line 1031.
 
 
 Package hyperref Warning: Composite letter `\textasciicaron+c'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textasciicaron' on input line 1030.
+(hyperref)                removing `\textasciicaron' on input line 1031.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1032.
+(babel)             in language  on input line 1033.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1032.
+(babel)             in language  on input line 1033.
  [29 <./slike/reprojection_corrected.png>]
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1052.
+(babel)             in language  on input line 1053.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1052.
+(babel)             in language  on input line 1053.
  [30]
-<slike/marker_off.png, id=542, 370.7451pt x 556.2381pt>
+<slike/marker_off.png, id=543, 240.9pt x 361.35pt>
 File: slike/marker_off.png Graphic file (type png)
+ <use slike/marker_off.png>
+Package pdftex.def Info: slike/marker_off.png used on input line 1056.
+(pdftex.def)             Requested size: 144.5411pt x 216.81168pt.
 
-<use slike/marker_off.png>
-Package pdftex.def Info: slike/marker_off.png used on input line 1055.
-(pdftex.def)             Requested size: 148.29541pt x 222.49129pt.
-
-<slike/marker_on.png, id=543, 370.7451pt x 556.2381pt>
+<slike/marker_on.png, id=544, 240.9pt x 361.35pt>
 File: slike/marker_on.png Graphic file (type png)
+ <use slike/marker_on.png>
+Package pdftex.def Info: slike/marker_on.png used on input line 1057.
+(pdftex.def)             Requested size: 144.5411pt x 216.81168pt.
 
-<use slike/marker_on.png>
-Package pdftex.def Info: slike/marker_on.png used on input line 1056.
-(pdftex.def)             Requested size: 148.29541pt x 222.49129pt.
-
-<slike/segmented.png, id=546, 1409.265pt x 1154.3125pt>
+<slike/segmented.png, id=547, 1409.265pt x 1154.3125pt>
 File: slike/segmented.png Graphic file (type png)
 
 <use slike/segmented.png>
-Package pdftex.def Info: slike/segmented.png used on input line 1065.
+Package pdftex.def Info: slike/segmented.png used on input line 1066.
 (pdftex.def)             Requested size: 277.89134pt x 227.62204pt.
 
-Underfull \hbox (badness 1708) in paragraph at lines 1066--1066
+Underfull \hbox (badness 1708) in paragraph at lines 1067--1067
 []\OT1/cmr/m/n/12 Slika 3.10: |Se-gmen-ta-cija za-jete slike z belo barvo ozna
 cuje za-znan
  []
 
 
-Underfull \vbox (badness 4819) has occurred while \output is active []
+Underfull \vbox (badness 7777) has occurred while \output is active []
 
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1069.
+(babel)             in language  on input line 1070.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1069.
+(babel)             in language  on input line 1070.
  [31 <./slike/marker_off.png> <./slike/marker_on.png>]
-<slike/detected.png, id=554, 1408.26125pt x 1152.305pt>
+<slike/detected.png, id=555, 1408.26125pt x 1152.305pt>
 File: slike/detected.png Graphic file (type png)
 
 <use slike/detected.png>
-Package pdftex.def Info: slike/detected.png used on input line 1072.
+Package pdftex.def Info: slike/detected.png used on input line 1073.
 (pdftex.def)             Requested size: 278.16615pt x 227.62204pt.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1077.
+(babel)             in language  on input line 1078.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1079.
+(babel)             in language  on input line 1080.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1079.
+(babel)             in language  on input line 1080.
  [32 <./slike/segmented.png> <./slike/detected.png>]
-<slike/room_setting.png, id=559, 481.8pt x 481.8pt>
+<slike/room_setting.png, id=560, 481.8pt x 481.8pt>
 File: slike/room_setting.png Graphic file (type png)
 
 <use slike/room_setting.png>
-Package pdftex.def Info: slike/room_setting.png used on input line 1082.
+Package pdftex.def Info: slike/room_setting.png used on input line 1083.
 (pdftex.def)             Requested size: 240.8994pt x 240.8994pt.
 
-Overfull \hbox (0.15706pt too wide) in paragraph at lines 1086--1087
+Overfull \hbox (0.15706pt too wide) in paragraph at lines 1087--1088
 []\OT1/cmr/m/n/12 Kamere so preko omrezja ether-net po-ve-zane v zvezdisce i
 n nato v brezzicni
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1086--1087
+Underfull \hbox (badness 10000) in paragraph at lines 1087--1088
 
  []
 
@@ -1210,357 +1203,357 @@ Underfull \hbox (badness 10000) in paragraph at lines 1086--1087
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1101.
+(babel)             in language  on input line 1102.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1101.
+(babel)             in language  on input line 1102.
  [33 <./slike/room_setting.png>]
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1122.
+(babel)             in language  on input line 1123.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1122.
+(babel)             in language  on input line 1123.
  [34]
 Poglavje 4.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1122.
-Package babel Info: Redefining slovene shorthand "|
 (babel)             in language  on input line 1123.
+Package babel Info: Redefining slovene shorthand "|
+(babel)             in language  on input line 1124.
 
 Package hyperref Warning: Composite letter `\textasciicaron+c'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textasciicaron' on input line 1123.
+(hyperref)                removing `\textasciicaron' on input line 1124.
 
-<slike/reprojected_bar.png, id=577, 951.555pt x 983.92593pt>
+<slike/reprojected_bar.png, id=578, 951.555pt x 983.92593pt>
 File: slike/reprojected_bar.png Graphic file (type png)
 
 <use slike/reprojected_bar.png>
-Package pdftex.def Info: slike/reprojected_bar.png used on input line 1147.
+Package pdftex.def Info: slike/reprojected_bar.png used on input line 1148.
 (pdftex.def)             Requested size: 389.99487pt x 403.26212pt.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1154.
+(babel)             in language  on input line 1155.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1154.
+(babel)             in language  on input line 1155.
  [35
 
 ]
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1154.
+(babel)             in language  on input line 1155.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1154.
+(babel)             in language  on input line 1155.
  [36 <./slike/reprojected_bar.png (PNG copy)>]
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1156.
+(babel)             in language  on input line 1157.
 
 
 Package hyperref Warning: Composite letter `\textasciicaron+c'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textasciicaron' on input line 1156.
+(hyperref)                removing `\textasciicaron' on input line 1157.
 
 
 Package hyperref Warning: Composite letter `\textasciicaron+c'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textasciicaron' on input line 1156.
+(hyperref)                removing `\textasciicaron' on input line 1157.
 
-<slike/marker_detection_example.png, id=594, 772.38562pt x 631.60968pt>
+<slike/marker_detection_example.png, id=595, 772.38562pt x 631.60968pt>
 File: slike/marker_detection_example.png Graphic file (type png)
 
 <use slike/marker_detection_example.png>
 Package pdftex.def Info: slike/marker_detection_example.png used on input line 
-1165.
+1166.
 (pdftex.def)             Requested size: 389.99861pt x 318.91699pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1169.
+(babel)             in language  on input line 1170.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1169.
+(babel)             in language  on input line 1170.
  [37]
-<slike/marker_detection_static_bar.png, id=601, 951.555pt x 983.92593pt>
+<slike/marker_detection_static_bar.png, id=602, 951.555pt x 983.92593pt>
 File: slike/marker_detection_static_bar.png Graphic file (type png)
 
 <use slike/marker_detection_static_bar.png>
 Package pdftex.def Info: slike/marker_detection_static_bar.png used on input li
-ne 1172.
+ne 1173.
 (pdftex.def)             Requested size: 389.99487pt x 403.26212pt.
 
-<slike/marker_detection_static_errors.png, id=602, 951.555pt x 983.92593pt>
+<slike/marker_detection_static_errors.png, id=603, 951.555pt x 983.92593pt>
 File: slike/marker_detection_static_errors.png Graphic file (type png)
 
 <use slike/marker_detection_static_errors.png>
 Package pdftex.def Info: slike/marker_detection_static_errors.png used on input
- line 1179.
+ line 1180.
 (pdftex.def)             Requested size: 389.99487pt x 403.26212pt.
 
-<slike/marker_detection_dynamic_bar.png, id=603, 951.555pt x 983.92593pt>
+<slike/marker_detection_dynamic_bar.png, id=604, 951.555pt x 983.92593pt>
 File: slike/marker_detection_dynamic_bar.png Graphic file (type png)
 
 <use slike/marker_detection_dynamic_bar.png>
 Package pdftex.def Info: slike/marker_detection_dynamic_bar.png used on input l
-ine 1186.
+ine 1187.
 (pdftex.def)             Requested size: 389.99487pt x 403.26212pt.
 
-<slike/marker_detection_dynamic_errors.png, id=604, 951.555pt x 983.92593pt>
+<slike/marker_detection_dynamic_errors.png, id=605, 951.555pt x 983.92593pt>
 File: slike/marker_detection_dynamic_errors.png Graphic file (type png)
 
 <use slike/marker_detection_dynamic_errors.png>
 Package pdftex.def Info: slike/marker_detection_dynamic_errors.png used on inpu
-t line 1193.
+t line 1194.
 (pdftex.def)             Requested size: 389.99487pt x 403.26212pt.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1204.
+(babel)             in language  on input line 1205.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1204.
+(babel)             in language  on input line 1205.
  [38 <./slike/marker_detection_example.png>]
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1204.
+(babel)             in language  on input line 1205.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1204.
+(babel)             in language  on input line 1205.
  [39 <./slike/marker_detection_static_bar.png (PNG copy)>]
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1204.
+(babel)             in language  on input line 1205.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1204.
+(babel)             in language  on input line 1205.
  [40 <./slike/marker_detection_static_errors.png (PNG copy)>]
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1204.
+(babel)             in language  on input line 1205.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1204.
+(babel)             in language  on input line 1205.
  [41 <./slike/marker_detection_dynamic_bar.png (PNG copy)>]
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1204.
+(babel)             in language  on input line 1205.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1204.
+(babel)             in language  on input line 1205.
  [42 <./slike/marker_detection_dynamic_errors.png (PNG copy)>]
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1204.
+(babel)             in language  on input line 1205.
 
 
 Package hyperref Warning: Composite letter `\textasciicaron+c'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textasciicaron' on input line 1204.
+(hyperref)                removing `\textasciicaron' on input line 1205.
 
-<slike/accuracy_points.png, id=638, 1074.26344pt x 883.04906pt>
+<slike/accuracy_points.png, id=639, 1074.26344pt x 883.04906pt>
 File: slike/accuracy_points.png Graphic file (type png)
 
 <use slike/accuracy_points.png>
-Package pdftex.def Info: slike/accuracy_points.png used on input line 1234.
+Package pdftex.def Info: slike/accuracy_points.png used on input line 1235.
 (pdftex.def)             Requested size: 389.99654pt x 320.57878pt.
 
-<slike/points2errplot.png, id=639, 951.555pt x 983.92593pt>
+<slike/points2errplot.png, id=640, 951.555pt x 983.92593pt>
 File: slike/points2errplot.png Graphic file (type png)
 
 <use slike/points2errplot.png>
-Package pdftex.def Info: slike/points2errplot.png used on input line 1256.
+Package pdftex.def Info: slike/points2errplot.png used on input line 1257.
 (pdftex.def)             Requested size: 220.13077pt x 227.62204pt.
 
-<slike/points2barplot.png, id=640, 951.555pt x 983.92593pt>
+<slike/points2barplot.png, id=641, 951.555pt x 983.92593pt>
 File: slike/points2barplot.png Graphic file (type png)
 
 <use slike/points2barplot.png>
-Package pdftex.def Info: slike/points2barplot.png used on input line 1262.
+Package pdftex.def Info: slike/points2barplot.png used on input line 1263.
 (pdftex.def)             Requested size: 275.15982pt x 284.52756pt.
 
-<slike/points3errplot.png, id=641, 951.555pt x 983.92593pt>
+<slike/points3errplot.png, id=642, 951.555pt x 983.92593pt>
 File: slike/points3errplot.png Graphic file (type png)
 
 <use slike/points3errplot.png>
-Package pdftex.def Info: slike/points3errplot.png used on input line 1269.
+Package pdftex.def Info: slike/points3errplot.png used on input line 1270.
 (pdftex.def)             Requested size: 220.13077pt x 227.62204pt.
 
-<slike/points3barplot.png, id=642, 951.555pt x 983.92593pt>
+<slike/points3barplot.png, id=643, 951.555pt x 983.92593pt>
 File: slike/points3barplot.png Graphic file (type png)
 
 <use slike/points3barplot.png>
-Package pdftex.def Info: slike/points3barplot.png used on input line 1275.
+Package pdftex.def Info: slike/points3barplot.png used on input line 1276.
 (pdftex.def)             Requested size: 275.15982pt x 284.52756pt.
 
-<slike/points4errplot.png, id=643, 951.555pt x 983.92593pt>
+<slike/points4errplot.png, id=644, 951.555pt x 983.92593pt>
 File: slike/points4errplot.png Graphic file (type png)
 
 <use slike/points4errplot.png>
-Package pdftex.def Info: slike/points4errplot.png used on input line 1282.
+Package pdftex.def Info: slike/points4errplot.png used on input line 1283.
 (pdftex.def)             Requested size: 220.13077pt x 227.62204pt.
 
-<slike/points4barplot.png, id=644, 951.555pt x 983.92593pt>
+<slike/points4barplot.png, id=645, 951.555pt x 983.92593pt>
 File: slike/points4barplot.png Graphic file (type png)
 
 <use slike/points4barplot.png>
-Package pdftex.def Info: slike/points4barplot.png used on input line 1288.
+Package pdftex.def Info: slike/points4barplot.png used on input line 1289.
 (pdftex.def)             Requested size: 275.15982pt x 284.52756pt.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1296.
+(babel)             in language  on input line 1297.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1296.
+(babel)             in language  on input line 1297.
  [43]
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1296.
+(babel)             in language  on input line 1297.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1296.
+(babel)             in language  on input line 1297.
  [44 <./slike/accuracy_points.png>]
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1296.
+(babel)             in language  on input line 1297.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1296.
+(babel)             in language  on input line 1297.
  [45 <./slike/points2errplot.png (PNG copy)> <./slike/points2barplot.png (PNG c
 opy)>]
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1296.
+(babel)             in language  on input line 1297.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1296.
+(babel)             in language  on input line 1297.
 
 [46 <./slike/points3errplot.png (PNG copy)> <./slike/points3barplot.png (PNG co
 py)>]
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1296.
+(babel)             in language  on input line 1297.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1296.
+(babel)             in language  on input line 1297.
  [47 <./slike/points4errplot.png (PNG copy)> <./slike/points4barplot.png (PNG c
 opy)>]
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1296.
+(babel)             in language  on input line 1297.
 
 
 Package hyperref Warning: Composite letter `\textasciicaron+c'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textasciicaron' on input line 1296.
+(hyperref)                removing `\textasciicaron' on input line 1297.
 
-<slike/path_layout.png, id=687, 1047.915pt x 853.68938pt>
+<slike/path_layout.png, id=688, 1047.915pt x 853.68938pt>
 File: slike/path_layout.png Graphic file (type png)
 
 <use slike/path_layout.png>
-Package pdftex.def Info: slike/path_layout.png used on input line 1321.
+Package pdftex.def Info: slike/path_layout.png used on input line 1322.
 (pdftex.def)             Requested size: 389.99304pt x 317.70985pt.
- <slike/1234.png, id=688, 910.602pt x 939.51pt>
+ <slike/1234.png, id=689, 910.602pt x 939.51pt>
 File: slike/1234.png Graphic file (type png)
 
 <use slike/1234.png>
-Package pdftex.def Info: slike/1234.png used on input line 1328.
+Package pdftex.def Info: slike/1234.png used on input line 1329.
 (pdftex.def)             Requested size: 284.52756pt x 293.55315pt.
- <slike/123.png, id=689, 910.602pt x 939.51pt>
+ <slike/123.png, id=690, 910.602pt x 939.51pt>
 File: slike/123.png Graphic file (type png)
 
 <use slike/123.png>
-Package pdftex.def Info: slike/123.png used on input line 1336.
+Package pdftex.def Info: slike/123.png used on input line 1337.
 (pdftex.def)             Requested size: 170.71652pt x 176.12901pt.
- <slike/134.png, id=690, 910.602pt x 939.51pt>
+ <slike/134.png, id=691, 910.602pt x 939.51pt>
 File: slike/134.png Graphic file (type png)
 
 <use slike/134.png>
-Package pdftex.def Info: slike/134.png used on input line 1341.
+Package pdftex.def Info: slike/134.png used on input line 1342.
 (pdftex.def)             Requested size: 170.71652pt x 176.12901pt.
 
-Overfull \hbox (5.22217pt too wide) in paragraph at lines 1334--1344
+Overfull \hbox (5.22217pt too wide) in paragraph at lines 1335--1345
  [][]  [] 
  []
 
-<slike/124.png, id=691, 910.602pt x 939.51pt>
+<slike/124.png, id=692, 910.602pt x 939.51pt>
 File: slike/124.png Graphic file (type png)
  <use slike/124.png>
-Package pdftex.def Info: slike/124.png used on input line 1347.
+Package pdftex.def Info: slike/124.png used on input line 1348.
 (pdftex.def)             Requested size: 170.71652pt x 176.12901pt.
 
-<slike/234.png, id=692, 910.602pt x 939.51pt>
+<slike/234.png, id=693, 910.602pt x 939.51pt>
 File: slike/234.png Graphic file (type png)
  <use slike/234.png>
-Package pdftex.def Info: slike/234.png used on input line 1352.
+Package pdftex.def Info: slike/234.png used on input line 1353.
 (pdftex.def)             Requested size: 170.71652pt x 176.12901pt.
 
-Overfull \hbox (5.22217pt too wide) in paragraph at lines 1345--1355
+Overfull \hbox (5.22217pt too wide) in paragraph at lines 1346--1356
  [][]  [] 
  []
 
-<slike/12.png, id=693, 910.602pt x 939.51pt>
+<slike/12.png, id=694, 910.602pt x 939.51pt>
 File: slike/12.png Graphic file (type png)
  <use slike/12.png>
-Package pdftex.def Info: slike/12.png used on input line 1362.
+Package pdftex.def Info: slike/12.png used on input line 1363.
 (pdftex.def)             Requested size: 170.71652pt x 176.12901pt.
 
-<slike/13.png, id=694, 910.602pt x 939.51pt>
+<slike/13.png, id=695, 910.602pt x 939.51pt>
 File: slike/13.png Graphic file (type png)
  <use slike/13.png>
-Package pdftex.def Info: slike/13.png used on input line 1367.
+Package pdftex.def Info: slike/13.png used on input line 1368.
 (pdftex.def)             Requested size: 170.71652pt x 176.12901pt.
 
-Overfull \hbox (5.22217pt too wide) in paragraph at lines 1360--1370
+Overfull \hbox (5.22217pt too wide) in paragraph at lines 1361--1371
  [][]  [] 
  []
 
-<slike/14.png, id=695, 910.602pt x 939.51pt>
+<slike/14.png, id=696, 910.602pt x 939.51pt>
 File: slike/14.png Graphic file (type png)
  <use slike/14.png>
-Package pdftex.def Info: slike/14.png used on input line 1373.
+Package pdftex.def Info: slike/14.png used on input line 1374.
 (pdftex.def)             Requested size: 170.71652pt x 176.12901pt.
 
-<slike/23.png, id=696, 910.602pt x 939.51pt>
+<slike/23.png, id=697, 910.602pt x 939.51pt>
 File: slike/23.png Graphic file (type png)
  <use slike/23.png>
-Package pdftex.def Info: slike/23.png used on input line 1378.
+Package pdftex.def Info: slike/23.png used on input line 1379.
 (pdftex.def)             Requested size: 170.71652pt x 176.12901pt.
 
-Overfull \hbox (5.22217pt too wide) in paragraph at lines 1371--1381
+Overfull \hbox (5.22217pt too wide) in paragraph at lines 1372--1382
  [][]  [] 
  []
 
-<slike/24.png, id=697, 910.602pt x 939.51pt>
+<slike/24.png, id=698, 910.602pt x 939.51pt>
 File: slike/24.png Graphic file (type png)
  <use slike/24.png>
-Package pdftex.def Info: slike/24.png used on input line 1384.
+Package pdftex.def Info: slike/24.png used on input line 1385.
 (pdftex.def)             Requested size: 170.71652pt x 176.12901pt.
 
-<slike/34.png, id=698, 910.602pt x 939.51pt>
+<slike/34.png, id=699, 910.602pt x 939.51pt>
 File: slike/34.png Graphic file (type png)
  <use slike/34.png>
-Package pdftex.def Info: slike/34.png used on input line 1389.
+Package pdftex.def Info: slike/34.png used on input line 1390.
 (pdftex.def)             Requested size: 170.71652pt x 176.12901pt.
 
-Overfull \hbox (5.22217pt too wide) in paragraph at lines 1382--1392
+Overfull \hbox (5.22217pt too wide) in paragraph at lines 1383--1393
  [][]  [] 
  []
 
 
-LaTeX Warning: Float too large for page by 38.27713pt on input line 1393.
+LaTeX Warning: Float too large for page by 38.27713pt on input line 1394.
 
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1397.
+(babel)             in language  on input line 1398.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1397.
+(babel)             in language  on input line 1398.
 [48]
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1397.
+(babel)             in language  on input line 1398.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1397.
+(babel)             in language  on input line 1398.
  [49 <./slike/path_layout.png>]
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1397.
+(babel)             in language  on input line 1398.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1397.
+(babel)             in language  on input line 1398.
  [50 <./slike/1234.png>]
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1397.
+(babel)             in language  on input line 1398.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1397.
+(babel)             in language  on input line 1398.
  [51 <./slike/123.png> <./slike/134.png> <./slike/124.png> <./slike/234.png>]
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1397.
+(babel)             in language  on input line 1398.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1397.
+(babel)             in language  on input line 1398.
  [52 <./slike/12.png> <./slike/13.png> <./slike/14.png> <./slike/23.png> <./sli
 ke/24.png> <./slike/34.png>]
 Poglavje 5.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1397.
+(babel)             in language  on input line 1398.
 
 Package hyperref Warning: Composite letter `\textasciicaron+c'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textasciicaron' on input line 1397.
+(hyperref)                removing `\textasciicaron' on input line 1398.
 
 
 Underfull \vbox (badness 1558) has occurred while \output is active []
 
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1405.
+(babel)             in language  on input line 1406.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1405.
+(babel)             in language  on input line 1406.
  [53
 
 ]
@@ -1635,16 +1628,16 @@ Underfull \hbox (badness 10000) in paragraph at lines 106--112
  []
 
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1410.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1411.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1410.
+(babel)             in language  on input line 1411.
 Package babel Info: Redefining slovene shorthand "|
-(babel)             in language  on input line 1410.
+(babel)             in language  on input line 1411.
  [57]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1410.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1411.
  (vzorec_diplomskega_dela_050215.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1410.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1410.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1411.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1411.
 
 Package rerunfilecheck Info: File `vzorec_diplomskega_dela_050215.out' has not 
 changed.
@@ -1653,12 +1646,12 @@ changed.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1410.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1411.
  ) 
 Here is how much of TeX's memory you used:
- 12826 strings out of 493673
- 182949 string characters out of 3141528
- 305598 words of memory out of 3000000
+ 12827 strings out of 493673
+ 182964 string characters out of 3141528
+ 306598 words of memory out of 3000000
  15721 multiletter control sequences out of 15000+200000
  13438 words of font info for 49 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
@@ -1678,10 +1671,10 @@ iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files (x86)/MiKT
 eX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Program Files (x86)/MiKTeX
  2.9/fonts/type1/public/amsfonts/cm/cmti8.pfb><C:/Program Files (x86)/MiKTeX 2.
 9/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on vzorec_diplomskega_dela_050215.pdf (77 pages, 32651627 bytes)
+Output written on vzorec_diplomskega_dela_050215.pdf (77 pages, 24726894 bytes)
 .
 PDF statistics:
- 878 PDF objects out of 1000 (max. 8388607)
- 259 named destinations out of 1000 (max. 500000)
+ 879 PDF objects out of 1000 (max. 8388607)
+ 260 named destinations out of 1000 (max. 500000)
  409 words of extra memory for PDF output out of 10000 (max. 10000000)
 

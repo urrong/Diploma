@@ -352,9 +352,9 @@ V diplomskem delu implementiramo postopek lokalizacije v prostoru s pomočjo kam
 \selectlanguage{english}
 \addcontentsline{toc}{chapter}{Abstract}
 \chapter*{Abstract}
-Localization plays a big role in many applications for example film and game industry are using localization systems for capturing body movement.
+Localization plays a big role in many applications for example film and game industry are using localization systems for capturing of body movement.
 
-In this thesis we implement localization procedure using cameras. Localization object is a light emitting spherical color marker. We compute cameras intrinsic and extrinsic parameters effectively fitting camera in space. Intrinsic parameters are determined using MATLAB camera calibration tool. Extrinsic parameters are calculated using DLT and SVD methods. From images we detect marker in real time and use triangulation to determine its position in space. We properly evaluate the system and measure localization accuracy. It turns out that system errors are mostly structured and can be corrected.
+In this thesis we implement localization procedure using cameras. Localization object is a light emitting spherical color marker. We compute cameras intrinsic and extrinsic parameters effectively fitting camera in space. Intrinsic parameters are determined using MATLAB camera calibration tool. Extrinsic parameters are calculated using DLT and SVD methods. From images we detect marker in real time and use triangulation to determine its position in space. We properly evaluate the system and measure localization accuracy. It turns out that system errors are mostly systematic and can be corrected.
 \bigskip
 
 \noindent\textbf{Keywords:} \tkeywordsEn.
@@ -817,7 +817,8 @@ whoami=yes
 center=[x],[y]
    imagewidth=[n]
    imageheight=[n]
-move={ home | up | down | left | right | upleft | upright | downleft | downright | stop }
+move={ home | up | down | left | right | upleft | 
+	   upright | downleft | downright | stop }
 pan=[abspos]
 tilt=[abspos]
 zoom=[n]
@@ -1052,8 +1053,8 @@ Označevalnik je v osnovi oranžna žogica za namizni tenis. Da pa bi sprememba 
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.4]{marker_off.png}
-\includegraphics[scale=0.4]{marker_on.png}
+\includegraphics[scale=0.6]{marker_off.png}
+\includegraphics[scale=0.6]{marker_on.png}
 \caption{Ugasnjen označevalnik je oranžne barve (levo), prižgan pa izrazito rumene barve (desno).}
 \label{markerimg}
 \end{figure}
