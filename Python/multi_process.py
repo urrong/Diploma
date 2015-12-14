@@ -167,7 +167,7 @@ if __name__ == "__main__":
 	components = []
 	line = []
 	prevPoint = np.array([0.0, 0.0, 0.0])
-	markerPoints = []
+	#markerPoints = []
 	
 	try:
 		while True:
@@ -201,8 +201,8 @@ if __name__ == "__main__":
 									[-x[1], x[0], 0]])
 					C[i*3:i*3+3, :] = cross.dot(camParams[i]["intrinsics"]).dot(camParams[i]["extrinsics"])
 			
-			if numFound > 3:
-				markerPoints.append(markers)
+			if numFound > 1:
+				#markerPoints.append(markers)
 				u, s, v = np.linalg.svd(C)
 				p = v.T[:, 3]
 				p = (p / p[3])[:3]
@@ -218,7 +218,7 @@ if __name__ == "__main__":
 			time.sleep(0.0001)
 	except KeyboardInterrupt:
 		pass
-	pickle.dump(markerPoints, open("marker_points_path.pkl", "wb"))
+	#pickle.dump(markerPoints, open("marker_points_path.pkl", "wb"))
 	components.append(line)
 	#pickle.dump(components, open("points.pkl", "wb"))
 	
@@ -229,7 +229,7 @@ if __name__ == "__main__":
 	axes = figure.add_subplot(111, projection = "3d")
 	
 	#bounding box for equal axis
-	for point in np.diag(100 * np.ones(3)):
+	for point in np.diag(200 * np.ones(3)):
 		axes.plot([point[0]], [point[1]], [point[2]], 'w')
 	
 	for line in components:
